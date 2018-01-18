@@ -1,13 +1,14 @@
 // main.js
 
 import * as d3 from 'd3';
+import _ from 'lodash';
 import barChart from '../src/bar-chart.js'
 var assert = require('chai').assert;
 
 var c;
 
 var testData = [
-    5, 10, 13, 19, 21
+    5, 10, 13, 19, 21, 25
 ];
 
 function getSvg() {
@@ -48,15 +49,11 @@ it('produces the right number of rectangles', function() {
     c = barChart.drawBarChart(testData);
     c.render();
 
-    assert.equal(d3.selectAll('rect').size(),  5);
+    assert.equal(d3.selectAll('rect').size(),  6);
 });
 
-it('produces rectangles that do not overlap horizontally', function() {
-    c = barChart.drawBarChart(testData);
-    c.render();
-
+function getBounds() {
     const rectangles = d3.selectAll('rect');
-
     const existingBounds = [];
 
     // build a set of x and w coordinates.
@@ -70,6 +67,16 @@ it('produces rectangles that do not overlap horizontally', function() {
             existingBounds.push({x: x, w: w});
         }
     );
+
+    return existingBounds;
+
+}
+
+it('produces rectangles that do not overlap horizontally', function() {
+    c = barChart.drawBarChart(testData);
+    c.render();
+
+    const existingBounds = getBounds();
 
     var anyOverlaps = false;
 
@@ -91,5 +98,26 @@ it('produces rectangles that do not overlap horizontally', function() {
     }
 
     assert.isFalse(anyOverlaps);
+});
+
+function repeatArray(n, arr) {
+    return _.flatten(_.times(n, _.constant(arr)));
+}
+
+it('handles longer datasets', function() {
+    // length is now 24
+    const longDataSet = repeatArray(4, testData);
+
+    c = barChart.drawBarChart(longDataSet);
+    c.render();
+
+    const existingBounds = getBounds();
+
+    let thisRect;
+    var isOverflowingXBounds = _.some(
+        existingBounds, r => (r.x + r.w) > 500
+    );
+
+    assert.isFalse(isOverflowingXBounds);
 });
 
