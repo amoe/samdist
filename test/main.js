@@ -6,6 +6,7 @@ import sinon from 'sinon';
 
 var c;
 
+var testData =  [{ date: '2014-01', value: 100}, {date: '2014-02', value: 215}];
 
 function getSvg() {
     return d3.select('svg');

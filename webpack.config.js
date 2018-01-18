@@ -9,5 +9,8 @@ module.exports = {
         loaders: [
         ]
     },
-    devtool: 'inline-source-map'
+    devtool: 'inline-source-map',
+    devServer: {
+        port: 57234
+    }
 };
