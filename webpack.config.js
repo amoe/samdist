@@ -8,5 +8,6 @@ module.exports = {
     module: {
         loaders: [
         ]
-    }
+    },
+    devtool: 'inline-source-map'
 };

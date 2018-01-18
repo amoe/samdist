@@ -2,6 +2,7 @@
 
 import * as d3 from 'd3';
 import foo from '../src/bar-chart.js'
+import sinon from 'sinon';
 
 var c;
 
@@ -24,4 +25,13 @@ afterEach(function() {
 it('can be created', function () {
     const result = getSvg();
     assert.isFalse(getSvg().empty());
+});
+
+it('calls the original function', function() {
+    var theSpy = sinon.spy()
+
+    foo.logClient(theSpy);
+
+    assert.isTrue(theSpy.called);
+    assert.isTrue(theSpy.calledWith("some argument", 42));
 });
