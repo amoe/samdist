@@ -12,6 +12,8 @@ const functions = {
 
         var viewWidth = 500;
 
+        const dynamicBarWidth = (viewWidth / data.length) - padding;
+
         that.render = function() {
             var svg = d3.select('body')
                 .append('svg')
@@ -26,7 +28,7 @@ const functions = {
                     return i * (viewWidth / data.length);
                 })
                 .attr('y', 0)
-                .attr('width', barWidth)
+                .attr('width', dynamicBarWidth)
                 .attr('height', 100);
         };
 
