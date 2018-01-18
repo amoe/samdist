@@ -1,8 +1,15 @@
 {
-  "name": "samdist",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "git@github.com:amoe/samdist.git",
-  "author": "David Banks <amoebae@gmail.com>",
-  "license": "MIT"
+    "name": "samdist",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "git@github.com:amoe/samdist.git",
+    "author": "David Banks <amoebae@gmail.com>",
+    "license": "MIT",
+    "dependencies": {},
+    "scripts": {
+        "test": "karma start --single-run"
+    },
+    "devDependencies": {
+        "karma": "2.0.0"
+    }
 }
