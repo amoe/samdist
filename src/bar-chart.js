@@ -10,17 +10,21 @@ const functions = {
         var barWidth = 20;
         var padding = 1;
 
+        var viewWidth = 500;
+
         that.render = function() {
             var svg = d3.select('body')
                 .append('svg')
                 .attr('height', '500')
-                .attr('width', '500');
+                .attr('width', viewWidth);
 
             svg.selectAll('rect')
                 .data(data)
                 .enter()
                 .append('rect')
-                .attr('x', function (d, i) { return i * (barWidth + padding); })
+                .attr('x', function (d, i) { 
+                    return i * (viewWidth / data.length);
+                })
                 .attr('y', 0)
                 .attr('width', barWidth)
                 .attr('height', 100);

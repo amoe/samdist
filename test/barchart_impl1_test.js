@@ -60,9 +60,9 @@ function getBounds() {
     rectangles.each(
         function (d, i, nodes) {
             
-            // These come out as strings!  Have to re-parse them into integers.
-            const x = parseInt(d3.select(this).attr('x'));
-            const w = parseInt(d3.select(this).attr('width'));
+            // These come out as strings!  Have to re-parse them to numbers.
+            const x = parseFloat(d3.select(this).attr('x'));
+            const w = parseFloat(d3.select(this).attr('width'));
 
             existingBounds.push({x: x, w: w});
         }
@@ -104,7 +104,7 @@ function repeatArray(n, arr) {
     return _.flatten(_.times(n, _.constant(arr)));
 }
 
-it('handles longer datasets', function() {
+it('handles longer datasets without overflowing', function() {
     // length is now 24
     const longDataSet = repeatArray(4, testData);
 
