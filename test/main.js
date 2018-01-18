@@ -30,9 +30,12 @@ it('can be created', function () {
 it('has the correct width', function() {
     assert.equal(getSvg().attr('width'), 500);
 });
-                                        
 
-it('calls the original function', function() {
+it('has the correct height', function() {
+    assert.equal(getSvg().attr('height'), 500);
+});
+
+it('calls the provided logging function', function() {
     var theSpy = sinon.spy()
 
     foo.logClient(theSpy);
