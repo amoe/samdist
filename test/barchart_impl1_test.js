@@ -121,3 +121,17 @@ it('handles longer datasets without overflowing', function() {
     assert.isFalse(isOverflowingXBounds);
 });
 
+it('scales bar sizes relative to the number of elements', function() {
+    c = barChart.drawBarChart(testData);
+    c.render();
+    const bounds1 = getBounds();
+    d3.selectAll('svg').remove();
+
+    c = barChart.drawBarChart(testData.concat([1]));
+    c.render();
+    const bounds2 = getBounds();
+    d3.selectAll('svg').remove();
+
+    assert.notEqual(bounds1[0].w, bounds2[0].w);
+});
+
