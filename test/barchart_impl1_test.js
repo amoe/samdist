@@ -7,8 +7,7 @@ var assert = require('chai').assert;
 var c;
 
 var testData = [
-    5, 10, 13, 19, 21, 25, 22, 18, 15, 13, 11, 12, 15, 20, 18, 17, 16, 18, 23,
-    25
+    5, 10, 13, 19, 21
 ];
 
 function getSvg() {
@@ -38,3 +37,6 @@ it('has the correct height', function() {
     assert.equal(getSvg().attr('height'), 500);
 });
 
+it('produces the right number of rectangles', function() {
+    assert.equal(d3.selectAll('rect').size(),  5);
+});
