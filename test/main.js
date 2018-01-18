@@ -18,13 +18,18 @@ function drawBarChart() {
     return that;
 }
 
+function getSvg() {
+    return d3.select('svg');
+}
+
 var assert = require('chai').assert;
 
-beforeEach(function() {
-    c = drawBarChart();
-    c.render();
-});
+// beforeEach(function() {
+//     c = drawBarChart();
+//     c.render();
+// });
 
-it('is functioning', function () {
-    assert.equal(4, 2 + 2);
+it('can be created', function () {
+    const result = getSvg();
+    assert.isFalse(getSvg().empty());
 });
