@@ -17,6 +17,23 @@ const functions = {
 
         return that;
     },
+
+    drawBarChart2: function() {
+        var that = {};
+        var data = null;
+        var h = 500 - 80;
+        var w = 500;
+        var svg;
+        var x;
+        var y;
+
+        that.render = function() {
+            
+        };
+
+        return that;
+    },
+
     logClient: function(logFunction) {
         logFunction("some argument", 42);
     }
