@@ -40,3 +40,41 @@ it('has the correct height', function() {
 it('produces the right number of rectangles', function() {
     assert.equal(d3.selectAll('rect').size(),  5);
 });
+
+it('produces rectangles that do not overlap horizontally', function() {
+    const rectangles = d3.selectAll('rect');
+
+    const existingBounds = [];
+
+    // build a set of x and w coordinates.
+    rectangles.each(
+        function (d, i, nodes) {
+            
+            const x = d3.select(this).attr('x');
+            const w = d3.select(this).attr('width');
+
+            existingBounds.push({x: x, w: w});
+        }
+    );
+
+    var anyOverlaps = false;
+
+    existingBounds.sort(function(a, b) {return a.x < b.x;});
+
+    // The first item can't overlap so start at 1.
+    for (var i = 1; i < existingBounds.length; i++) {
+        var lastItem = existingBounds[i - 1];
+        var xMin = lastItem.x;
+        var xMax = xMin + lastItem.w;
+
+        var thisItem = existingBounds[i];
+        
+        if (thisItem.x < xMax) {
+            anyOverlaps = true;
+            break;
+        }
+    }
+
+    assert.isFalse(anyOverlaps);
+});
+

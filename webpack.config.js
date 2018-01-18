@@ -1,5 +1,7 @@
 // webpack configuration file
 
+const webpack = require('webpack');
+
 module.exports = {
     entry: ["./entry.js"],
     output: {
