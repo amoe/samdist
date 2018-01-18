@@ -6,6 +6,10 @@ const functions = {
         // for testability.  This is based on a suggestion of an article from
         // 'busypeoples'.
         var that = {};
+
+        var barWidth = 20;
+        var padding = 1;
+
         that.render = function() {
             var svg = d3.select('body')
                 .append('svg')
@@ -16,9 +20,9 @@ const functions = {
                 .data(data)
                 .enter()
                 .append('rect')
-                .attr('x', 0)
+                .attr('x', function (d, i) { return i * (barWidth + padding); })
                 .attr('y', 0)
-                .attr('width', 20)
+                .attr('width', barWidth)
                 .attr('height', 100);
         };
 

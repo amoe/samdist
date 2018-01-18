@@ -50,8 +50,9 @@ it('produces rectangles that do not overlap horizontally', function() {
     rectangles.each(
         function (d, i, nodes) {
             
-            const x = d3.select(this).attr('x');
-            const w = d3.select(this).attr('width');
+            // These come out as strings!  Have to re-parse them into integers.
+            const x = parseInt(d3.select(this).attr('x'));
+            const w = parseInt(d3.select(this).attr('width'));
 
             existingBounds.push({x: x, w: w});
         }
@@ -59,7 +60,8 @@ it('produces rectangles that do not overlap horizontally', function() {
 
     var anyOverlaps = false;
 
-    existingBounds.sort(function(a, b) {return a.x < b.x;});
+    // Sort ascending
+    existingBounds.sort(function(a, b) {return a.x > b.x;});
 
     // The first item can't overlap so start at 1.
     for (var i = 1; i < existingBounds.length; i++) {
@@ -69,7 +71,7 @@ it('produces rectangles that do not overlap horizontally', function() {
 
         var thisItem = existingBounds[i];
         
-        if (thisItem.x < xMax) {
+        if (thisItem.x <= xMax) {
             anyOverlaps = true;
             break;
         }
