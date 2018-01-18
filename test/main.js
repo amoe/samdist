@@ -27,6 +27,11 @@ it('can be created', function () {
     assert.isFalse(getSvg().empty());
 });
 
+it('has the correct width', function() {
+    assert.equal(getSvg().attr('width'), 500);
+});
+                                        
+
 it('calls the original function', function() {
     var theSpy = sinon.spy()
 
