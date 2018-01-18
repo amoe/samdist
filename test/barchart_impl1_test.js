@@ -1,21 +1,23 @@
 // main.js
 
 import * as d3 from 'd3';
-import foo from '../src/bar-chart.js'
-import sinon from 'sinon';
+import barChart from '../src/bar-chart.js'
+var assert = require('chai').assert;
 
 var c;
 
-var testData =  [{ date: '2014-01', value: 100}, {date: '2014-02', value: 215}];
+var testData = [
+    5, 10, 13, 19, 21, 25, 22, 18, 15, 13, 11, 12, 15, 20, 18, 17, 16, 18, 23,
+    25
+];
 
 function getSvg() {
     return d3.select('svg');
 }
 
-var assert = require('chai').assert;
 
 beforeEach(function() {
-    c = foo.drawBarChart();
+    c = barChart.drawBarChart(testData);
     c.render();
 });
 
@@ -36,11 +38,3 @@ it('has the correct height', function() {
     assert.equal(getSvg().attr('height'), 500);
 });
 
-it('calls the provided logging function', function() {
-    var theSpy = sinon.spy()
-
-    foo.logClient(theSpy);
-
-    assert.isTrue(theSpy.called);
-    assert.isTrue(theSpy.calledWith("some argument", 42));
-});
