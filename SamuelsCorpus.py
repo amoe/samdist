@@ -684,7 +684,8 @@ class Viewer(SamuelsCorpus):
         candidates = sorted(sumdict.items(), key=operator.itemgetter(1), reverse=True)
         if cutoff>0:
             for cand,score in candidates[:cutoff]:
-                print("({},{}) : {}".format(cand,score,self.find_text(cand,field=field)))
+                pass
+#                print("({},{}) : {}".format(cand,score,self.find_text(cand,field=field)))
                 #print("{}:{}".format(cand,score))
 
         if displaygraph:

@@ -10,3 +10,9 @@ It seems that corpussize could be calculated from the data set, so this is being
 used probably for performance, or as a more simple flag that's just
 used to specify whether the data should be presented as percentages or just as
 raw numbers.
+
+Before we can do this we need to set up the node infrastructure:
+Need
+
+fpr:::::::::72ECF46A56B4AD39C907BBB71646B01B86E50310:
+

@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import operator
 import math
+import pprint
 
 
 
@@ -170,6 +171,8 @@ def autolabel(rects, ax):
     return (maxheight+add)*1.1
 
 def display_list(hfw_list,cutoff=10,words=[],leg=None,title=None,ylim=10,abbrevx=True,xlabel='High Frequency Words',ylabel='Probability',colors=None,fontsize=20):
+    print("Will render list: ", pprint.pformat(hfw_list))
+
     width=0.7/len(hfw_list)
     toplot=[]
     for hfw in hfw_list:
