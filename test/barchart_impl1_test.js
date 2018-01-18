@@ -16,8 +16,6 @@ function getSvg() {
 
 
 beforeEach(function() {
-    c = barChart.drawBarChart(testData);
-    c.render();
 });
 
 afterEach(function() {
@@ -25,23 +23,38 @@ afterEach(function() {
 });
 
 it('can be created', function () {
+    c = barChart.drawBarChart(testData);
+    c.render();
+
     const result = getSvg();
     assert.isFalse(getSvg().empty());
 });
 
 it('has the correct width', function() {
+    c = barChart.drawBarChart(testData);
+    c.render();
+
     assert.equal(getSvg().attr('width'), 500);
 });
 
 it('has the correct height', function() {
+    c = barChart.drawBarChart(testData);
+    c.render();
+
     assert.equal(getSvg().attr('height'), 500);
 });
 
 it('produces the right number of rectangles', function() {
+    c = barChart.drawBarChart(testData);
+    c.render();
+
     assert.equal(d3.selectAll('rect').size(),  5);
 });
 
 it('produces rectangles that do not overlap horizontally', function() {
+    c = barChart.drawBarChart(testData);
+    c.render();
+
     const rectangles = d3.selectAll('rect');
 
     const existingBounds = [];
