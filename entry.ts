@@ -1,9 +1,10 @@
-// entry.js
+// entry.ts
 
-import barChart from './src/bar-chart.js'
+import barChart from './src/bar-chart.js';
+import axios from 'axios';
 
 function getRenderingMode() {
-    var result;
+    let result: string;
 
     if (document.compatMode === 'CSS1Compat') {
         result = "STANDARDS_COMPLIANCE";
@@ -24,4 +25,12 @@ var testData = [
 document.addEventListener("DOMContentLoaded", e => {
     console.log("Rendering mode: %o", getRenderingMode());
     barChart.drawBarChart(testData).render();
+});
+
+document.addEventListener("DOMContentLoaded", e => {
+    axios.get("/bow_query_data.json").then(function(response) {
+        console.log("success: %o", response.data);
+    }).catch(function(error) {
+        console.log("error: %o", error);
+    });
 });

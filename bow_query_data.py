@@ -1,4 +1,6 @@
-[(219407,
+import json
+
+data = [(219407,
   [('ZC [Grammatical Item]', 52409),
    ('NULL', 29902),
    ('ZF [Pronoun]', 28680),
@@ -1869,3 +1871,9 @@
    ('AF.25 [Particular tree/plant yielding useful gum/resin]', 1),
    ('AO.22.d.05 [Ill-treatment]', 1),
    ('BH.14.k.04 [Vessel propelled by sail]', 1)])]
+
+# foo = json.dumps(data[1])
+
+# print(foo)
+
+print(json.dumps(data[0][1]))
