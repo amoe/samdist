@@ -1,6 +1,6 @@
 const publicExports = {
-    transformFromNetwork: function (datum) {
-        return datum;
+    transformFromNetwork: function (data: any[][]): number[] {
+        return data.map(x => x[1] as number);
     }
 };
 
