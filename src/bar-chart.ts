@@ -5,7 +5,9 @@ const functions = {
         // Very unclear to me why we need to wrap it in this object, supposedly
         // for testability.  This is based on a suggestion of an article from
         // 'busypeoples'.
-        var that = {};
+        var that = {
+            render: null
+        };
 
         var barWidth = 20;
         var padding = 1;
