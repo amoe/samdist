@@ -55,10 +55,10 @@ const functions = {
 	    .tickPadding(3);
     
         that.render = function() {
-            var svg = d3.select('body')
+            var svg = d3.select('.container')
                 .append('svg')
-                .attr('height', '500')
-                .attr('width', viewWidth);
+                .attr('viewBox', "0 0 " + viewWidth + " " + viewHeight)
+                .attr('preserveAspectRatio', 'xMinYMin meet');
 
             svg.selectAll('rect')
                 .data(filteredData)
