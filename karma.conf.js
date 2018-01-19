@@ -3,14 +3,14 @@ const webpackConfig = require('./webpack.config.js');
 module.exports = function(config) {
     config.set({
         basePath: '',
-        frameworks: ['mocha'],
+        frameworks: ['mocha', 'karma-typescript'],
         files: [
-            'test/*.js'
+            'test/*.ts'
         ],
         exclude: [
         ],
         preprocessors: {
-            'test/*.js': ['webpack', 'sourcemap']
+            'test/*.ts': ['karma-typescript']
         },
         webpack: webpackConfig,
         reporters: ['progress'],
