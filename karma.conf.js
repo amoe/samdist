@@ -1,5 +1,14 @@
 const webpackConfig = require('./webpack.config.js');
 
+// This is required otherwise karma-typescript won't support 'import' statements
+// in .ts tests.
+const configure = require('karma-typescript-es6-transform');
+
+const bundlerTransforms = configure({
+    presets: [['env']]
+});
+
+
 module.exports = function(config) {
     config.set({
         basePath: '',
@@ -20,6 +29,13 @@ module.exports = function(config) {
         autoWatch: false,
         browsers: ['ChromeHeadless'],
         singleRun: true,
-        concurrency: Infinity
+        concurrency: Infinity,
+        karmaTypescriptConfig: {
+            bundlerOptions: {
+                transforms: [
+                    bundlerTransforms
+                ]
+            }
+        }
     })
 };

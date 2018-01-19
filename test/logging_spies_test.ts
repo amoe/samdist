@@ -1,7 +1,6 @@
 import sinon from 'sinon';
 import barChart from '../src/bar-chart.js'
-var assert = require('chai').assert;
-
+import {assert} from 'chai';
 
 it('calls the provided logging function', function() {
     var theSpy = sinon.spy()
