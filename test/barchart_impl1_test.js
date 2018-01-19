@@ -63,8 +63,10 @@ function getBounds() {
             // These come out as strings!  Have to re-parse them to numbers.
             const x = parseFloat(d3.select(this).attr('x'));
             const w = parseFloat(d3.select(this).attr('width'));
+            const h = parseFloat(d3.select(this).attr('height'));   // refactor
+            const y = parseFloat(d3.select(this).attr('y'));
 
-            existingBounds.push({x: x, w: w});
+            existingBounds.push({x: x, w: w, h: h, y: y});
         }
     );
 
@@ -133,5 +135,22 @@ it('scales bar sizes relative to the number of elements', function() {
     d3.selectAll('svg').remove();
 
     assert.notEqual(bounds1[0].w, bounds2[0].w);
+});
+
+it('scales bar heights relative to the size of the data point', function() {
+    c = barChart.drawBarChart(testData);
+    c.render();
+
+    const bounds = getBounds();
+    assert.notEqual(bounds[0].h, bounds[1].h);
+});
+
+
+it("modifies the y-positions of bars heights to position them", function() {
+    c = barChart.drawBarChart(testData);
+    c.render();
+
+    const bounds = getBounds();
+    assert.notEqual(bounds[0].y, bounds[1].y);
 });
 

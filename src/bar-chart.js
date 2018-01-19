@@ -11,6 +11,7 @@ const functions = {
         var padding = 1;
 
         var viewWidth = 500;
+        var viewHeight = 500;
 
         const dynamicBarWidth = (viewWidth / data.length) - padding;
 
@@ -27,9 +28,9 @@ const functions = {
                 .attr('x', function (d, i) { 
                     return i * (viewWidth / data.length);
                 })
-                .attr('y', 0)
+                .attr('y', function (d, i) { return viewHeight - (d*4); })
                 .attr('width', dynamicBarWidth)
-                .attr('height', 100);
+                .attr('height', function (d, i) { return (d*4); });
         };
 
         return that;
