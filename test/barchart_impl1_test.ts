@@ -2,8 +2,8 @@
 
 import * as d3 from 'd3';
 import _ from 'lodash';
-import barChart from '../src/bar-chart.js'
-var assert = require('chai').assert;
+import barChart from '../src/bar-chart.js';
+import {assert} from 'chai';
 
 var c;
 
@@ -83,7 +83,7 @@ it('produces rectangles that do not overlap horizontally', function() {
     var anyOverlaps = false;
 
     // Sort ascending
-    existingBounds.sort(function(a, b) {return a.x > b.x;});
+    existingBounds.sort(function(a, b) {return a.x - b.x;});
 
     // The first item can't overlap so start at 1.
     for (var i = 1; i < existingBounds.length; i++) {
