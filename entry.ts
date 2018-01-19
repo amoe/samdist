@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", e => {
     axios.get("/bow_query_data.json").then(function(response) {
         console.log("success: %o", response.data);
         const transformed = transformer.transformFromNetwork(response.data);
-        barChart.drawBarChart(transformed, 20).render();
+        barChart.drawBarChart(transformed, 5).render();
     }).catch(function(error) {
         console.log("error: %o", error);
     });
