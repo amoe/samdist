@@ -16,8 +16,8 @@ const functions = {
         var barWidth = 20;
         var padding = 1;
 
-        var viewWidth = 640;
-        var viewHeight = 480;
+        var viewWidth = 500;
+        var viewHeight = 500;
 
         var filteredData;
         if (cutoff != null) {
@@ -37,17 +37,15 @@ const functions = {
 
         const yDomainMax = d3.max(filteredData, x => x.value);
 
-        const yPadding = 30;
-
         // because y increases as the data value gets smaller, the range must
         // be different on this one -- see the reversed arguments in range()
         const yScale1 = d3.scaleLinear()
           .domain([0, yDomainMax])
-          .range([viewHeight - yPadding, 0]);
+          .range([viewHeight, 0]);
 
         const yScale2 = d3.scaleLinear()
           .domain([0, yDomainMax])
-          .range([0, viewHeight - yPadding]);
+          .range([0, viewHeight]);
 
         log.debug("bandwidth calced as %o", xScale.bandwidth());
 
@@ -57,10 +55,10 @@ const functions = {
 	    .tickPadding(3);
     
         that.render = function() {
-            var svg = d3.select('.container')
+            var svg = d3.select('body')
                 .append('svg')
-                .attr('viewBox', "0 0 " + viewWidth + " " + viewHeight)
-                .attr('preserveAspectRatio', 'xMinYMin meet');
+                .attr('height', '500')
+                .attr('width', viewWidth);
 
             svg.selectAll('rect')
                 .data(filteredData)
@@ -76,7 +74,7 @@ const functions = {
                 .attr('height', function (d, i) { return yScale2(d.value); });
 
             svg.append('g')
-                .attr('transform', "translate(0, " + (viewHeight - yPadding) + ")")
+                .attr('transform', "translate(0, " + (viewHeight - 10) + ")")
                 .call(xAxis);
         };
 
