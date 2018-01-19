@@ -1,8 +1,9 @@
 import * as d3 from 'd3';
 import * as log from 'loglevel';
+import {DiscreteStatistic} from './interfaces';
 
 const functions = {
-    drawBarChart: function(data, cutoff?: number) {
+    drawBarChart: function(data: DiscreteStatistic[], cutoff?: number) {
         log.debug("starting to draw graph");
 
         // Very unclear to me why we need to wrap it in this object, supposedly
@@ -27,7 +28,14 @@ const functions = {
 
         const dynamicBarWidth = (viewWidth / filteredData.length) - padding;
 
-        const yDomainMax = d3.max(filteredData, x => x);
+        const xScale = d3.scaleBand()
+            .domain(
+                filteredData.map(function (d) { return d.category; })
+            ).rangeRound([0, viewWidth])
+            .paddingInner(0.1)
+            .paddingOuter(0.8);
+
+        const yDomainMax = d3.max(filteredData, x => x.value);
 
         // because y increases as the data value gets smaller, the range must
         // be different on this one -- see the reversed arguments in range()
@@ -38,6 +46,8 @@ const functions = {
         const yScale2 = d3.scaleLinear()
           .domain([0, yDomainMax])
           .range([0, viewHeight]);
+
+        log.debug("bandwidth calced as %o", xScale.bandwidth());
         
         that.render = function() {
             var svg = d3.select('body')
@@ -50,11 +60,13 @@ const functions = {
                 .enter()
                 .append('rect')
                 .attr('x', function (d, i) { 
-                    return i * (viewWidth / filteredData.length);
+                    return xScale(d.category);
                 })
-                .attr('y', function (d, i) { return yScale1(d); })
-                .attr('width', dynamicBarWidth)
-                .attr('height', function (d, i) { return yScale2(d); });
+                .attr('y', function (d, i) { 
+                    return yScale1(d.value);
+                })
+                .attr('width', xScale.bandwidth())
+                .attr('height', function (d, i) { return yScale2(d.value); });
         };
 
         return that;

@@ -4,6 +4,7 @@ import * as d3 from 'd3';
 import _ from 'lodash';
 import barChart from '../src/bar-chart.js';
 import {assert} from 'chai';
+import {DiscreteStatistic} from '../src/interfaces';
 
 var c;
 
@@ -11,9 +12,45 @@ var testData = [
     5, 10, 13, 19, 21, 25
 ];
 
+// some random labels from /usr/dict/words
+var categoryLabels = [
+    "Ed",
+    "capacities",
+    "hootch",
+    "buzzword",
+    "Amati",
+    "Short",
+    "Cenozoic",
+    "craw",
+    "armpit",
+    "asteroid",
+    "incidental",
+    "owners",
+    "lumpier",
+    "Adam",
+    "bani",
+    "transplanting",
+    "brazen",
+    "gadflies",
+    "kilobytes",
+    "cairn",
+    "disablement",
+    "affronts",
+    "Olsen",
+    "mammoth",
+    "Charolais",
+    "cornbread",
+    "towel",
+    "edifying",
+    "aftershave",
+    "Yangon"
+];
+
 function getSvg() {
     return d3.select('svg');
 }
+
+
 
 beforeEach(function() {
 });
@@ -22,8 +59,34 @@ afterEach(function() {
     d3.selectAll('svg').remove();
 });
 
+// A cycling counter using local state
+function makeCounter(arr) {
+    var theCount = 0;
+    
+    return function() {
+        if (theCount >= arr.length) {
+            theCount = 0;
+        }
+
+        return theCount++;
+    };
+}
+
+const thisCounter = makeCounter(categoryLabels);
+
+
+function prepareData(data: number[]): DiscreteStatistic[] {
+    return data.map(function (val) {
+        let datum: DiscreteStatistic = {
+            category: categoryLabels[thisCounter()],
+            value: val
+        };
+        return datum;
+    });
+}
+
 it('can be created', function () {
-    c = barChart.drawBarChart(testData);
+    c = barChart.drawBarChart(prepareData(testData));
     c.render();
 
     const result = getSvg();
@@ -31,21 +94,21 @@ it('can be created', function () {
 });
 
 it('has the correct width', function() {
-    c = barChart.drawBarChart(testData);
+    c = barChart.drawBarChart(prepareData(testData));
     c.render();
 
     assert.equal(getSvg().attr('width'), 500);
 });
 
 it('has the correct height', function() {
-    c = barChart.drawBarChart(testData);
+    c = barChart.drawBarChart(prepareData(testData));
     c.render();
 
     assert.equal(getSvg().attr('height'), 500);
 });
 
 it('produces the right number of rectangles', function() {
-    c = barChart.drawBarChart(testData);
+    c = barChart.drawBarChart(prepareData(testData));
     c.render();
 
     assert.equal(d3.selectAll('rect').size(),  6);
@@ -74,7 +137,7 @@ function getBounds() {
 }
 
 it('produces rectangles that do not overlap horizontally', function() {
-    c = barChart.drawBarChart(testData);
+    c = barChart.drawBarChart(prepareData(testData));
     c.render();
 
     const existingBounds = getBounds();
@@ -109,7 +172,7 @@ it('handles longer datasets without overflowing', function() {
     // length is now 24
     const longDataSet = repeatArray(4, testData);
 
-    c = barChart.drawBarChart(longDataSet);
+    c = barChart.drawBarChart(prepareData(longDataSet));
     c.render();
 
     const existingBounds = getBounds();
@@ -123,12 +186,12 @@ it('handles longer datasets without overflowing', function() {
 });
 
 it('scales bar sizes relative to the number of elements', function() {
-    c = barChart.drawBarChart(testData);
+    c = barChart.drawBarChart(prepareData(testData));
     c.render();
     const bounds1 = getBounds();
     d3.selectAll('svg').remove();
 
-    c = barChart.drawBarChart(testData.concat([1]));
+    c = barChart.drawBarChart(prepareData(testData.concat([1])));
     c.render();
     const bounds2 = getBounds();
     d3.selectAll('svg').remove();
@@ -137,7 +200,7 @@ it('scales bar sizes relative to the number of elements', function() {
 });
 
 it('scales bar heights relative to the size of the data point', function() {
-    c = barChart.drawBarChart(testData);
+    c = barChart.drawBarChart(prepareData(testData));
     c.render();
 
     const bounds = getBounds();
@@ -146,7 +209,7 @@ it('scales bar heights relative to the size of the data point', function() {
 
 
 it("modifies the y-positions of bars heights to position them", function() {
-    c = barChart.drawBarChart(testData);
+    c = barChart.drawBarChart(prepareData(testData));
     c.render();
 
     const bounds = getBounds();
