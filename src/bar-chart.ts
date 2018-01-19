@@ -48,7 +48,12 @@ const functions = {
           .range([0, viewHeight]);
 
         log.debug("bandwidth calced as %o", xScale.bandwidth());
-        
+
+        var xAxis = d3.axisBottom(xScale)
+	    .tickSizeInner(4)
+    	    .tickSizeOuter(20)
+	    .tickPadding(3);
+    
         that.render = function() {
             var svg = d3.select('body')
                 .append('svg')
@@ -67,6 +72,10 @@ const functions = {
                 })
                 .attr('width', xScale.bandwidth())
                 .attr('height', function (d, i) { return yScale2(d.value); });
+
+            svg.append('g')
+                .attr('transform', "translate(0, " + (viewHeight - 10) + ")")
+                .call(xAxis);
         };
 
         return that;
