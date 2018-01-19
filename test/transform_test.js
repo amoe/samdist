@@ -1,6 +1,7 @@
 import sinon from 'sinon';
-import barChart from '../src/bar-chart.js'
+import barChart from '../src/bar-chart.js';
 import {assert} from 'chai';
+import transformer from '../src/transformer.ts';
 
 const dataSubset = [
     [
@@ -18,5 +19,5 @@ const dataSubset = [
 ];
 
 it('can transform network data to displayable', function() {
-    assert.isTrue(true);
+    assert.equal(42, transformer.transformFromNetwork(42));
 });
