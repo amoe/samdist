@@ -1,41 +1,43 @@
-const webpackConfig = require('./webpack.config.js');
-
-// This is required otherwise karma-typescript won't support 'import' statements
-// in .ts tests.
-const configure = require('karma-typescript-es6-transform');
-
-const bundlerTransforms = configure({
-    presets: [['env']]
-});
-
+// Karma configuration
+// Generated on Fri Jan 19 2018 12:35:45 GMT+0000 (GMT)
 
 module.exports = function(config) {
-    config.set({
-        basePath: '',
-        frameworks: ['mocha', 'karma-typescript'],
-        files: [
-            'test/*.ts'
-        ],
-        exclude: [
-        ],
-        preprocessors: {
-            'test/*.ts': ['karma-typescript']
-        },
-        webpack: webpackConfig,
-        reporters: ['progress'],
-        port: 57233,
-        colors: true,
-        logLevel: config.LOG_INFO,
-        autoWatch: false,
-        browsers: ['ChromeHeadless'],
-        singleRun: true,
-        concurrency: Infinity,
-        karmaTypescriptConfig: {
-            bundlerOptions: {
-                transforms: [
-                    bundlerTransforms
-                ]
-            }
-        }
-    })
-};
+  config.set({
+    basePath: '',
+      frameworks: ['mocha', 'karma-typescript'],
+    files: [
+        { pattern: 'test/*.ts' },
+        // the SUT *must* be included here as below, or imports from the tests
+        // will break
+        { pattern: 'src/*.ts' }
+        
+    ],
+    exclude: [
+    ],
+    preprocessors: {
+        "**/*.ts": "karma-typescript"
+    },
+    reporters: ['progress'],
+    port: 57233,
+    colors: true,
+
+    logLevel: config.LOG_INFO,
+
+
+    autoWatch: false,
+    browsers: ['Chrome'],
+
+
+    singleRun: false,
+      concurrency: Infinity,
+
+      // These are needed otherwise random .ts files will start showing up in
+      // the build.
+      karmaTypescriptConfig: {
+          include: {
+              mode: 'replace',
+              values: ["src/*.ts", "test/*.ts"]
+          }
+      }
+  })
+}

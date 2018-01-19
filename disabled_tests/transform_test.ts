@@ -1,7 +1,7 @@
 import sinon from 'sinon';
 import barChart from '../src/bar-chart.js';
 import {assert} from 'chai';
-import transformer from '../src/transformer.ts';
+import transformer from '../src/transformer.js';
 
 const dataSubset = [
     [

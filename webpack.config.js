@@ -7,6 +7,9 @@ module.exports = {
     output: {
         filename: "build.js"
     },
+    resolve: {
+        extensions: ['.ts', '.js']
+    },
     module: {
         rules: [
             {
@@ -19,7 +22,4 @@ module.exports = {
         ]
     },
     devtool: 'inline-source-map',
-    devServer: {
-        port: 57234
-    }
 };
