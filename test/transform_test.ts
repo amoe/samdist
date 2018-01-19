@@ -19,5 +19,7 @@ const dataSubset = [
 ];
 
 it('can transform network data to displayable', function() {
-    assert.equal(42, transformer.transformFromNetwork(42));
+    const result = transformer.transformFromNetwork(dataSubset)
+    const expected = [52409, 29902, 28680];
+    assert.equal(result, expected);
 });
