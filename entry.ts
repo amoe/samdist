@@ -1,8 +1,12 @@
 // entry.ts
 
+import * as log from 'loglevel';
 import barChart from './src/bar-chart';
 import axios from 'axios';
 import mymodule from './src/mymodule';
+import transformer from './src/transformer';
+
+log.setLevel('debug');
 
 function getRenderingMode() {
     let result: string;
@@ -26,12 +30,15 @@ var testData = [
 document.addEventListener("DOMContentLoaded", e => {
     console.log("Rendering mode: %o", getRenderingMode());
     console.log("The answer is: %o", mymodule.meaningOfLife());
-    barChart.drawBarChart(testData).render();
+
 });
 
 document.addEventListener("DOMContentLoaded", e => {
     axios.get("/bow_query_data.json").then(function(response) {
         console.log("success: %o", response.data);
+        const transformed = transformer.transformFromNetwork(response.data);
+        console.log("xformed is %o", JSON.stringify(transformed));
+        barChart.drawBarChart(transformed, 20).render();
     }).catch(function(error) {
         console.log("error: %o", error);
     });
