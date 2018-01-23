@@ -1,4 +1,3 @@
-import sinon from 'sinon';
 import barChart from '../src/bar-chart';
 import {assert} from 'chai';
 import transformer from '../src/transformer';

@@ -1,4 +1,4 @@
-import sinon from 'sinon';
+import * as sinon from 'sinon';
 import barChart from '../src/bar-chart.js'
 import {assert} from 'chai';
 
