@@ -46,6 +46,8 @@ document.addEventListener("DOMContentLoaded", e => {
 });
 
 document.addEventListener("DOMContentLoaded", e => {
-    const vueInstance = new Vue({components: {ApplicationRoot}});
+    const vueInstance = new Vue({
+        render: h => h(ApplicationRoot)
+    });
     vueInstance.$mount('#vue-outlet');
 });
