@@ -3,7 +3,7 @@
 const webpack = require('webpack');
 
 module.exports = {
-    entry: ["./entry.ts"],
+    entry: ["./src/entry.ts"],
     output: {
         filename: "build.js"
     },

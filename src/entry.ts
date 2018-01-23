@@ -1,10 +1,10 @@
 // entry.ts
 
 import * as log from 'loglevel';
-import barChart from './src/bar-chart';
 import axios from 'axios';
-import mymodule from './src/mymodule';
-import transformer from './src/transformer';
+import barChart from './bar-chart';
+import mymodule from './mymodule';
+import transformer from './transformer';
 
 log.setLevel('debug');
 
