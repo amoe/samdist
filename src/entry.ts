@@ -6,6 +6,7 @@ import barChart from './bar-chart';
 import mymodule from './mymodule';
 import transformer from './transformer';
 import ApplicationRoot from './components/ApplicationRoot.vue';
+import * as dimple from 'dimple';
 import Vue from 'vue';
 
 log.setLevel('debug');
@@ -37,9 +38,17 @@ document.addEventListener("DOMContentLoaded", e => {
 
 document.addEventListener("DOMContentLoaded", e => {
     axios.get("/bow_query_data.json").then(function(response) {
-        console.log("success: %o", response.data);
-        const transformed = transformer.transformFromNetwork(response.data);
-        barChart.drawBarChart(transformed, 20).render();
+        const data = transformer.transformFromNetwork(response.data);
+        var filteredData = data.slice(0, 20);
+
+        var svg = dimple.newSvg("#chartContainer", 590, 400);
+        const myChart = new dimple.chart(svg, filteredData);
+        myChart.setBounds(60, 30, 510, 305)
+        const x = myChart.addCategoryAxis("x", 'category');
+        x.addOrderRule("Date");
+        myChart.addMeasureAxis("y", 'value');
+        myChart.addSeries(null, dimple.plot.bar);
+        myChart.draw();
     }).catch(function(error) {
         console.log("error: %o", error);
     });
