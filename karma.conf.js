@@ -21,9 +21,6 @@ module.exports = function(config) {
     port: 57233,
     colors: true,
 
-    logLevel: config.LOG_INFO,
-
-
     autoWatch: false,
     browsers: ['ChromeHeadless'],
 
@@ -34,6 +31,15 @@ module.exports = function(config) {
       // These are needed otherwise random .ts files will start showing up in
       // the build.
       karmaTypescriptConfig: {
+          include: {
+              mode: 'replace',
+              values: ["src/*.ts", "test/*.ts"]
+          },
+          // This is required -- regular typescript uses a different module
+          // system to karma-typescript
+          compilerOptions: {
+              module: "commonjs"
+          },
           tsconfig: "./tsconfig.json"
       }
   })

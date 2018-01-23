@@ -1,7 +1,7 @@
 {
     "include": ["src/*.ts", "test/*.ts"],
     "compilerOptions": {
-        "alwaysStrict": true,
+        // "alwaysStrict": true,
         "noImplicitThis": true
     }
 }
