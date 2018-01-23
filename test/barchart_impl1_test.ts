@@ -120,7 +120,7 @@ function getBounds() {
 
     // build a set of x and w coordinates.
     rectangles.each(
-        function (d, i, nodes) {
+        function (this: any, d, i, nodes) {
             
             // These come out as strings!  Have to re-parse them to numbers.
             const x = parseFloat(d3.select(this).attr('x'));
