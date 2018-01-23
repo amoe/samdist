@@ -19,7 +19,7 @@ const functions = {
         var viewWidth = 500;
         var viewHeight = 500;
 
-        var filteredData;
+        var filteredData: DiscreteStatistic[];
         if (cutoff != null) {
             filteredData = data.slice(0, cutoff);
         } else {
@@ -80,7 +80,7 @@ const functions = {
 
         return that;
     },
-    logClient: function(logFunction) {
+    logClient: function(logFunction: Function) {
         logFunction("some argument", 42);
     }
 };

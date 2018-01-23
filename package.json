@@ -5,6 +5,7 @@
   "author": "David Banks <amoebae@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/loglevel": "1.5.3",
     "@types/mocha": "2.2.46",
     "chai": "4.1.2",
     "d3": "4.12.2",
@@ -23,5 +24,8 @@
   "scripts": {
     "test": "karma start --single-run",
     "dev": "webpack-dev-server"
+  },
+  "dependencies": {
+    "@types/d3": "^4.12.0"
   }
 }

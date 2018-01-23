@@ -2,6 +2,7 @@
     "include": ["src/*.ts", "test/*.ts"],
     "compilerOptions": {
         // "alwaysStrict": true,
+//        "noImplicitAny": true,
         "noImplicitThis": true
     }
 }
