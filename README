@@ -10,6 +10,10 @@ extract co-occurrence features and compute PPMI.
 SamuelsViewer.ipynb relies on the results of the Processor, but can be used to
 explore distributions of concepts in a single corpus or across corpora.
 
+## Operations
+
+Run tests: `yarn test`
+
 ## Versions
 
 Pinned at Flask 0.12.1-1
