@@ -5,6 +5,8 @@ import axios from 'axios';
 import barChart from './bar-chart';
 import mymodule from './mymodule';
 import transformer from './transformer';
+import Hello from './components/Hello.vue';
+import Vue from 'vue';
 
 log.setLevel('debug');
 
@@ -41,4 +43,8 @@ document.addEventListener("DOMContentLoaded", e => {
     }).catch(function(error) {
         console.log("error: %o", error);
     });
+});
+
+document.addEventListener("DOMContentLoaded", e => {
+    const vueInstance = new Vue({components: {Hello}});
 });
