@@ -5,7 +5,7 @@ import axios from 'axios';
 import barChart from './bar-chart';
 import mymodule from './mymodule';
 import transformer from './transformer';
-import Hello from './components/Hello.vue';
+import ApplicationRoot from './components/ApplicationRoot.vue';
 import Vue from 'vue';
 
 log.setLevel('debug');
@@ -46,5 +46,6 @@ document.addEventListener("DOMContentLoaded", e => {
 });
 
 document.addEventListener("DOMContentLoaded", e => {
-    const vueInstance = new Vue({components: {Hello}});
+    const vueInstance = new Vue({components: {ApplicationRoot}});
+    vueInstance.$mount('#vue-outlet');
 });
