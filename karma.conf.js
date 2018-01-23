@@ -34,10 +34,7 @@ module.exports = function(config) {
       // These are needed otherwise random .ts files will start showing up in
       // the build.
       karmaTypescriptConfig: {
-          include: {
-              mode: 'replace',
-              values: ["src/*.ts", "test/*.ts"]
-          }
+          tsconfig: "./tsconfig.json"
       }
   })
 }
