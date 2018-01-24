@@ -29,8 +29,12 @@
              this.$store.dispatch('submitBagOfWordsRequest', {
                  field: this.field,
                  cutoff: this.cutoff
-             }).then(r => this.$store.dispatch('drawGraph', r))
+             }).then(r => {
+                 this.$store.commit('operationFinished');
+                 this.$store.dispatch('drawGraph', r)
+             })
                  .catch(e => {
+                     this.$store.commit('operationFinished');
                      console.log("foo: %o", e);
                      utility.handleAxiosError(e);
                      this.$store.dispatch('handleError', e)

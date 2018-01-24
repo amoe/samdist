@@ -18,7 +18,8 @@ const store = new Vuex.Store({
         count: 0,
         field: 'SEMTAG3',
         cutoff: 20,
-        error: null
+        error: null,
+        inProgressCount: 0
     },
     mutations: {
         increment(state) {
@@ -35,6 +36,12 @@ const store = new Vuex.Store({
         },
         errorDismissed(state) {
             state.error = null;
+        },
+        operationStarted(state) {
+            state.inProgressCount++;
+        },
+        operationFinished(state) {
+            state.inProgressCount--;
         }
     },
     actions

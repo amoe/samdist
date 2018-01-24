@@ -24,6 +24,7 @@ const actions = {
 
         console.log("query string is %o", queryString);
 
+        store.commit('operationStarted');
         return axios.get(API_PREFIX + "/bag-of-words", {
             params: {
                 field: payload.field,

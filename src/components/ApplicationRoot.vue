@@ -8,7 +8,7 @@
       <span class="close" v-on:click="dismiss">&#x274C;</span>
     </div>
 
-    <svg height="3em" width="3em">
+    <svg v-if="inProgressCount > 0" height="3em" width="3em">
       <circle class="spinner"
               cx="50%"
               cy="50%"
@@ -18,6 +18,7 @@
               fill="#001f3f" />
     </svg> 
     
+    <p>Ops in progress: {{inProgressCount}}</p>
     <p>Hi there!</p>
     <p>The value is: <code>{{count}}</code></p>
     <button v-on:click="greet">Greet</button>
@@ -28,13 +29,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Vuex from 'vuex';
-import utility from '../utility';
-import BagOfWordsTask from './BagOfWordsTask.vue';
+ import Vue from 'vue';
+ import Vuex from 'vuex';
+ import utility from '../utility';
+ import BagOfWordsTask from './BagOfWordsTask.vue';
 
-export default Vue.extend({
-    components: {
+ export default Vue.extend({
+     components: {
          BagOfWordsTask
      },
      data: function() {
@@ -62,6 +63,9 @@ export default Vue.extend({
          },
          error: function (this: any) {
              return this.$store.state.error;
+         },
+         inProgressCount: function (this: any) {
+             return this.$store.state.inProgressCount
          }
      }
  });
