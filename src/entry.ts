@@ -14,11 +14,15 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
-        count: 0
+        count: 0,
+        field: null
     },
     mutations: {
         increment(state) {
             state.count++;
+        },
+        updateField(state, payload) {
+            state.field = payload;
         }
     },
     actions: {
