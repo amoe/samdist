@@ -5,7 +5,7 @@ const publicExports = {
         // discard the first item and pull out the second
         const realData = data[1];
         
-        return data.map(
+        return realData.map(
             function (x) {
                 return {
                     category: x[0] as string,

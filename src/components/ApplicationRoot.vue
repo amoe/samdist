@@ -15,6 +15,9 @@
 
     <p>Field name: <code>{{field}}</code></p>
     <p>Cutoff: <code>{{cutoff}}</code></p>
+    
+    <div id="chartContainer">
+    </div>
   </div>
 </template>
 
