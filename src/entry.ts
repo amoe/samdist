@@ -8,6 +8,25 @@ import transformer from './transformer';
 import ApplicationRoot from './components/ApplicationRoot.vue';
 import * as dimple from 'dimple';
 import Vue from 'vue';
+import Vuex from 'vuex';
+
+Vue.use(Vuex);
+
+const store = new Vuex.Store({
+    state: {
+        count: 0
+    },
+    mutations: {
+        increment(state) {
+            state.count++;
+        }
+    },
+    actions: {
+        increment(context) {
+            context.commit('increment')
+        }
+    }
+});
 
 log.setLevel('debug');
 
@@ -56,7 +75,8 @@ document.addEventListener("DOMContentLoaded", e => {
 
 document.addEventListener("DOMContentLoaded", e => {
     const vueInstance = new Vue({
-        render: h => h(ApplicationRoot)
+        render: h => h(ApplicationRoot),
+        store: store
     });
     vueInstance.$mount('#vue-outlet');
 });
