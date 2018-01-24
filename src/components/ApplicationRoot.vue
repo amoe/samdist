@@ -24,7 +24,6 @@
     <button v-on:click="doIncrement">Inc</button>
     
     <bag-of-words-task></bag-of-words-task>
-
   </div>
 </template>
 
@@ -77,9 +76,9 @@ export default Vue.extend({
      background-color: #fdfdfd;
  }
 
- h1 { font-family: Georgia; }
+ h1,h2 { font-family: Georgia; }
 
- p { font-family: Arial, sans-serif; }
+ p, label { font-family: Arial, sans-serif; }
 
  div.alert {
      border-radius: 0.25rem;

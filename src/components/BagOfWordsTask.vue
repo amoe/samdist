@@ -1,5 +1,7 @@
 <template>
   <div class="bag-of-words-task">
+    <h2>Bag of Words</h2>
+
     <label for="field">Field:</label>
     <input id="field" type="text" v-on:input="updateField" :value="field"/>
 
@@ -52,3 +54,17 @@
      }
  });
 </script>
+
+<style>
+ div.bag-of-words-task {
+     border: 0.1em solid gray;
+     
+     /* I quite like this layout, more horizontal space than vertical space */
+     padding-left: 4em;
+     padding-right: 4em;
+     padding-top: 2em;
+     padding-bottom: 2em;
+
+     margin: 1em;
+ }
+</style>
