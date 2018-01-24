@@ -23,12 +23,12 @@ const dataSubset: JulieweStatisticsAggregate = [
 ];
 
 it('can transform network data to displayable', function() {
-//    const result = transformer.transformFromNetwork(dataSubset)
+   const result = transformer.transformFromNetwork(dataSubset)
     
-    // let expected: DiscreteStatistic = {
-    //     category: "ZC [Grammatical Item]",
-    //     value: 52409
-    // };
+    let expected: DiscreteStatistic = {
+        category: "ZC [Grammatical Item]",
+        value: 52409
+    };
 
-    // assert.deepEqual(result[0], expected);
+    assert.deepEqual(result[0], expected);
 });
