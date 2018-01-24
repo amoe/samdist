@@ -7,7 +7,17 @@
       {{error.message}}
       <span class="close" v-on:click="dismiss">&#x274C;</span>
     </div>
-    
+
+
+    <!-- <div id="example-2">
+         <button @click="show = !show">Toggle show</button>
+         <transition name="bounce"> -->
+    <svg height="100" width="100">
+      
+      <circle class="blah" cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="#001f3f" />
+      </svg> 
+        <!-- </transition>
+             </div> -->
     
     <p>Hi there!</p>
     <p>The value is: <code>{{count}}</code></p>
@@ -33,8 +43,14 @@
 <script lang="ts">
  import Vue from 'vue';
  import Vuex from 'vuex';
+ import utility from '../utility';
 
  export default Vue.extend({
+     data: function() {
+         return {
+             show: false
+         };
+     },
      methods: {
          greet() {
              console.log("hello");
@@ -50,7 +66,8 @@
                  cutoff: this.cutoff
              }).then(r => this.$store.dispatch('drawGraph', r))
                  .catch(e => {
-                     console.log("foo");
+                     console.log("foo: %o", e);
+                     utility.handleAxiosError(e);
                      this.$store.dispatch('handleError', e)
                  });
          },
@@ -111,7 +128,26 @@
      border-color: #f5c6cb;
  }
 
-span.close {
-    cursor: pointer;
-}
+ span.close {
+     cursor: pointer;
+ }
+
+ .blah {
+     animation: pulse 1s infinite;
+ }
+
+ @keyframes pulse {
+     0% {
+         fill: #001f3f;
+     }
+
+     50% {
+         fill: #ff4136;
+     }
+
+     100% {
+         fill: #001f3f;
+     }
+
+ }
 </style>
