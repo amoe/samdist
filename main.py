@@ -2,6 +2,7 @@ import flask
 
 app = flask.Flask(__name__)
 
-@app.route("/")
+@app.route("/bag-of-words")
 def hello():
-    return "Hello, world!"
+    result = ["Hello, world!", 42]
+    return flask.jsonify(result)
