@@ -16,7 +16,8 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
     state: {
         count: 0,
-        field: null
+        field: null,
+        cutoff: null
     },
     mutations: {
         increment(state) {
@@ -24,6 +25,9 @@ const store = new Vuex.Store({
         },
         updateField(state, payload) {
             state.field = payload;
+        },
+        updateCutoff(state, payload) {
+            state.cutoff = payload;
         }
     },
     actions
