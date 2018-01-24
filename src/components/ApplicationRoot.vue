@@ -1,5 +1,10 @@
 <template>
   <div>
+    <h1>Samdist</h1>
+
+    <div class="alert alert-danger" role="alert">Something went wrong.</div>
+      
+    
     <p>Hi there!</p>
     <p>The value is: <code>{{count}}</code></p>
     <button v-on:click="greet">Greet</button>
@@ -67,5 +72,26 @@
 </script>
 
 <style>
-p { color: blue; }
+
+body {
+    max-width: 64rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1 { font-family: Georgia; }
+
+p { font-family: Arial, sans-serif; }
+
+div.alert {
+    border-radius: 0.25rem;
+    border: 1px solid;
+    padding: 0.75rem 1.25rem;
+}
+
+div.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
 </style>
