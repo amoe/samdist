@@ -9,6 +9,7 @@ import ApplicationRoot from './components/ApplicationRoot.vue';
 import * as dimple from 'dimple';
 import Vue from 'vue';
 import Vuex from 'vuex';
+import actions from './actions'
 
 Vue.use(Vuex);
 
@@ -25,11 +26,7 @@ const store = new Vuex.Store({
             state.field = payload;
         }
     },
-    actions: {
-        increment(context) {
-            context.commit('increment')
-        }
-    }
+    actions
 });
 
 log.setLevel('debug');
