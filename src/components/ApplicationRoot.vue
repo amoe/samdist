@@ -8,44 +8,36 @@
       <span class="close" v-on:click="dismiss">&#x274C;</span>
     </div>
 
-
-    <!-- <div id="example-2">
-         <button @click="show = !show">Toggle show</button>
-         <transition name="bounce"> -->
-    <svg height="100" width="100">
-      
-      <circle class="blah" cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="#001f3f" />
-      </svg> 
-        <!-- </transition>
-             </div> -->
+    <svg height="3em" width="3em">
+      <circle class="spinner"
+              cx="50%"
+              cy="50%"
+              r="1em"
+              stroke="black"
+              stroke-width="0.1em"
+              fill="#001f3f" />
+    </svg> 
     
     <p>Hi there!</p>
     <p>The value is: <code>{{count}}</code></p>
     <button v-on:click="greet">Greet</button>
     <button v-on:click="doIncrement">Inc</button>
-
-    <label for="field">Field:</label>
-    <input id="field" type="text" v-on:input="updateField" :value="field"/>
-
-    <label for="cutoff">Cutoff:</label>
-    <input id="cutoff" type="text" v-on:input="updateCutoff" :value="cutoff"/>
     
-    <button v-on:click="run">Run</button>
+    <bag-of-words-task></bag-of-words-task>
 
-    <p>Field name: <code>{{field}}</code></p>
-    <p>Cutoff: <code>{{cutoff}}</code></p>
-    
-    <div id="chartContainer">
-    </div>
   </div>
 </template>
 
 <script lang="ts">
- import Vue from 'vue';
- import Vuex from 'vuex';
- import utility from '../utility';
+import Vue from 'vue';
+import Vuex from 'vuex';
+import utility from '../utility';
+import BagOfWordsTask from './BagOfWordsTask.vue';
 
- export default Vue.extend({
+export default Vue.extend({
+    components: {
+         BagOfWordsTask
+     },
      data: function() {
          return {
              show: false
@@ -59,25 +51,6 @@
          doIncrement() {
              this.$store.dispatch('increment');
          },
-         run() {
-             // It's kind of cool to the policy up the stack in this way.
-             this.$store.dispatch('submitBagOfWordsRequest', {
-                 field: this.field,
-                 cutoff: this.cutoff
-             }).then(r => this.$store.dispatch('drawGraph', r))
-                 .catch(e => {
-                     console.log("foo: %o", e);
-                     utility.handleAxiosError(e);
-                     this.$store.dispatch('handleError', e)
-                 });
-         },
-         updateField(e) {
-             // this doesn't need an action
-             this.$store.commit('updateField', e.target.value);
-         },
-         updateCutoff(e) {
-             this.$store.commit('updateCutoff', e.target.value);
-         },
          dismiss() {
              this.$store.commit('errorDismissed');
          }
@@ -87,12 +60,6 @@
      computed: {
          count: function (this: any) {
              return this.$store.state.count;
-         },
-         field: function (this: any) {
-             return this.$store.state.field;
-         },
-         cutoff: function (this: any) {
-             return this.$store.state.cutoff;
          },
          error: function (this: any) {
              return this.$store.state.error;
@@ -132,7 +99,7 @@
      cursor: pointer;
  }
 
- .blah {
+ .spinner {
      animation: pulse 1s infinite;
  }
 
