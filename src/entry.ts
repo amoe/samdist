@@ -16,8 +16,8 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
     state: {
         count: 0,
-        field: null,
-        cutoff: null
+        field: 'SEMTAG3',
+        cutoff: 20
     },
     mutations: {
         increment(state) {

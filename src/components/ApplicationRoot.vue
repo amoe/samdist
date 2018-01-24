@@ -6,10 +6,10 @@
     <button v-on:click="doIncrement">Inc</button>
 
     <label for="field">Field:</label>
-    <input id="field" type="text" value="SEMTAG3" v-on:input="updateField"/>
+    <input id="field" type="text" v-on:input="updateField" :value="field"/>
 
     <label for="cutoff">Cutoff:</label>
-    <input id="cutoff" type="text" value="20" v-on:input="updateCutoff"/>
+    <input id="cutoff" type="text" v-on:input="updateCutoff" :value="cutoff"/>
     
     <button v-on:click="run">Run</button>
 
@@ -32,10 +32,12 @@
              this.$store.dispatch('increment');
          },
          run() {
+             // It's kind of cool to the policy up the stack in this way.
              this.$store.dispatch('submitBagOfWordsRequest', {
                  field: this.field,
                  cutoff: this.cutoff
-             });
+             }).then(r => this.$store.dispatch('drawGraph', r))
+               .catch(e => this.$store.dispatch('handleError', e));
          },
          updateField(e) {
              // this doesn't need an action
