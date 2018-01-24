@@ -5,6 +5,7 @@
     <div v-if="error"
          class="alert alert-danger" role="alert">
       {{error.message}}
+      <span class="close" v-on:click="dismiss">&#x274C;</span>
     </div>
     
     
@@ -48,7 +49,10 @@
                  field: this.field,
                  cutoff: this.cutoff
              }).then(r => this.$store.dispatch('drawGraph', r))
-                 .catch(e => this.$store.dispatch('handleError', e));
+                 .catch(e => {
+                     console.log("foo");
+                     this.$store.dispatch('handleError', e)
+                 });
          },
          updateField(e) {
              // this doesn't need an action
@@ -56,6 +60,9 @@
          },
          updateCutoff(e) {
              this.$store.commit('updateCutoff', e.target.value);
+         },
+         dismiss() {
+             this.$store.commit('errorDismissed');
          }
      },
      // mapState doesn't work with typescript: "Property 'mapState' does not exist on type"
@@ -94,6 +101,8 @@
      border-radius: 0.25rem;
      border: 1px solid;
      padding: 0.75rem 1.25rem;
+     display: flex;
+     justify-content: space-between;
  }
 
  div.alert-danger {
@@ -101,4 +110,8 @@
      background-color: #f8d7da;
      border-color: #f5c6cb;
  }
+
+span.close {
+    cursor: pointer;
+}
 </style>

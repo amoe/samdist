@@ -32,6 +32,9 @@ const store = new Vuex.Store({
         },
         errorOccurred(state, payload) {
             state.error = payload;
+        },
+        errorDismissed(state) {
+            state.error = null;
         }
     },
     actions
