@@ -49,6 +49,7 @@ const actions = {
     },
     handleError(store, payload) {
         console.log("I'm going to pop an error dialogue");
+        store.commit('errorOccurred', {message: "Something bad happened."});
     }
 };
 

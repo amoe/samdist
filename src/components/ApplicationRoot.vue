@@ -2,8 +2,11 @@
   <div>
     <h1>Samdist</h1>
 
-    <div class="alert alert-danger" role="alert">Something went wrong.</div>
-      
+    <div v-if="error"
+         class="alert alert-danger" role="alert">
+      {{error.message}}
+    </div>
+    
     
     <p>Hi there!</p>
     <p>The value is: <code>{{count}}</code></p>
@@ -45,7 +48,7 @@
                  field: this.field,
                  cutoff: this.cutoff
              }).then(r => this.$store.dispatch('drawGraph', r))
-               .catch(e => this.$store.dispatch('handleError', e));
+                 .catch(e => this.$store.dispatch('handleError', e));
          },
          updateField(e) {
              // this doesn't need an action
@@ -64,8 +67,11 @@
          field: function (this: any) {
              return this.$store.state.field;
          },
-         cutoff: function (this:any) {
+         cutoff: function (this: any) {
              return this.$store.state.cutoff;
+         },
+         error: function (this: any) {
+             return this.$store.state.error;
          }
      }
  });
@@ -73,25 +79,26 @@
 
 <style>
 
-body {
-    max-width: 64rem;
-    margin-left: auto;
-    margin-right: auto;
-}
+ body {
+     max-width: 64rem;
+     margin-left: auto;
+     margin-right: auto;
+     background-color: #fdfdfd;
+ }
 
-h1 { font-family: Georgia; }
+ h1 { font-family: Georgia; }
 
-p { font-family: Arial, sans-serif; }
+ p { font-family: Arial, sans-serif; }
 
-div.alert {
-    border-radius: 0.25rem;
-    border: 1px solid;
-    padding: 0.75rem 1.25rem;
-}
+ div.alert {
+     border-radius: 0.25rem;
+     border: 1px solid;
+     padding: 0.75rem 1.25rem;
+ }
 
-div.alert-danger {
-    color: #721c24;
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-}
+ div.alert-danger {
+     color: #721c24;
+     background-color: #f8d7da;
+     border-color: #f5c6cb;
+ }
 </style>

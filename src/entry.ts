@@ -17,7 +17,8 @@ const store = new Vuex.Store({
     state: {
         count: 0,
         field: 'SEMTAG3',
-        cutoff: 20
+        cutoff: 20,
+        error: null
     },
     mutations: {
         increment(state) {
@@ -28,6 +29,9 @@ const store = new Vuex.Store({
         },
         updateCutoff(state, payload) {
             state.cutoff = payload;
+        },
+        errorOccurred(state, payload) {
+            state.error = payload;
         }
     },
     actions
