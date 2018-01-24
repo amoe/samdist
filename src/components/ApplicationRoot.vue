@@ -4,6 +4,14 @@
     <p>The value is: <code>{{count}}</code></p>
     <button v-on:click="greet">Greet</button>
     <button v-on:click="doIncrement">Inc</button>
+
+    <label for="field">Field:</label>
+    <input id="field" type="text" value="SEMTAG3"/>
+
+    <label for="cutoff">Cutoff:</label>
+    <input id="cutofff" type="text" value="20"/>
+    
+    <button v-on:click="run">Run</button>
   </div>
 </template>
 
