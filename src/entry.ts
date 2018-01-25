@@ -22,8 +22,9 @@ const store = new Vuex.Store({
         inProgressCount: 0,
         task: {
             findTags: {
-                word: null,
-                field: null
+                word: "woman",
+                field: null,
+                data: []
             }
         }
     },
@@ -51,6 +52,9 @@ const store = new Vuex.Store({
         },
         updateWord(state, payload: string) {
             state.task.findTags.word = payload;
+        },
+        setFindTagsData(state, payload) {
+            state.task.findTags.data = payload;
         }
     },
     actions

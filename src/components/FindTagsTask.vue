@@ -12,6 +12,17 @@
 
     <p>Word: <code>{{word}}</code></p>
     <p>Field name: <code>{{field}}</code></p>
+
+    <table class="amoe-table">
+      <tr>
+        <th>{{field}}</th>
+        <th>Count</th>
+      </tr>
+      <tr v-for="datum in data">
+        <td>{{datum[0]}}</td>
+        <td>{{datum[1]}}</td>
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -28,7 +39,8 @@
                  word: this.word
              }).then(r => {
                  this.$store.commit('operationFinished');
-                 console.log("data received was %o", r.data);
+                 console.log("foo: %o", JSON.stringify(r.data, null, 4));
+                 this.$store.commit('setFindTagsData', r.data);
              })
                  .catch(e => {
                      this.$store.commit('operationFinished');
@@ -55,10 +67,22 @@
          },
          word: function (this: any) {
              return this.$store.state.task.findTags.word;
+         },
+         data: function (this: any) {
+             return this.$store.state.task.findTags.data;
          }
      }
  });
 </script>
 
 <style>
+table.amoe-table {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+table.amoe-table td, th {
+    padding: 0.75rem;
+    border-top: 0.1rem solid #dee2e6;
+}
 </style>

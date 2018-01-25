@@ -1,5 +1,6 @@
 import flask
 import SamuelsCorpus
+import pprint
 
 app = flask.Flask(__name__)
 
@@ -19,10 +20,18 @@ def bag_of_words():
     fnonl_tagbag = fnonl.make_bow(field='SEMTAG3', cutoff=10, displaygraph=False)
     return flask.jsonify(fnonl_tagbag)
 
+# Remove the numpy wrapper and convert to raw python int
+def massage_find_tags_output(data):
+    return [[x[0], x[1].item()] for x in data]
+
 @app.route("/find-tags")
 def find_tags():
     field = flask.request.args.get('field')
-    cutoff = flask.request.args.get('word')
-    result = {}
-    return flask.jsonify(result)
+    word = flask.request.args.get('word')
+
+    # validation etc
+
+    result = fnonl.find_tags(word, field=field)
+
+    return flask.jsonify(massage_find_tags_output(result))
     
