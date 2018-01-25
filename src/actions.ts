@@ -25,13 +25,25 @@ const actions = {
         console.log("query string is %o", queryString);
 
         store.commit('operationStarted');
-        return axios.get(API_PREFIX + "/bag-of-words", {
-            params: {
-                field: payload.field,
-                cutoff: payload.cutoff
-            }
-        });
+        return axios.get(API_PREFIX + "/bag-of-words", {params: queryString});
     },
+    // XXX refactor
+    submitFindTagsRequest(store, payload) {
+        console.log("submitting bag of words request");
+
+        console.log("payload is %o", payload);
+        
+        const queryString = {
+            field: payload.field,
+            word: payload.word
+        };
+        
+        console.log("query string is %o", queryString);
+
+        store.commit('operationStarted');
+        return axios.get(API_PREFIX + "/find-tags", {params: queryString});
+    },
+
     drawGraph(store, payload) {
         console.log("I'm going to draw the graph");
         console.log("received the data as %o", payload.data);

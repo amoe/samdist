@@ -13,8 +13,16 @@ fnonl = SamuelsCorpus.Viewer(input_path, colors=['r'])
 
 
 @app.route("/bag-of-words")
-def hello():
+def bag_of_words():
     field = flask.request.args.get('field')
     cutoff = flask.request.args.get('cutoff')   # typed as string
     fnonl_tagbag = fnonl.make_bow(field='SEMTAG3', cutoff=10, displaygraph=False)
     return flask.jsonify(fnonl_tagbag)
+
+@app.route("/find-tags")
+def find_tags():
+    field = flask.request.args.get('field')
+    cutoff = flask.request.args.get('word')
+    result = {}
+    return flask.jsonify(result)
+    

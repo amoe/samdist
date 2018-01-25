@@ -23,12 +23,12 @@
      methods: {
          run() {
              // It's kind of cool to delegate policy aspects up the stack in this way.
-             this.$store.dispatch('submitFindTasksRequest', {
+             this.$store.dispatch('submitFindTagsRequest', {
                  field: this.field,
                  word: this.word
              }).then(r => {
                  this.$store.commit('operationFinished');
-                 this.$store.dispatch('drawGraph', r)
+                 console.log("data received was %o", r.data);
              })
                  .catch(e => {
                      this.$store.commit('operationFinished');
@@ -39,15 +39,19 @@
          },
          updateField(e) {
              // this doesn't need an action
-             this.$store.commit('updateField', e.target.value);
+             this.$store.commit('updateField', e.target.value); // ???
          },
          updateWord(e) {
              this.$store.commit('updateWord', e.target.value);
          }
      },
      computed: {
+         // It's kind of unclear what should be done about this because
+         // the two tasks share the property of 'field' but not 'word' .  We don't
+         // necessarily want to duplicate the updateField mutation, but not
+         // sure that we want to go to vuex modules.
          field: function (this: any) {
-             return this.$store.state.task.findTags.field;
+             return this.$store.state.field;
          },
          word: function (this: any) {
              return this.$store.state.task.findTags.word;
