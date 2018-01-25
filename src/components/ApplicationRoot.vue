@@ -25,18 +25,21 @@
     <button v-on:click="doIncrement">Inc</button>
     
     <bag-of-words-task></bag-of-words-task>
+
+    <find-tags-task></find-tags-task>
   </div>
 </template>
 
 <script lang="ts">
- import Vue from 'vue';
- import Vuex from 'vuex';
- import utility from '../utility';
- import BagOfWordsTask from './BagOfWordsTask.vue';
+import Vue from 'vue';
+import Vuex from 'vuex';
+import utility from '../utility';
+import BagOfWordsTask from './BagOfWordsTask.vue';
+import FindTagsTask from './FindTagsTask.vue';
 
  export default Vue.extend({
      components: {
-         BagOfWordsTask
+         BagOfWordsTask, FindTagsTask
      },
      data: function() {
          return {

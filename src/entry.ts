@@ -19,16 +19,22 @@ const store = new Vuex.Store({
         field: 'SEMTAG3',
         cutoff: 20,
         error: null,
-        inProgressCount: 0
+        inProgressCount: 0,
+        task: {
+            findTags: {
+                word: null,
+                field: null
+            }
+        }
     },
     mutations: {
         increment(state) {
             state.count++;
         },
-        updateField(state, payload) {
+        updateField(state, payload: string) {
             state.field = payload;
         },
-        updateCutoff(state, payload) {
+        updateCutoff(state, payload: number) {
             state.cutoff = payload;
         },
         errorOccurred(state, payload) {
@@ -42,6 +48,9 @@ const store = new Vuex.Store({
         },
         operationFinished(state) {
             state.inProgressCount--;
+        },
+        updateWord(state, payload: string) {
+            state.task.findTags.word = payload;
         }
     },
     actions

@@ -1,20 +1,17 @@
 <template>
   <div class="task">
-    <h2>Bag of Words</h2>
+    <h2>Find Tags</h2>
 
     <label for="field">Field:</label>
     <input id="field" type="text" v-on:input="updateField" :value="field"/>
 
-    <label for="cutoff">Cutoff:</label>
-    <input id="cutoff" type="text" v-on:input="updateCutoff" :value="cutoff"/>
+    <label for="word">Word:</label>
+    <input id="word" type="text" v-on:input="updateWord" :value="word"/>
     
     <button v-on:click="run">Run</button>
 
+    <p>Word: <code>{{word}}</code></p>
     <p>Field name: <code>{{field}}</code></p>
-    <p>Cutoff: <code>{{cutoff}}</code></p>
-    
-    <div id="chartContainer">
-    </div>
   </div>
 </template>
 
@@ -26,9 +23,9 @@
      methods: {
          run() {
              // It's kind of cool to delegate policy aspects up the stack in this way.
-             this.$store.dispatch('submitBagOfWordsRequest', {
+             this.$store.dispatch('submitFindTasksRequest', {
                  field: this.field,
-                 cutoff: this.cutoff
+                 word: this.word
              }).then(r => {
                  this.$store.commit('operationFinished');
                  this.$store.dispatch('drawGraph', r)
@@ -44,16 +41,16 @@
              // this doesn't need an action
              this.$store.commit('updateField', e.target.value);
          },
-         updateCutoff(e) {
-             this.$store.commit('updateCutoff', e.target.value);
+         updateWord(e) {
+             this.$store.commit('updateWord', e.target.value);
          }
      },
      computed: {
          field: function (this: any) {
-             return this.$store.state.field;
+             return this.$store.state.task.findTags.field;
          },
-         cutoff: function (this: any) {
-             return this.$store.state.cutoff;
+         word: function (this: any) {
+             return this.$store.state.task.findTags.word;
          }
      }
  });
