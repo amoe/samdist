@@ -36,6 +36,10 @@ module.exports = {
                 target: "http://localhost:5000",
                 pathRewrite: {"^/api": ""}
             }
+        },
+        // Force the dev server to serve the index XHTML page
+        historyApiFallback: {
+            index: 'index.xhtml'
         }
     }
 };
