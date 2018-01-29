@@ -27,6 +27,9 @@ const store = new Vuex.Store({
             findTags: {
                 field: null,
                 data: []
+            },
+            displaySelected: {
+                data: []
             }
         }
     },
@@ -63,6 +66,9 @@ const store = new Vuex.Store({
         },
         setFindTagsData(state, payload) {
             state.task.findTags.data = payload;
+        },
+        setDisplaySelectedData(state, payload) {
+            state.task.displaySelected.data = payload;
         }
     },
     actions

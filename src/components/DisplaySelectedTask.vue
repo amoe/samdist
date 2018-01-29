@@ -17,6 +17,15 @@
     <p>Field name: <code>{{field}}</code></p>
     <p>Value: <code>{{value}}</code></p>
     <p>Window: <code>{{window}}</code></p>
+
+    <table class="amoe-table">
+      <tr>
+        <th>Text</th>
+      </tr>
+      <tr v-for="datum in data">
+        <td>{{datum}}</td>
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -35,7 +44,7 @@
              }).then(r => {
                  this.$store.commit('operationFinished');
                  console.log("foo: %o", JSON.stringify(r.data, null, 4));
-                 this.$store.commit('setFindTagsData', r.data);
+                 this.$store.commit('setDisplaySelectedData', r.data);
              })
                  .catch(e => {
                      this.$store.commit('operationFinished');
@@ -77,6 +86,9 @@
          },
          window: function (this: any) {
              return this.$store.state.window;
+         },
+         data: function (this: any) {
+             return this.$store.state.task.displaySelected.data;
          }
      }
  });
