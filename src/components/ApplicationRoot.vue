@@ -49,6 +49,7 @@
      data: function() {
          return {
              show: false,
+             // It might be better form to just put these fields inline.
              foobarFields: [
                  {name: 'age',
                   label: "Age",
