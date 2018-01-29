@@ -55,7 +55,10 @@
                   mutation: 'updateAge'},
                  {name: 'age',
                   label: "Age",
-                  mutation: 'updateAge'}
+                  mutation: 'updateAge'},
+                 {name: 'favouriteFood',
+                  label: "Favourite food",
+                  mutation: 'updateFavouriteFood'}
              ]
          };
      },

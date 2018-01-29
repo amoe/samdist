@@ -24,6 +24,7 @@ const store = new Vuex.Store({
         window: 10,
         word: "woman",
         age: null,
+        favouriteFood: null,
         task: {
             findTags: {
                 field: null,
@@ -67,6 +68,9 @@ const store = new Vuex.Store({
         },
         updateAge(state, payload: string) {
             state.age = payload;
+        },
+        updateFavouriteFood(state, payload: string) {
+            state.favouriteFood = payload;
         },
         setFindTagsData(state, payload) {
             state.task.findTags.data = payload;
