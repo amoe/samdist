@@ -1,28 +1,22 @@
 <template>
   <div class="task">
-    <h2>Find Tags</h2>
+    <h2>Display Selected</h2>
 
     <label for="field">Field:</label>
     <input id="field" type="text" v-on:input="updateField" :value="field"/>
 
-    <label for="word">Word:</label>
-    <input id="word" type="text" v-on:input="updateWord" :value="word"/>
+    <label for="value">Value:</label>
+    <input id="value" type="text" v-on:input="updateValue" :value="value"/>
+
+    <label for="window">Window:</label>
+    <input id="window" type="text" v-on:input="updateWindow" :value="window"/>
     
     <button v-on:click="run">Run</button>
 
     <p>Word: <code>{{word}}</code></p>
     <p>Field name: <code>{{field}}</code></p>
-
-    <table class="amoe-table">
-      <tr>
-        <th>{{field}}</th>
-        <th>Count</th>
-      </tr>
-      <tr v-for="datum in data">
-        <td>{{datum[0]}}</td>
-        <td>{{datum[1]}}</td>
-      </tr>
-    </table>
+    <p>Value: <code>{{value}}</code></p>
+    <p>Window: <code>{{window}}</code></p>
   </div>
 </template>
 
@@ -33,9 +27,10 @@
  export default Vue.extend({
      methods: {
          run() {
-             // It's kind of cool to delegate policy aspects up the stack in this way.
-             this.$store.dispatch('submitFindTagsRequest', {
+             this.$store.dispatch('submitDisplaySelectedRequest', {
                  field: this.field,
+                 value: this.value,
+                 window: this.window,
                  word: this.word
              }).then(r => {
                  this.$store.commit('operationFinished');
@@ -49,27 +44,39 @@
                      this.$store.dispatch('handleError', e)
                  });
          },
+         // XXX refactor...
+         updateWord(e) {
+             // this doesn't need an action
+             this.$store.commit('updateWord', e.target.value); // ???
+         },
          updateField(e) {
              // this doesn't need an action
              this.$store.commit('updateField', e.target.value); // ???
          },
-         updateWord(e) {
-             this.$store.commit('updateWord', e.target.value);
+         updateValue(e) {
+             this.$store.commit('updateValue', e.target.value);
+         },
+         updateWindow(e) {
+             this.$store.commit('updateWindow', e.target.value);
          }
+
      },
      computed: {
          // It's kind of unclear what should be done about this because
          // the two tasks share the property of 'field' but not 'word' .  We don't
          // necessarily want to duplicate the updateField mutation, but not
          // sure that we want to go to vuex modules.
+         word: function(this: any) {
+             return this.$store.state.word;
+         },
          field: function (this: any) {
              return this.$store.state.field;
          },
-         word: function (this: any) {
-             return this.$store.state.word;
+         value: function (this: any) {
+             return this.$store.state.value;
          },
-         data: function (this: any) {
-             return this.$store.state.task.findTags.data;
+         window: function (this: any) {
+             return this.$store.state.window;
          }
      }
  });

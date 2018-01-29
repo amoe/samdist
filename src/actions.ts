@@ -29,7 +29,7 @@ const actions = {
     },
     // XXX refactor
     submitFindTagsRequest(store, payload) {
-        console.log("submitting bag of words request");
+        console.log("submitting find tags request");
 
         console.log("payload is %o", payload);
         
@@ -43,7 +43,22 @@ const actions = {
         store.commit('operationStarted');
         return axios.get(API_PREFIX + "/find-tags", {params: queryString});
     },
+    submitDisplaySelectedRequest(store, payload) {
+        console.log("submitting display selected request");
+        console.log("payload is %o", payload);
+        
+        const queryString = {
+            field: payload.field,
+            value: payload.value,
+            window: payload.window,
+            word: payload.word
+        };
+        
+        console.log("query string is %o", queryString);
 
+        store.commit('operationStarted');
+        return axios.get(API_PREFIX + "/display-selected", {params: queryString});
+    },
     drawGraph(store, payload) {
         console.log("I'm going to draw the graph");
         console.log("received the data as %o", payload.data);

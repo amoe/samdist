@@ -20,9 +20,11 @@ const store = new Vuex.Store({
         cutoff: 20,
         error: null,
         inProgressCount: 0,
+        value: 'AY.06.b',
+        window: 10,
+        word: "woman",
         task: {
             findTags: {
-                word: "woman",
                 field: null,
                 data: []
             }
@@ -38,6 +40,12 @@ const store = new Vuex.Store({
         updateCutoff(state, payload: number) {
             state.cutoff = payload;
         },
+        updateValue(state, payload: string) {
+            state.value = payload;
+        },
+        updateWindow(state, payload: number) {
+            state.window = payload;
+        },
         errorOccurred(state, payload) {
             state.error = payload;
         },
@@ -51,7 +59,7 @@ const store = new Vuex.Store({
             state.inProgressCount--;
         },
         updateWord(state, payload: string) {
-            state.task.findTags.word = payload;
+            state.word = payload;
         },
         setFindTagsData(state, payload) {
             state.task.findTags.data = payload;

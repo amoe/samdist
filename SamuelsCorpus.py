@@ -858,6 +858,7 @@ class Viewer(SamuelsCorpus):
         if value != '':
             value =self.match_tag(value,field=field)
             selected = df[df[field]==value]['UID'].unique().tolist()
+
             #print(selected)
             #mylist=[]
             #for alist in selected.tolist():
@@ -868,6 +869,9 @@ class Viewer(SamuelsCorpus):
                     todisplay.append(uid)
         else:
             todisplay=self.selected
+
+        print(todisplay)
+
         examples=[]
         if cutoff>0:
             todisplay=todisplay[:cutoff]
@@ -880,6 +884,7 @@ class Viewer(SamuelsCorpus):
                 mystring+=token+" "
             print(mystring)
             examples.append(mystring)
+
         return(examples)
 
     def get_top_features(self, key, rel=None,cutoff=10,field='SEMTAG3',displaygraph=False,display=True,examples=3,window=10):

@@ -35,3 +35,16 @@ def find_tags():
 
     return flask.jsonify(massage_find_tags_output(result))
     
+
+@app.route("/display-selected")
+def display_selected():
+    field = flask.request.args.get('field')
+    value = flask.request.args.get('value')
+    window = int(flask.request.args.get('window'))
+    word = flask.request.args.get('word')
+
+    # Execute this for its side effects, because display_selected() uses the
+    # previously computed find list.
+    fnonl.find_tags(word, field=field)
+    result = fnonl.display_selected(field=field, value=value, window=window)
+    return flask.jsonify(result)

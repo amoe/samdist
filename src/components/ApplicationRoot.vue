@@ -25,8 +25,9 @@
     <button v-on:click="doIncrement">Inc</button>
     
     <bag-of-words-task></bag-of-words-task>
-
     <find-tags-task></find-tags-task>
+    <display-selected-task></display-selected-task>
+
   </div>
 </template>
 
@@ -36,10 +37,11 @@ import Vuex from 'vuex';
 import utility from '../utility';
 import BagOfWordsTask from './BagOfWordsTask.vue';
 import FindTagsTask from './FindTagsTask.vue';
+import DisplaySelectedTask from './DisplaySelectedTask.vue';
 
  export default Vue.extend({
      components: {
-         BagOfWordsTask, FindTagsTask
+         BagOfWordsTask, FindTagsTask, DisplaySelectedTask
      },
      data: function() {
          return {
