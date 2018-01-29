@@ -28,24 +28,35 @@
     <find-tags-task></find-tags-task>
     <display-selected-task></display-selected-task>
 
+    <my-component :params="foobarFields"></my-component>
+
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Vuex from 'vuex';
-import utility from '../utility';
-import BagOfWordsTask from './BagOfWordsTask.vue';
-import FindTagsTask from './FindTagsTask.vue';
-import DisplaySelectedTask from './DisplaySelectedTask.vue';
+ import Vue from 'vue';
+ import Vuex from 'vuex';
+ import utility from '../utility';
+ import BagOfWordsTask from './BagOfWordsTask.vue';
+ import FindTagsTask from './FindTagsTask.vue';
+ import DisplaySelectedTask from './DisplaySelectedTask.vue';
+ import MyComponent from './MyComponent.vue';
 
  export default Vue.extend({
      components: {
-         BagOfWordsTask, FindTagsTask, DisplaySelectedTask
+         BagOfWordsTask, FindTagsTask, DisplaySelectedTask, MyComponent
      },
      data: function() {
          return {
-             show: false
+             show: false,
+             foobarFields: [
+                 {name: 'age',
+                  label: "Age",
+                  mutation: 'updateAge'},
+                 {name: 'age',
+                  label: "Age",
+                  mutation: 'updateAge'}
+             ]
          };
      },
      methods: {
