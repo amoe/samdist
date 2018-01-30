@@ -8,9 +8,8 @@
       <span class="close" v-on:click="dismiss">&#x274C;</span>
     </div>
 
-    <svg v-if="inProgressCount > 0" height="3em" width="3em">
-      <circle class="spinner"
-              cx="50%"
+    <svg v-if="inProgressCount > 0" height="3em" width="3em" class="spinner">
+      <circle cx="50%"
               cy="50%"
               r="1em"
               stroke="black"
@@ -77,41 +76,47 @@
 
 <style>
 
- body {
-     max-width: 64rem;
-     margin-left: auto;
-     margin-right: auto;
-     background-color: #fdfdfd;
- }
+body {
+    max-width: 64rem;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fdfdfd;
+}
 
- h1,h2 { font-family: Georgia; }
+h1,h2 { font-family: Georgia; }
 
- p, label { font-family: Arial, sans-serif; }
+p, label { font-family: Arial, sans-serif; }
 
- div.alert {
-     border-radius: 0.25rem;
-     border: 1px solid;
-     padding: 0.75rem 1.25rem;
-     display: flex;
-     justify-content: space-between;
- }
+div.alert {
+    border-radius: 0.25rem;
+    border: 1px solid;
+    padding: 0.75rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+}
 
- div.alert-danger {
-     color: #721c24;
-     background-color: #f8d7da;
-     border-color: #f5c6cb;
- }
+div.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
 
- span.close {
-     cursor: pointer;
- }
+span.close {
+    cursor: pointer;
+}
 
- .spinner {
-     animation: pulse 1s infinite;
- }
+svg.spinner {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+}
 
- @keyframes pulse {
-     0% {
+svg.spinner circle {
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
          fill: #001f3f;
      }
 
