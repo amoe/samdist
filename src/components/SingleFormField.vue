@@ -1,18 +1,16 @@
 <template>
   <div>
-    <div v-for="param in params">
-      <label :for="param.name">{{param.label}}:</label>
-      <input type="text"
-             v-on:input="handleInput($event, param.mutation)"
-             :id="param.name"
-             :value="retrieve(param.name)"/>
-    </div>
+    <label :for="name">{{label}}:</label>
+    <input type="text"
+           v-on:input="handleInput($event, mutation)"
+           :id="name"
+           :value="retrieve(name)"/>
   </div>
 </template>
 
 <script>
  export default {
-     props: ['params'],
+     props: ['name', 'mutation', 'label'],
      methods: {
          handleInput(event, mutation) {
              this.$store.commit(mutation, event.target.value);

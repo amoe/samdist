@@ -24,11 +24,13 @@
     <button v-on:click="greet">Greet</button>
     <button v-on:click="doIncrement">Inc</button>
     
-    <bag-of-words-task></bag-of-words-task>
+    <bag-of-words-task-2></bag-of-words-task-2>
     <find-tags-task></find-tags-task>
     <display-selected-task></display-selected-task>
 
+
     <my-component :params="foobarFields"></my-component>
+
 
   </div>
 </template>
@@ -41,10 +43,12 @@
  import FindTagsTask from './FindTagsTask.vue';
  import DisplaySelectedTask from './DisplaySelectedTask.vue';
  import MyComponent from './MyComponent.vue';
+ import BagOfWordsTask2 from './BagOfWordsTask2.vue';
+
 
  export default Vue.extend({
      components: {
-         BagOfWordsTask, FindTagsTask, DisplaySelectedTask, MyComponent
+         BagOfWordsTask, FindTagsTask, DisplaySelectedTask, MyComponent, BagOfWordsTask2
      },
      data: function() {
          return {

@@ -9,11 +9,13 @@ import ApplicationRoot from './components/ApplicationRoot.vue';
 import * as dimple from 'dimple';
 import Vue from 'vue';
 import Vuex from 'vuex';
-import actions from './actions'
+import actions from './actions';
+import getters from './getters';
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
+    getters,
     state: {
         count: 0,
         field: 'SEMTAG3',
