@@ -75,7 +75,6 @@
 </script>
 
 <style>
-
 body {
     max-width: 64rem;
     margin-left: auto;
