@@ -45,7 +45,6 @@
  import MyComponent from './MyComponent.vue';
  import BagOfWordsTask2 from './BagOfWordsTask2.vue';
 
-
  export default Vue.extend({
      components: {
          BagOfWordsTask, FindTagsTask, DisplaySelectedTask, MyComponent, BagOfWordsTask2

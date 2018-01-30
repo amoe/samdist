@@ -2,9 +2,12 @@
   <div class="task">
     <h2>Bag of Words v2</h2>
 
-    <single-form-field name="age" mutation="updateAge" label="Age"></single-form-field>
+    <single-form-field name="field" mutation="updateField" label="Field"/>
+    <single-form-field name="cutoff" mutation="updateCutoff" label="Cutoff"/>
 
-    <p>{{age}}</p>
+
+    <p>{{field}}</p>
+    <p>{{cutoff}}</p>
 
     <button v-on:click="run">Run</button>
     <div id="chartContainer">
@@ -40,7 +43,7 @@ import { mapGetters } from 'vuex';
                  });
          }
      },
-     computed: mapGetters(['field', 'cutoff', 'age'])
+     computed: mapGetters(['field', 'cutoff'])
 });
 </script>
 
