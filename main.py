@@ -1,6 +1,7 @@
 import flask
 import SamuelsCorpus
 import pprint
+import resthelper
 
 app = flask.Flask(__name__)
 
@@ -20,9 +21,6 @@ def bag_of_words():
     fnonl_tagbag = fnonl.make_bow(field='SEMTAG3', cutoff=10, displaygraph=False)
     return flask.jsonify(fnonl_tagbag)
 
-# Remove the numpy wrapper and convert to raw python int
-def massage_stats_output(data):
-    return [[x[0], x[1].item()] for x in data]
 
 @app.route("/find-tags")
 def find_tags():
@@ -33,7 +31,7 @@ def find_tags():
 
     result = fnonl.find_tags(word, field=field)
 
-    return flask.jsonify(massage_stats_output(result))
+    return flask.jsonify(resthelper.massage_stats_output(result))
     
 
 @app.route("/display-selected")
@@ -68,16 +66,39 @@ def find_text_by_semantic_tag():
 
     return flask.jsonify(result)
 
-@app.route("/get-top-features")
-def find_words_by_semantic_tag():
+
+
+@app.route("/get-cooccurrence-candidate-texts")
+def get_cooccurrence_candidate_texts():
     tag_match = flask.request.args.get('tag_match')
     tag_field = flask.request.args.get('tag_field')
     relation = flask.request.args.get('relation')
     window = int(flask.request.args.get('window'))
     cutoff = int(flask.request.args.get('cutoff'))
 
-    result = fnonl.get_top_features(
-        tag_match, field=tag_field, cutoff=cutoff, window=window, rel=relation
+    # We need a special helper here because the SamuelsCorpus API is a bit
+    # strange
+
+    # Constructor encapsulates the entire query
+    helper = resthelper.CooccurrenceHelper(
+        fnonl,
+        tag_match,
+        relation,
+        cutoff,
+        field,
+        display,
+        examples,
+        window
     )
 
-    return flask.jsonify(result)
+    candidates = helper.query_top_features()
+
+    feature_lines = [
+        helper.format_line(candidate)
+        for candidate in candidates
+    ]
+
+    return flask.jsonify(feature_lines)
+
+
+

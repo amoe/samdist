@@ -37,7 +37,10 @@ const getters = {
     },
     relation(state, getters) {
         return state.relation;
-    }
+    },
+    cooccurrenceCandidateTextsData(state, getters) {
+        return state.cooccurrenceCandidateTextsData;
+    },
 };
 
 export default getters;

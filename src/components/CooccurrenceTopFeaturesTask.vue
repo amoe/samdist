@@ -1,6 +1,6 @@
 <template>
   <div class="task">
-    <h2>Cooccurrence</h2>
+    <h2>Cooccurrence top features chart</h2>
 
     <form-field name="tagMatch" mutation="updateTagMatch" label="Tag match"/>
     <form-field name="tagField" mutation="updateTagField" label="Tag field"/>

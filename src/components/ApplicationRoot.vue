@@ -29,6 +29,7 @@
     <find-text-by-semantic-tag-task/>
     <find-words-by-semantic-tag-task/>
     <cooccurrence-top-features-task/>
+    <get-cooccurrence-candidate-texts/>
   </div>
 </template>
 
@@ -42,12 +43,13 @@ import DisplaySelectedTask from './DisplaySelectedTask.vue';
 import FindWordsBySemanticTagTask from './FindWordsBySemanticTagTask.vue';
 import FindTextBySemanticTagTask from './FindTextBySemanticTagTask.vue';
 import CooccurrenceTopFeaturesTask from './CooccurrenceTopFeaturesTask.vue';
+import GetCooccurrenceCandidateTexts from './GetCooccurrenceCandidateTexts.vue';
 
 export default Vue.extend({
      components: {
          BagOfWordsTask, FindTagsTask, DisplaySelectedTask, 
          FindTextBySemanticTagTask, FindWordsBySemanticTagTask,
-         CooccurrenceTopFeaturesTask
+         CooccurrenceTopFeaturesTask, GetCooccurrenceCandidateTexts
      },
      data: function() {
          return {
