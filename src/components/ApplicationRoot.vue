@@ -23,11 +23,12 @@
     <button v-on:click="greet">Greet</button>
     <button v-on:click="doIncrement">Inc</button>
     
-    <bag-of-words-task></bag-of-words-task>
-    <find-tags-task></find-tags-task>
-    <display-selected-task></display-selected-task>
+    <bag-of-words-task/>
+    <find-tags-task/>
+    <display-selected-task/>
     <find-text-by-semantic-tag-task/>
     <find-words-by-semantic-tag-task/>
+    <cooccurrence-top-features-task/>
   </div>
 </template>
 
@@ -40,11 +41,13 @@ import FindTagsTask from './FindTagsTask.vue';
 import DisplaySelectedTask from './DisplaySelectedTask.vue';
 import FindWordsBySemanticTagTask from './FindWordsBySemanticTagTask.vue';
 import FindTextBySemanticTagTask from './FindTextBySemanticTagTask.vue';
+import CooccurrenceTopFeaturesTask from './CooccurrenceTopFeaturesTask.vue';
 
 export default Vue.extend({
      components: {
          BagOfWordsTask, FindTagsTask, DisplaySelectedTask, 
-         FindTextBySemanticTagTask, FindWordsBySemanticTagTask
+         FindTextBySemanticTagTask, FindWordsBySemanticTagTask,
+         CooccurrenceTopFeaturesTask
      },
      data: function() {
          return {

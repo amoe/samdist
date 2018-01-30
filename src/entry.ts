@@ -27,6 +27,7 @@ const store = new Vuex.Store({
         word: "woman",
         tagMatch: 'AY.01.g.01',
         tagField: 'SEMTAG3',
+        relation: null,
         findTagsData: [],
         displaySelectedData: [],
         findWordsBySemanticTagData: [],
@@ -46,6 +47,9 @@ const store = new Vuex.Store({
             state.value = payload;
         },
         updateWindow(state, payload: number) {
+            state.window = payload;
+        },
+        updateRelation(state, payload: number) {
             state.window = payload;
         },
         errorOccurred(state, payload) {

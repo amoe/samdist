@@ -68,11 +68,16 @@ def find_text_by_semantic_tag():
 
     return flask.jsonify(result)
 
-@app.route("/find-words-by-semantic-tag")
+@app.route("/get-top-features")
 def find_words_by_semantic_tag():
     tag_match = flask.request.args.get('tag_match')
     tag_field = flask.request.args.get('tag_field')
+    relation = flask.request.args.get('relation')
+    window = int(flask.request.args.get('window'))
+    cutoff = int(flask.request.args.get('cutoff'))
 
-    result = fnonl.find_text(tag_match, field=tag_field)
+    result = fnonl.get_top_features(
+        tag_match, field=tag_field, cutoff=cutoff, window=window, rel=relation
+    )
 
-    return flask.jsonify(massage_stats_output(result))
+    return flask.jsonify(result)

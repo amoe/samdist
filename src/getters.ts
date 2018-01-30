@@ -34,6 +34,9 @@ const getters = {
     },
     findWordsBySemanticTagData(state, getters) {
         return state.findWordsBySemanticTagData;
+    },
+    relation(state, getters) {
+        return state.relation;
     }
 };
 
