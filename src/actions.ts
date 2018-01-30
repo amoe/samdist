@@ -28,6 +28,7 @@ const actions = {
     submitBagOfWordsRequest: makeEndpointCaller("/bag-of-words"),
     submitFindTagsRequest: makeEndpointCaller("/find-tags"),
     submitDisplaySelectedRequest: makeEndpointCaller("/display-selected"),
+    submitFindBySemanticTagRequest: makeEndpointCaller("/find-by-semantic-tag"),
 
     drawGraph(store, payload) {
         console.log("I'm going to draw the graph");

@@ -48,3 +48,20 @@ def display_selected():
     fnonl.find_tags(word, field=field)
     result = fnonl.display_selected(field=field, value=value, window=window)
     return flask.jsonify(result)
+
+# This is a novelty, basically wrap the operation.
+@app.route("/find-by-semantic-tag")
+def find_by_semantic_tag():
+    tag_match = flask.request.args.get('tag_match')
+    tag_field = flask.request.args.get('tag_field')
+    field = flask.request.args.get('field')
+    value = flask.request.args.get('value')
+    window = int(flask.request.args.get('window'))
+    cutoff = int(flask.request.args.get('cutoff'))
+
+    fnonl.find_text(tag_match, field=tag_field)
+    result = fnonl.display_selected(
+        field=field, value=value, window=window, cutoff=cutoff
+    )
+
+    return flask.jsonify(result)

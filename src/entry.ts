@@ -18,15 +18,18 @@ const store = new Vuex.Store({
     getters,
     state: {
         count: 0,
-        field: 'SEMTAG3',
         cutoff: 20,
         error: null,
         inProgressCount: 0,
-        value: 'AY.06.b',
+        field: 'vard',
+        value: 'piece',
         window: 10,
         word: "woman",
+        tagMatch: 'AY.01.g.01',
+        tagField: 'SEMTAG3',
         findTagsData: [],
-        displaySelectedData: []
+        displaySelectedData: [],
+        findBySemanticTagData: [],
     },
     mutations: {
         increment(state) {
@@ -59,11 +62,20 @@ const store = new Vuex.Store({
         updateWord(state, payload: string) {
             state.word = payload;
         },
+        updateTagMatch(state, payload: string) {
+            state.tagMatch = payload;
+        },
+        updateTagField(state, payload: string) {
+            state.tagField = payload;
+        },
         setFindTagsData(state, payload) {
             state.findTagsData = payload;
         },
         setDisplaySelectedData(state, payload) {
             state.displaySelectedData = payload;
+        },
+        setFindBySemanticTagData(state, payload) {
+            state.findBySemanticTagData = payload;
         }
     },
     actions

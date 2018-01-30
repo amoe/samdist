@@ -26,20 +26,22 @@
     <bag-of-words-task></bag-of-words-task>
     <find-tags-task></find-tags-task>
     <display-selected-task></display-selected-task>
+    <find-by-semantic-tag-task/>
   </div>
 </template>
 
 <script lang="ts">
- import Vue from 'vue';
- import Vuex from 'vuex';
- import utility from '../utility';
- import BagOfWordsTask from './BagOfWordsTask.vue';
- import FindTagsTask from './FindTagsTask.vue';
- import DisplaySelectedTask from './DisplaySelectedTask.vue';
+import Vue from 'vue';
+import Vuex from 'vuex';
+import utility from '../utility';
+import BagOfWordsTask from './BagOfWordsTask.vue';
+import FindTagsTask from './FindTagsTask.vue';
+import DisplaySelectedTask from './DisplaySelectedTask.vue';
+import FindBySemanticTagTask from './FindBySemanticTagTask.vue';
 
- export default Vue.extend({
+export default Vue.extend({
      components: {
-         BagOfWordsTask, FindTagsTask, DisplaySelectedTask
+         BagOfWordsTask, FindTagsTask, DisplaySelectedTask, FindBySemanticTagTask
      },
      data: function() {
          return {

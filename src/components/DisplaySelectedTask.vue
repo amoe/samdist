@@ -2,6 +2,7 @@
   <div class="task">
     <h2>Display Selected</h2>
 
+    <p>Hint: Leave <code>value</code> blank to show all selected tags.</p>
 
     <form-field name="word" mutation="updateWord" label="Word"/>
     <form-field name="field" mutation="updateField" label="Field"/>

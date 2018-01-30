@@ -23,7 +23,15 @@ const getters = {
     displaySelectedData(state, getters) {
         return state.displaySelectedData;
     },
-
+    tagField(state, getters) {
+        return state.tagField;
+    },
+    tagMatch(state, getters) {
+        return state.tagMatch;
+    },
+    findBySemanticTagData(state, getters) {
+        return state.findBySemanticTagData;
+    }
 };
 
 export default getters;
