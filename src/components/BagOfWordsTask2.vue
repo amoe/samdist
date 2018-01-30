@@ -5,7 +5,6 @@
     <single-form-field name="field" mutation="updateField" label="Field"/>
     <single-form-field name="cutoff" mutation="updateCutoff" label="Cutoff"/>
 
-
     <p>{{field}}</p>
     <p>{{cutoff}}</p>
 
@@ -20,27 +19,23 @@ import Vue from 'vue';
 import utility from '../utility';
 import SingleFormField from './SingleFormField.vue';
 import { mapGetters } from 'vuex';
+import mixins from '../mixins';
 
  export default Vue.extend({
+     mixins: [mixins.main],
      components: {
          SingleFormField
      },
      methods: {
-         run() {
-             // It's kind of cool to delegate policy aspects up the stack in this way.
-             this.$store.dispatch('submitBagOfWordsRequest', {
-                 field: this.field,
-                 cutoff: this.cutoff
-             }).then(r => {
-                 this.$store.commit('operationFinished');
-                 this.$store.dispatch('drawGraph', r)
-             })
-                 .catch(e => {
-                     this.$store.commit('operationFinished');
-                     console.log("foo: %o", e);
-                     utility.handleAxiosError(e);
-                     this.$store.dispatch('handleError', e)
-                 });
+         run(this: any) {
+             this.performNetworkOperation(
+                 'submitBagOfWordsRequest', {
+                     field: this.field,
+                     cutoff: this.cutoff
+                 }, r => {
+                     this.$store.dispatch('drawGraph', r)
+                 }
+             );
          }
      },
      computed: mapGetters(['field', 'cutoff'])
