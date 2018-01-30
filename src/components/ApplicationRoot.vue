@@ -24,14 +24,9 @@
     <button v-on:click="greet">Greet</button>
     <button v-on:click="doIncrement">Inc</button>
     
-    <bag-of-words-task-2></bag-of-words-task-2>
+    <bag-of-words-task></bag-of-words-task>
     <find-tags-task></find-tags-task>
     <display-selected-task></display-selected-task>
-
-
-    <my-component :params="foobarFields"></my-component>
-
-
   </div>
 </template>
 
@@ -42,28 +37,14 @@
  import BagOfWordsTask from './BagOfWordsTask.vue';
  import FindTagsTask from './FindTagsTask.vue';
  import DisplaySelectedTask from './DisplaySelectedTask.vue';
- import MyComponent from './MyComponent.vue';
- import BagOfWordsTask2 from './BagOfWordsTask2.vue';
 
  export default Vue.extend({
      components: {
-         BagOfWordsTask, FindTagsTask, DisplaySelectedTask, MyComponent, BagOfWordsTask2
+         BagOfWordsTask, FindTagsTask, DisplaySelectedTask
      },
      data: function() {
          return {
              show: false,
-             // It might be better form to just put these fields inline.
-             foobarFields: [
-                 {name: 'age',
-                  label: "Age",
-                  mutation: 'updateAge'},
-                 {name: 'age',
-                  label: "Age",
-                  mutation: 'updateAge'},
-                 {name: 'favouriteFood',
-                  label: "Favourite food",
-                  mutation: 'updateFavouriteFood'}
-             ]
          };
      },
      methods: {

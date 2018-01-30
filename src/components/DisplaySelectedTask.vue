@@ -2,15 +2,12 @@
   <div class="task">
     <h2>Display Selected</h2>
 
-    <label for="field">Field:</label>
-    <input id="field" type="text" v-on:input="updateField" :value="field"/>
 
-    <label for="value">Value:</label>
-    <input id="value" type="text" v-on:input="updateValue" :value="value"/>
+    <form-field name="word" mutation="updateWord" label="Word"/>
+    <form-field name="field" mutation="updateField" label="Field"/>
+    <form-field name="value" mutation="updateValue" label="Value"/>
+    <form-field name="window" mutation="updateWindow" label="Window"/>
 
-    <label for="window">Window:</label>
-    <input id="window" type="text" v-on:input="updateWindow" :value="window"/>
-    
     <button v-on:click="run">Run</button>
 
     <p>Word: <code>{{word}}</code></p>
@@ -22,7 +19,7 @@
       <tr>
         <th>Text</th>
       </tr>
-      <tr v-for="datum in data">
+      <tr v-for="datum in displaySelectedData">
         <td>{{datum}}</td>
       </tr>
     </table>
@@ -30,68 +27,35 @@
 </template>
 
 <script lang="ts">
- import Vue from 'vue';
- import utility from '../utility';
+import Vue from 'vue';
+import utility from '../utility';
+import {mapGetters} from 'vuex';
+import FormField from './FormField.vue';
+import mixins from '../mixins';
 
- export default Vue.extend({
-     methods: {
-         run() {
-             this.$store.dispatch('submitDisplaySelectedRequest', {
-                 field: this.field,
-                 value: this.value,
-                 window: this.window,
-                 word: this.word
-             }).then(r => {
-                 this.$store.commit('operationFinished');
-                 console.log("foo: %o", JSON.stringify(r.data, null, 4));
-                 this.$store.commit('setDisplaySelectedData', r.data);
-             })
-                 .catch(e => {
-                     this.$store.commit('operationFinished');
-                     console.log("foo: %o", e);
-                     utility.handleAxiosError(e);
-                     this.$store.dispatch('handleError', e)
-                 });
-         },
-         // XXX refactor...
-         updateWord(e) {
-             // this doesn't need an action
-             this.$store.commit('updateWord', e.target.value); // ???
-         },
-         updateField(e) {
-             // this doesn't need an action
-             this.$store.commit('updateField', e.target.value); // ???
-         },
-         updateValue(e) {
-             this.$store.commit('updateValue', e.target.value);
-         },
-         updateWindow(e) {
-             this.$store.commit('updateWindow', e.target.value);
-         }
-
-     },
-     computed: {
-         // It's kind of unclear what should be done about this because
-         // the two tasks share the property of 'field' but not 'word' .  We don't
-         // necessarily want to duplicate the updateField mutation, but not
-         // sure that we want to go to vuex modules.
-         word: function(this: any) {
-             return this.$store.state.word;
-         },
-         field: function (this: any) {
-             return this.$store.state.field;
-         },
-         value: function (this: any) {
-             return this.$store.state.value;
-         },
-         window: function (this: any) {
-             return this.$store.state.window;
-         },
-         data: function (this: any) {
-             return this.$store.state.task.displaySelected.data;
-         }
-     }
- });
+export default Vue.extend({
+    mixins: [mixins.main],
+    components: {
+        FormField
+    },
+    methods: {
+        run(this: any) {
+            this.performNetworkOperation(
+                'submitDisplaySelectedRequest', {
+                    field: this.field,
+                    value: this.value,
+                    window: this.window,
+                    word: this.word
+                }, r => {
+                    this.$store.commit('setDisplaySelectedData', r.data)
+                }
+            );
+        }
+    },
+    computed: mapGetters([
+        'field', 'word', 'value', 'window', 'displaySelectedData'
+    ])
+});
 </script>
 
 <style>

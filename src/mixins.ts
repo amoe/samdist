@@ -9,10 +9,7 @@ const main = {
             payload: object,
             onSuccess: Function
         ) {
-            this.$store.dispatch(actionName, {
-                field: this.field,
-                cutoff: this.cutoff
-            }).then(r => {
+            this.$store.dispatch(actionName, payload).then(r => {
                 this.$store.commit('operationFinished');
                 onSuccess(r);
             }).catch(e => {

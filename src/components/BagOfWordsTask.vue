@@ -1,62 +1,45 @@
 <template>
   <div class="task">
-    <h2>Bag of Words</h2>
+    <h2>Bag of Words v2</h2>
 
-    <label for="field">Field:</label>
-    <input id="field" type="text" v-on:input="updateField" :value="field"/>
+    <form-field name="field" mutation="updateField" label="Field"/>
+    <form-field name="cutoff" mutation="updateCutoff" label="Cutoff"/>
 
-    <label for="cutoff">Cutoff:</label>
-    <input id="cutoff" type="text" v-on:input="updateCutoff" :value="cutoff"/>
-    
+    <p>{{field}}</p>
+    <p>{{cutoff}}</p>
+
     <button v-on:click="run">Run</button>
-
-    <p>Field name: <code>{{field}}</code></p>
-    <p>Cutoff: <code>{{cutoff}}</code></p>
-    
     <div id="chartContainer">
     </div>
   </div>
 </template>
 
 <script lang="ts">
- import Vue from 'vue';
- import utility from '../utility';
+import Vue from 'vue';
+import utility from '../utility';
+import FormField from './FormField.vue';
+import { mapGetters } from 'vuex';
+import mixins from '../mixins';
 
  export default Vue.extend({
+     mixins: [mixins.main],
+     components: {
+         FormField
+     },
      methods: {
-         run() {
-             // It's kind of cool to delegate policy aspects up the stack in this way.
-             this.$store.dispatch('submitBagOfWordsRequest', {
-                 field: this.field,
-                 cutoff: this.cutoff
-             }).then(r => {
-                 this.$store.commit('operationFinished');
-                 this.$store.dispatch('drawGraph', r)
-             })
-                 .catch(e => {
-                     this.$store.commit('operationFinished');
-                     console.log("foo: %o", e);
-                     utility.handleAxiosError(e);
-                     this.$store.dispatch('handleError', e)
-                 });
-         },
-         updateField(e) {
-             // this doesn't need an action
-             this.$store.commit('updateField', e.target.value);
-         },
-         updateCutoff(e) {
-             this.$store.commit('updateCutoff', e.target.value);
+         run(this: any) {
+             this.performNetworkOperation(
+                 'submitBagOfWordsRequest', {
+                     field: this.field,
+                     cutoff: this.cutoff
+                 }, r => {
+                     this.$store.dispatch('drawGraph', r)
+                 }
+             );
          }
      },
-     computed: {
-         field: function (this: any) {
-             return this.$store.state.field;
-         },
-         cutoff: function (this: any) {
-             return this.$store.state.cutoff;
-         }
-     }
- });
+     computed: mapGetters(['field', 'cutoff'])
+});
 </script>
 
 <style>

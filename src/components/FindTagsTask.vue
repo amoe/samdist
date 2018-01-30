@@ -2,11 +2,8 @@
   <div class="task">
     <h2>Find Tags</h2>
 
-    <label for="field">Field:</label>
-    <input id="field" type="text" v-on:input="updateField" :value="field"/>
-
-    <label for="word">Word:</label>
-    <input id="word" type="text" v-on:input="updateWord" :value="word"/>
+    <form-field name="field" mutation="updateField" label="Field"/>
+    <form-field name="word" mutation="updateWord" label="Word"/>
     
     <button v-on:click="run">Run</button>
 
@@ -18,7 +15,7 @@
         <th>{{field}}</th>
         <th>Count</th>
       </tr>
-      <tr v-for="datum in data">
+      <tr v-for="datum in findTagsData">
         <td>{{datum[0]}}</td>
         <td>{{datum[1]}}</td>
       </tr>
@@ -27,52 +24,31 @@
 </template>
 
 <script lang="ts">
- import Vue from 'vue';
- import utility from '../utility';
+import Vue from 'vue';
+import utility from '../utility';
+import {mapGetters} from 'vuex';
+import mixins from '../mixins';
+import FormField from './FormField.vue';
 
- export default Vue.extend({
-     methods: {
-         run() {
-             // It's kind of cool to delegate policy aspects up the stack in this way.
-             this.$store.dispatch('submitFindTagsRequest', {
-                 field: this.field,
-                 word: this.word
-             }).then(r => {
-                 this.$store.commit('operationFinished');
-                 console.log("foo: %o", JSON.stringify(r.data, null, 4));
-                 this.$store.commit('setFindTagsData', r.data);
-             })
-                 .catch(e => {
-                     this.$store.commit('operationFinished');
-                     console.log("foo: %o", e);
-                     utility.handleAxiosError(e);
-                     this.$store.dispatch('handleError', e)
-                 });
-         },
-         updateField(e) {
-             // this doesn't need an action
-             this.$store.commit('updateField', e.target.value); // ???
-         },
-         updateWord(e) {
-             this.$store.commit('updateWord', e.target.value);
-         }
-     },
-     computed: {
-         // It's kind of unclear what should be done about this because
-         // the two tasks share the property of 'field' but not 'word' .  We don't
-         // necessarily want to duplicate the updateField mutation, but not
-         // sure that we want to go to vuex modules.
-         field: function (this: any) {
-             return this.$store.state.field;
-         },
-         word: function (this: any) {
-             return this.$store.state.word;
-         },
-         data: function (this: any) {
-             return this.$store.state.task.findTags.data;
-         }
-     }
- });
+export default Vue.extend({
+    mixins: [mixins.main],
+    components: {
+        FormField
+    },
+    methods: {
+        run(this: any) {
+            this.performNetworkOperation(
+                'submitFindTagsRequest', {
+                    field: this.field,
+                    word: this.word
+                }, r => {
+                    this.$store.commit('setFindTagsData', r.data)
+                }
+            );
+        }
+    },
+    computed: mapGetters(['field', 'word', 'findTagsData'])
+});
 </script>
 
 <style>

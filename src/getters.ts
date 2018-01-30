@@ -7,7 +7,23 @@ const getters = {
     },
     cutoff(state, getters) {
         return state.cutoff;
-    }
+    },
+    word(state, getters) {
+        return state.word;
+    },
+    findTagsData(state, getters) {
+        return state.findTagsData;
+    },
+    value(state, getters) {
+        return state.value;
+    },
+    window(state, getters) {
+        return state.window;
+    },
+    displaySelectedData(state, getters) {
+        return state.displaySelectedData;
+    },
+
 };
 
 export default getters;
