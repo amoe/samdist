@@ -85,11 +85,15 @@ def get_cooccurrence_candidate_texts():
         tag_match,
         relation,
         cutoff,
-        field,
-        display,
-        examples,
+        tag_field,
+        False,   # display (??)
+        0,      # examples
         window
     )
+
+
+# The problem here is that find_specific_texts directly prints its content.
+# which is then destroyed.
 
     candidates = helper.query_top_features()
 

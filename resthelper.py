@@ -9,20 +9,19 @@ def massage_stats_output(data):
 # Because samuelscorpus just writes its outputs directly to stdout inside, we
 # need to reimplement some of the functionality here in order to capture it.
 class CooccurrenceHelper(object):
-    self.viewer = None
-    self.rel = None
-
     def __init__(self, viewer, key, rel, cutoff, field, display, examples, window):
         self.viewer = viewer
+        self.key = key
         self.rel = rel
+        self.cutoff = cutoff
         self.field = field
         self.display = display
         self.examples = examples
         self.window = window
 
 
-    def query_top_features():
-        result = fnonl.get_top_features(
+    def query_top_features(self):
+        result = self.viewer.get_top_features(
             self.key, 
             field=self.field,
             cutoff=self.cutoff,
@@ -34,6 +33,9 @@ class CooccurrenceHelper(object):
     # Designed to be mapped across the result of query_top_features.  Extracted
     # from the inner loop of get_top_features.
     def format_line(self, candidate):
+        cand, score = candidate
+        rel = self.rel
+        
         if rel==None:
             r=cand.split(':')[0]
             candtag=cand.split(':')[1]
@@ -43,7 +45,7 @@ class CooccurrenceHelper(object):
 
         x = "({},{}) : {}".format(
             cand, score, 
-            self.find_specific_text(
+            self.viewer.find_specific_text(
                 candtag, self.key, r, field=self.field, display=self.display,
                 examples=self.examples, window=self.window
             )
