@@ -26,7 +26,8 @@
     <bag-of-words-task></bag-of-words-task>
     <find-tags-task></find-tags-task>
     <display-selected-task></display-selected-task>
-    <find-by-semantic-tag-task/>
+    <find-text-by-semantic-tag-task/>
+    <find-words-by-semantic-tag-task/>
   </div>
 </template>
 
@@ -37,11 +38,13 @@ import utility from '../utility';
 import BagOfWordsTask from './BagOfWordsTask.vue';
 import FindTagsTask from './FindTagsTask.vue';
 import DisplaySelectedTask from './DisplaySelectedTask.vue';
-import FindBySemanticTagTask from './FindBySemanticTagTask.vue';
+import FindWordsBySemanticTagTask from './FindWordsBySemanticTagTask.vue';
+import FindTextBySemanticTagTask from './FindTextBySemanticTagTask.vue';
 
 export default Vue.extend({
      components: {
-         BagOfWordsTask, FindTagsTask, DisplaySelectedTask, FindBySemanticTagTask
+         BagOfWordsTask, FindTagsTask, DisplaySelectedTask, 
+         FindTextBySemanticTagTask, FindWordsBySemanticTagTask
      },
      data: function() {
          return {
@@ -89,6 +92,10 @@ h1,h2 { font-family: Georgia; }
 p, label { font-family: Arial, sans-serif; }
 
 div.alert {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+
     border-radius: 0.25rem;
     border: 1px solid;
     padding: 0.75rem 1.25rem;

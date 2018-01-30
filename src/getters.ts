@@ -29,8 +29,11 @@ const getters = {
     tagMatch(state, getters) {
         return state.tagMatch;
     },
-    findBySemanticTagData(state, getters) {
-        return state.findBySemanticTagData;
+    findTextBySemanticTagData(state, getters) {
+        return state.findTextBySemanticTagData;
+    },
+    findWordsBySemanticTagData(state, getters) {
+        return state.findWordsBySemanticTagData;
     }
 };
 

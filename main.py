@@ -21,7 +21,7 @@ def bag_of_words():
     return flask.jsonify(fnonl_tagbag)
 
 # Remove the numpy wrapper and convert to raw python int
-def massage_find_tags_output(data):
+def massage_stats_output(data):
     return [[x[0], x[1].item()] for x in data]
 
 @app.route("/find-tags")
@@ -33,7 +33,7 @@ def find_tags():
 
     result = fnonl.find_tags(word, field=field)
 
-    return flask.jsonify(massage_find_tags_output(result))
+    return flask.jsonify(massage_stats_output(result))
     
 
 @app.route("/display-selected")
@@ -50,8 +50,8 @@ def display_selected():
     return flask.jsonify(result)
 
 # This is a novelty, basically wrap the operation.
-@app.route("/find-by-semantic-tag")
-def find_by_semantic_tag():
+@app.route("/find-text-by-semantic-tag")
+def find_text_by_semantic_tag():
     tag_match = flask.request.args.get('tag_match')
     tag_field = flask.request.args.get('tag_field')
     field = flask.request.args.get('field')
@@ -59,9 +59,20 @@ def find_by_semantic_tag():
     window = int(flask.request.args.get('window'))
     cutoff = int(flask.request.args.get('cutoff'))
 
+
+    # We throw away the word stats result of find_text.
     fnonl.find_text(tag_match, field=tag_field)
     result = fnonl.display_selected(
         field=field, value=value, window=window, cutoff=cutoff
     )
 
     return flask.jsonify(result)
+
+@app.route("/find-words-by-semantic-tag")
+def find_words_by_semantic_tag():
+    tag_match = flask.request.args.get('tag_match')
+    tag_field = flask.request.args.get('tag_field')
+
+    result = fnonl.find_text(tag_match, field=tag_field)
+
+    return flask.jsonify(massage_stats_output(result))

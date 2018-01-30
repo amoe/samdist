@@ -29,7 +29,8 @@ const store = new Vuex.Store({
         tagField: 'SEMTAG3',
         findTagsData: [],
         displaySelectedData: [],
-        findBySemanticTagData: [],
+        findWordsBySemanticTagData: [],
+        findTextBySemanticTagData: []
     },
     mutations: {
         increment(state) {
@@ -74,8 +75,11 @@ const store = new Vuex.Store({
         setDisplaySelectedData(state, payload) {
             state.displaySelectedData = payload;
         },
-        setFindBySemanticTagData(state, payload) {
-            state.findBySemanticTagData = payload;
+        setFindWordsBySemanticTagData(state, payload) {
+            state.findWordsBySemanticTagData = payload;
+        },
+        setFindTextBySemanticTagData(state, payload) {
+            state.findTextBySemanticTagData = payload;
         }
     },
     actions

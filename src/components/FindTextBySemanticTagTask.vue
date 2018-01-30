@@ -1,6 +1,6 @@
 <template>
   <div class="task">
-    <h2>Find by semantic tag filtering</h2>
+    <h2>Find text by semantic tag filtering</h2>
 
     <p>
       This view will filter on semantic tag values and then filter again by
@@ -27,7 +27,7 @@
       <tr>
         <th>Text</th>
       </tr>
-      <tr v-for="datum in findBySemanticTagData">
+      <tr v-for="datum in findTextBySemanticTagData">
         <td>{{datum}}</td>
       </tr>
     </table>
@@ -49,7 +49,7 @@ export default Vue.extend({
     methods: {
         run(this: any) {
             this.performNetworkOperation(
-                'submitFindBySemanticTagRequest', {
+                'submitFindTextBySemanticTagRequest', {
                     'tag_match': this.tagMatch,
                     'tag_field': this.tagField,
                     'field': this.field,
@@ -57,13 +57,13 @@ export default Vue.extend({
                     'window': this.window,
                     'cutoff': this.cutoff
                 }, r => {
-                    this.$store.commit('setFindBySemanticTagData', r.data)
+                    this.$store.commit('setFindTextBySemanticTagData', r.data)
                 }
             );
         }
     },
     computed: mapGetters([
-        'field', 'word', 'value', 'window', 'cutoff', 'findBySemanticTagData',
+        'field', 'word', 'value', 'window', 'cutoff', 'findTextBySemanticTagData',
         'tagMatch', 'tagField'
     ])
 });
