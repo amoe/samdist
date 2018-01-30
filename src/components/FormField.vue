@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="form-field">
     <label :for="name">{{label}}:</label>
     <input type="text"
            v-on:input="handleInput($event, mutation)"
@@ -23,4 +23,8 @@
 </script>
 
 <style>
+div.form-field {
+    margin: 0rem 1rem 0rem 1rem;
+    display: inline;
+}
 </style>

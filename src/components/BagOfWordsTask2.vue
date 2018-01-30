@@ -2,8 +2,8 @@
   <div class="task">
     <h2>Bag of Words v2</h2>
 
-    <single-form-field name="field" mutation="updateField" label="Field"/>
-    <single-form-field name="cutoff" mutation="updateCutoff" label="Cutoff"/>
+    <form-field name="field" mutation="updateField" label="Field"/>
+    <form-field name="cutoff" mutation="updateCutoff" label="Cutoff"/>
 
     <p>{{field}}</p>
     <p>{{cutoff}}</p>
@@ -17,14 +17,14 @@
 <script lang="ts">
 import Vue from 'vue';
 import utility from '../utility';
-import SingleFormField from './SingleFormField.vue';
+import FormField from './FormField.vue';
 import { mapGetters } from 'vuex';
 import mixins from '../mixins';
 
  export default Vue.extend({
      mixins: [mixins.main],
      components: {
-         SingleFormField
+         FormField
      },
      methods: {
          run(this: any) {
