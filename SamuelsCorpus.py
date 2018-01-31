@@ -717,7 +717,6 @@ class Viewer(SamuelsCorpus):
         return mylist
 
     def find_specific_text(self,semtag,withtag,rel,field='SEMTAG3',display=True,examples=1,window=10):
-
         semtag=self.match_tag(semtag,field=field)
         withtag=self.match_tag(withtag,field=field)
         df=self.get_dataframe()

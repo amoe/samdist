@@ -45,7 +45,7 @@ class CooccurrenceHelper(object):
 
         x = "({},{}) : {}".format(
             cand, score, 
-            self.viewer.find_specific_text(
+            self.find_specific_text(
                 candtag, self.key, r, field=self.field, display=self.display,
                 examples=self.examples, window=self.window
             )
@@ -53,7 +53,113 @@ class CooccurrenceHelper(object):
 
         return x
 
+    def find_specific_text(
+        self, semtag, withtag, rel, field='SEMTAG3', display=True, examples=1,
+        window=10
+    ):
+        if self.viewer.lowercase:
+            groupby='vard_lower'
+        else:
+            groupby='vard'
 
+        occurrences = self.get_occurrences_for_one_candidate(
+            semtag, withtag, rel, field
+        )
 
+        #print(occurrences.groupby(groupby)['UID'].unique())
+        self.viewer.selected=occurrences.groupby(groupby)['UID'].unique()[0]
+        if display and examples>0:
+            self.viewer.display_selected(cutoff=examples,window=window)
+        mylemmas=occurrences.groupby(groupby)['UID'].nunique()
+        mylemmas=mylemmas.sort_values(ascending=False)
+        mylist=list(mylemmas[0:10].index.values)
+        mylist=[(t,mylemmas[t]) for t in mylist]
+        return mylist
+
+    def get_occurrences_for_one_candidate(self, semtag, withtag, rel, field):
+        semtag=self.viewer.match_tag(semtag,field=field)
+        withtag=self.viewer.match_tag(withtag,field=field)
+        df=self.viewer.get_dataframe()
+        df=df[df['LEMMA']!='NULL']
+
+        if rel.startswith('_'):
+            rel=rel.split('_')[1]
+            rev=True
+        else:
+
+            rev=False
+
+        if rev:
+            occurrences=df[df[field]==withtag]
+            chunks=list(occurrences['chunk'])
+            ids=list(occurrences['id'])
+
+            occurrences=df[df['chunk'].isin(chunks)][df['gram_head'].isin(ids)][df[field]==semtag][df['gram_dep']==rel]
+            #need to eliminate chance overlap between different chunks and ids
+
+            cdict={}
+            for i,c in enumerate(chunks):
+                sofar=cdict.get(c,[])
+                sofar.append(i)
+                cdict[c]=sofar
+            hdict={}
+            for i,h in enumerate(ids):
+                sofar=hdict.get(h,[])
+                sofar.append(i)
+                hdict[h]=sofar
+
+            okids=[]
+            for occ in occurrences.itertuples():
+                #print(occ[3],occ[19])
+                #print(cdict.get(occ[3],-1),hdict.get(occ[19],-2))
+                cplace=cdict.get(occ[3],[])
+                hplace=hdict.get(occ[19],[])
+                for c in cplace:
+                    for h in hplace:
+                        if c==h:
+                            okids.append(occ[2])
+            #occurrences=df[df['fileid'].isin(okids)][df['chunk'].isin(chunks)][df['gram_head'].isin(ids)][df[field]==semtag][df['gram_dep']==rel]
+            occurrences=occurrences[occurrences['fileid'].isin(okids)]
+        else:
+            occurrences=df[df[field]==withtag][df['gram_dep']==rel]
+            chunks=list(occurrences['chunk'])
+            heads=list(occurrences['gram_head'])
+            occurrences=df[df['chunk'].isin(chunks)][df['id'].isin(heads)][df[field]==semtag]
+
+            #filtering of chance overlaps
+            cdict = {}
+            for i, c in enumerate(chunks):
+                sofar=cdict.get(c,[])
+                sofar.append(i)
+                cdict[c] = sofar
+            hdict = {}
+            for i, h in enumerate(heads):
+                sofar=hdict.get(h,[])
+                sofar.append(i)
+                hdict[h] = sofar
+            okids=[]
+            for occ in occurrences.itertuples():
+                cplace=cdict.get(occ[3],[])
+                hplace=hdict.get(occ[5],[])
+                for c in cplace:
+                    for h in hplace:
+                        if c==h:
+                            okids.append(occ[2])
+            occurrences=occurrences[occurrences['fileid'].isin(okids)]
+
+        return occurrences
+        
+
+    # remember that this will only get examples for 1 candidate!
+    def get_examples_for_one_candidate(self):
+        occurrences = self.get_occurrences()
+
+        #print(occurrences.groupby(groupby)['UID'].unique())
+        self.viewer.selected=occurrences.groupby(groupby)['UID'].unique()[0]
+        if display and examples>0:
+            self.viewer.display_selected(cutoff=examples,window=window)
+
+        return self.viewer.selected
     
-
+    def get_examples_for_all_candidates(self, candidate_list):
+        pass

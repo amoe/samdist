@@ -67,6 +67,32 @@ def find_text_by_semantic_tag():
     return flask.jsonify(result)
 
 
+@app.route("/get-top-features")
+def get_top_features():
+    tag_match = flask.request.args.get('tag_match')
+    tag_field = flask.request.args.get('tag_field')
+    relation = flask.request.args.get('relation')
+    window = int(flask.request.args.get('window'))
+    cutoff = int(flask.request.args.get('cutoff'))
+
+    # We need a special helper here because the SamuelsCorpus API is a bit
+    # strange
+
+    # Constructor encapsulates the entire query
+    helper = resthelper.CooccurrenceHelper(
+        fnonl,
+        tag_match,
+        relation,
+        cutoff,
+        tag_field,
+        False,   # display (??)
+        0,      # examples
+        window
+    )
+
+    candidates = helper.query_top_features()
+    return flask.jsonify(candidates)
+
 
 @app.route("/get-cooccurrence-candidate-texts")
 def get_cooccurrence_candidate_texts():
@@ -90,11 +116,6 @@ def get_cooccurrence_candidate_texts():
         0,      # examples
         window
     )
-
-
-# The problem here is that find_specific_texts directly prints its content.
-# which is then destroyed.
-
     candidates = helper.query_top_features()
 
     feature_lines = [
@@ -105,4 +126,31 @@ def get_cooccurrence_candidate_texts():
     return flask.jsonify(feature_lines)
 
 
+@app.route("/get-cooccurrence-examples")
+def get_cooccurrence_examples():
+    tag_match = flask.request.args.get('tag_match')
+    tag_field = flask.request.args.get('tag_field')
+    relation = flask.request.args.get('relation')
+    window = int(flask.request.args.get('window'))
+    cutoff = int(flask.request.args.get('cutoff'))
 
+    # Constructor encapsulates the entire query
+    helper = resthelper.CooccurrenceHelper(
+        fnonl,
+        tag_match,
+        relation,
+        cutoff,
+        tag_field,
+        False,   # display (??)
+        0,      # examples
+        window
+    )
+
+    candidates = helper.query_top_features()
+
+    feature_lines = [
+        helper.format_line(candidate)
+        for candidate in candidates
+    ]
+
+    return flask.jsonify(feature_lines)
