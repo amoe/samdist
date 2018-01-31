@@ -33,6 +33,8 @@ const actions = {
     submitCooccurrenceTopFeaturesRequest: makeEndpointCaller("/get-top-features"),
     submitGetCooccurrenceCandidateTextsRequest: makeEndpointCaller("/get-cooccurrence-candidate-texts"),
     submitGetCooccurrenceExamplesRequest: makeEndpointCaller("/get-cooccurrence-examples"),
+    submitFindSimilarityRequest: makeEndpointCaller("/find-similarity"),
+    submitFindNearestNeighboursRequest: makeEndpointCaller("/find-nearest-neighbours"),
 
     drawGraph(store, payload) {
         console.log("I'm going to draw the graph");

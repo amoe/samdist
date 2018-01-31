@@ -31,6 +31,8 @@
     <cooccurrence-top-features-task/>
     <get-cooccurrence-candidate-texts/>
     <get-cooccurrence-examples-task/>
+    <find-similarity-task/>
+    <find-nearest-neighbours-task/>
   </div>
 </template>
 
@@ -46,13 +48,16 @@ import FindTextBySemanticTagTask from './FindTextBySemanticTagTask.vue';
 import CooccurrenceTopFeaturesTask from './CooccurrenceTopFeaturesTask.vue';
 import GetCooccurrenceCandidateTexts from './GetCooccurrenceCandidateTexts.vue';
 import GetCooccurrenceExamplesTask from './GetCooccurrenceExamplesTask.vue';
+import FindSimilarityTask from './FindSimilarityTask.vue';
+import FindNearestNeighboursTask from './FindNearestNeighboursTask.vue';
 
 export default Vue.extend({
      components: {
          BagOfWordsTask, FindTagsTask, DisplaySelectedTask, 
          FindTextBySemanticTagTask, FindWordsBySemanticTagTask,
          CooccurrenceTopFeaturesTask, GetCooccurrenceCandidateTexts,
-         GetCooccurrenceExamplesTask
+         GetCooccurrenceExamplesTask, FindSimilarityTask,
+         FindNearestNeighboursTask
      },
      data: function() {
          return {

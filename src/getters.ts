@@ -46,7 +46,20 @@ const getters = {
     },
     examples(state, getters) {
         return state.examples;
-    }
+    },
+    semtagA(state, getters) {
+        return state.semtagA;
+    },
+    semtagB(state, getters) {
+        return state.semtagB;
+    },
+    findSimilarityData(state, getters) {
+        return state.findSimilarityData;
+
+    },
+    findNearestNeighboursData(state, getters) {
+        return state.findNearestNeighboursData;
+    },
 };
 
 export default getters;

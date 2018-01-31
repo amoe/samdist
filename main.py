@@ -150,3 +150,25 @@ def get_cooccurrence_examples():
     candidates = helper.query_top_features()
     examples = helper.get_examples_for_all_candidates(candidates)
     return flask.jsonify(examples)
+
+@app.route("/find-similarity")
+def find_similarity():
+    semtag_a = flask.request.args.get('semtag_a')
+    semtag_b = flask.request.args.get('semtag_b')
+    relation = flask.request.args.get('relation')
+
+    print("relation is '%s'" % relation)
+
+    result = fnonl.find_similarity(semtag_a, semtag_b, relation)
+    pprint.pprint(result)
+    return flask.jsonify(result)
+
+
+@app.route("/find-nearest-neighbours")
+def find_nearest_neighbour():
+    tag_match = flask.request.args.get('tag_match')
+    relation = flask.request.args.get('relation')
+
+    result = fnonl.find_knn(tag_match, relation)
+    pprint.pprint(result)
+    return flask.jsonify(result)

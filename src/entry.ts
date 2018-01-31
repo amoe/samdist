@@ -34,7 +34,12 @@ const store = new Vuex.Store({
         findTextBySemanticTagData: [],
         cooccurrenceCandidateTextsData: [],
         cooccurrenceExamplesData: [],
-        examples: 3
+        examples: 3,
+        // Used for comparing semantic similarity
+        semtagA: 'AD.03.a',
+        semtagB: 'AD.03.b',
+        findSimilarityData: null,
+        findNearestNeighboursData: []
     },
     mutations: {
         increment(state) {
@@ -53,7 +58,7 @@ const store = new Vuex.Store({
             state.window = payload;
         },
         updateRelation(state, payload: number) {
-            state.window = payload;
+            state.relation = payload;
         },
         errorOccurred(state, payload) {
             state.error = payload;
@@ -96,6 +101,18 @@ const store = new Vuex.Store({
         },
         setCooccurrenceExamplesData(state, payload) {
             state.cooccurrenceExamplesData = payload;
+        },
+        setFindSimilarityData(state, payload: number) {
+            state.findSimilarityData = payload;
+        },
+        updateSemtagA(state, payload: string) {
+            state.semtagA = payload;
+        },
+        updateSemtagB(state, payload: string) {
+            state.semtagB = payload;
+        },
+        setFindNearestNeighboursData(state, payload) {
+            state.findNearestNeighboursData = payload;
         }
     },
     actions
