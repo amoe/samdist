@@ -35,6 +35,7 @@ const actions = {
     submitGetCooccurrenceExamplesRequest: makeEndpointCaller("/get-cooccurrence-examples"),
     submitFindSimilarityRequest: makeEndpointCaller("/find-similarity"),
     submitFindNearestNeighboursRequest: makeEndpointCaller("/find-nearest-neighbours"),
+    submitCompareCorporaRequest: makeEndpointCaller("/compare-corpora"),
 
     drawGraph(store, payload) {
         console.log("I'm going to draw the graph");

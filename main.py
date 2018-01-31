@@ -5,9 +5,20 @@ import resthelper
 
 app = flask.Flask(__name__)
 
-input_path = 'intermediate_data/f_nonl'
+prefix = 'intermediate_data/'
+
+input_path = prefix + '/f_nonl'
+
 # This is actually going to load a bunch of files with defined suffixes:
 # _combined, _rel, _coocurrence, _coocurrence_byrel
+
+available_corpora = {
+    'fnonl': prefix + 'f_nonl',
+    'mnonl': prefix + 'm_nonl'
+}
+
+# used by `compare_corpora`
+comparator = SamuelsCorpus.Comparator(available_corpora)
 
 fnonl = SamuelsCorpus.Viewer(input_path, colors=['r'])
 
@@ -170,5 +181,19 @@ def find_nearest_neighbour():
     relation = flask.request.args.get('relation')
 
     result = fnonl.find_knn(tag_match, relation)
+    pprint.pprint(result)
+    return flask.jsonify(result)
+
+@app.route("/compare-corpora")
+def compare_corpora():
+    corpus_key = flask.request.args.get('corpus_key')
+    measure = flask.request.args.get('measure')
+    field = flask.request.args.get('field')
+    cutoff = int(flask.request.args.get('cutoff'))
+
+    result = comparator.compute_surprises(
+        corpus_key, measure=measure, field=field, cutoff=cutoff
+    )
+
     pprint.pprint(result)
     return flask.jsonify(result)

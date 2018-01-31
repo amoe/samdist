@@ -60,6 +60,15 @@ const getters = {
     findNearestNeighboursData(state, getters) {
         return state.findNearestNeighboursData;
     },
+    compareCorporaData(state, getters) {
+        return state.compareCorporaData;
+    },
+    measure(state, getters) {
+        return state.measure;
+    },
+    corpusKey(state, getters) {
+        return state.corpusKey;
+    },
 };
 
 export default getters;

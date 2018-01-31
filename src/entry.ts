@@ -39,7 +39,10 @@ const store = new Vuex.Store({
         semtagA: 'AD.03.a',
         semtagB: 'AD.03.b',
         findSimilarityData: null,
-        findNearestNeighboursData: []
+        findNearestNeighboursData: [],
+        corpusKey: null,
+        measure: 'llr',
+        compareCorporaData: []
     },
     mutations: {
         increment(state) {
@@ -113,6 +116,15 @@ const store = new Vuex.Store({
         },
         setFindNearestNeighboursData(state, payload) {
             state.findNearestNeighboursData = payload;
+        },
+        updateCorpusKey(state, payload) {
+            state.corpusKey = payload;
+        },
+        updateMeasure(state, payload) {
+            state.measure = payload;
+        },
+        setCompareCorporaData(state, payload) {
+            state.compareCorporaData = payload;
         }
     },
     actions

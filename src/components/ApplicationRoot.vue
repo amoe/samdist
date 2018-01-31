@@ -33,6 +33,7 @@
     <get-cooccurrence-examples-task/>
     <find-similarity-task/>
     <find-nearest-neighbours-task/>
+    <compare-corpora-task/>
   </div>
 </template>
 
@@ -50,6 +51,7 @@ import GetCooccurrenceCandidateTexts from './GetCooccurrenceCandidateTexts.vue';
 import GetCooccurrenceExamplesTask from './GetCooccurrenceExamplesTask.vue';
 import FindSimilarityTask from './FindSimilarityTask.vue';
 import FindNearestNeighboursTask from './FindNearestNeighboursTask.vue';
+import CompareCorporaTask from './CompareCorporaTask.vue';
 
 export default Vue.extend({
      components: {
@@ -57,7 +59,7 @@ export default Vue.extend({
          FindTextBySemanticTagTask, FindWordsBySemanticTagTask,
          CooccurrenceTopFeaturesTask, GetCooccurrenceCandidateTexts,
          GetCooccurrenceExamplesTask, FindSimilarityTask,
-         FindNearestNeighboursTask
+         FindNearestNeighboursTask, CompareCorporaTask
      },
      data: function() {
          return {
