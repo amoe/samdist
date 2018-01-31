@@ -148,9 +148,11 @@ def get_cooccurrence_examples():
 
     candidates = helper.query_top_features()
 
-    feature_lines = [
-        helper.format_line(candidate)
-        for candidate in candidates
-    ]
+    # this is now a list of tuples, probably
+    # [ (candidate, examples) ]
+    
+    examples = helper.get_examples_for_all_candidates(candidates)
 
-    return flask.jsonify(feature_lines)
+    pprint.pprint(occurrences)
+
+    return flask.jsonify(examples)

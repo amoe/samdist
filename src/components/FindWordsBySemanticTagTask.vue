@@ -55,15 +55,3 @@ export default Vue.extend({
     computed: mapGetters(['tagMatch', 'tagField', 'findWordsBySemanticTagData'])
 });
 </script>
-
-<style>
-table.amoe-table {
-    width: 100%;
-    margin-bottom: 1rem;
-}
-
-table.amoe-table td, th {
-    padding: 0.75rem;
-    border-top: 0.1rem solid #dee2e6;
-}
-</style>

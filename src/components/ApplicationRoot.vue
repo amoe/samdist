@@ -30,6 +30,7 @@
     <find-words-by-semantic-tag-task/>
     <cooccurrence-top-features-task/>
     <get-cooccurrence-candidate-texts/>
+    <get-coocurrence-examples-task/>
   </div>
 </template>
 
@@ -142,4 +143,16 @@ svg.spinner circle {
      }
 
  }
+
+/* Used for the table-based components, this is as simple as it gets */
+table.amoe-table {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+table.amoe-table td, th {
+    padding: 0.75rem;
+    border-top: 0.1rem solid #dee2e6;
+}
+
 </style>

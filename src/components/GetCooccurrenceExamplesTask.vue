@@ -1,6 +1,6 @@
 <template>
   <div class="task">
-    <h2>Get candidate texts by cooccurrence</h2>
+    <h2>Get example texts by cooccurrence</h2>
 
     <form-field name="tagMatch" mutation="updateTagMatch" label="Tag match"/>
     <form-field name="tagField" mutation="updateTagField" label="Tag field"/>
@@ -20,7 +20,7 @@
       <tr>
         <th>Text</th>
       </tr>
-      <tr v-for="datum in cooccurrenceCandidateTextsData">
+      <tr v-for="datum in cooccurrenceExamplesData">
         <td>{{datum}}</td>
       </tr>
     </table>

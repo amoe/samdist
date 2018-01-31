@@ -162,4 +162,11 @@ class CooccurrenceHelper(object):
         return self.viewer.selected
     
     def get_examples_for_all_candidates(self, candidate_list):
-        pass
+        result = []
+
+        for candidate in candidate_list:
+            examples = self.get_examples_for_one_candidate(candidate)
+            item = (candidate, examples)
+            result.append(item)
+            
+        return result
