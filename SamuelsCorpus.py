@@ -884,6 +884,7 @@ class Viewer(SamuelsCorpus):
             print(mystring)
             examples.append(mystring)
 
+
         return(examples)
 
     def get_top_features(self, key, rel=None,cutoff=10,field='SEMTAG3',displaygraph=False,display=True,examples=3,window=10):

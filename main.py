@@ -133,6 +133,7 @@ def get_cooccurrence_examples():
     relation = flask.request.args.get('relation')
     window = int(flask.request.args.get('window'))
     cutoff = int(flask.request.args.get('cutoff'))
+    examples = int(flask.request.args.get('examples'))
 
     # Constructor encapsulates the entire query
     helper = resthelper.CooccurrenceHelper(
@@ -142,15 +143,10 @@ def get_cooccurrence_examples():
         cutoff,
         tag_field,
         False,   # display (??)
-        0,      # examples
+        examples,      # examples
         window
     )
 
     candidates = helper.query_top_features()
-
-    # this is now a list of tuples, probably
-    # [ (candidate, examples) ]
-    
     examples = helper.get_examples_for_all_candidates(candidates)
-    pprint.pprint(examples)
     return flask.jsonify(examples)

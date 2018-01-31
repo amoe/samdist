@@ -33,7 +33,8 @@ const store = new Vuex.Store({
         findWordsBySemanticTagData: [],
         findTextBySemanticTagData: [],
         cooccurrenceCandidateTextsData: [],
-        cooccurrenceExamplesData: []
+        cooccurrenceExamplesData: [],
+        examples: 3
     },
     mutations: {
         increment(state) {
@@ -68,6 +69,9 @@ const store = new Vuex.Store({
         },
         updateWord(state, payload: string) {
             state.word = payload;
+        },
+        updateExamples(state, payload: string) {
+            state.examples = payload;
         },
         updateTagMatch(state, payload: string) {
             state.tagMatch = payload;

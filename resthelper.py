@@ -167,9 +167,6 @@ class CooccurrenceHelper(object):
 
         self.viewer.selected=occurrences.groupby(groupby)['UID'].unique()[0]
 
-
-        examples = 3 ## FIXME!!!
-
         # unfortunately also does all the formatting, so...
         result = None
         result = self.viewer.display_selected(

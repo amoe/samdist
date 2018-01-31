@@ -44,7 +44,9 @@ const getters = {
     cooccurrenceExamplesData(state, getters) {
         return state.cooccurrenceExamplesData;
     },
-
+    examples(state, getters) {
+        return state.examples;
+    }
 };
 
 export default getters;
