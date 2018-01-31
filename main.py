@@ -113,7 +113,7 @@ def get_cooccurrence_candidate_texts():
         cutoff,
         tag_field,
         False,   # display (??)
-        0,      # examples
+        3,      # examples
         window
     )
     candidates = helper.query_top_features()
@@ -152,7 +152,5 @@ def get_cooccurrence_examples():
     # [ (candidate, examples) ]
     
     examples = helper.get_examples_for_all_candidates(candidates)
-
-    pprint.pprint(occurrences)
-
+    pprint.pprint(examples)
     return flask.jsonify(examples)

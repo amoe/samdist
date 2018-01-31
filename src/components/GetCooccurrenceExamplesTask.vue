@@ -42,21 +42,21 @@ export default Vue.extend({
     methods: {
         run(this: any) {
             this.performNetworkOperation(
-                'submitGetCooccurrenceCandidateTextsRequest', {
+                'submitGetCooccurrenceExamplesRequest', {
                      'tag_match': this.tagMatch,
                      'tag_field': this.tagField,
                      'relation': this.relation,
                      'window': this.window,
                      'cutoff': this.cutoff
                 }, r => {
-                    this.$store.commit('setCooccurrenceCandidateTextsData', r.data)
+                    this.$store.commit('setCooccurrenceExamplesData', r.data)
                 }
             );
         }
     },
     computed: mapGetters([
         'tagMatch', 'tagField', 'relation', 'window', 'cutoff', 
-        'cooccurrenceCandidateTextsData'
+        'cooccurrenceExamplesData'
     ])
 });
 </script>

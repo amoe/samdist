@@ -57,19 +57,12 @@ class CooccurrenceHelper(object):
         self, semtag, withtag, rel, field='SEMTAG3', display=True, examples=1,
         window=10
     ):
-        if self.viewer.lowercase:
-            groupby='vard_lower'
-        else:
-            groupby='vard'
-
         occurrences = self.get_occurrences_for_one_candidate(
             semtag, withtag, rel, field
         )
 
         #print(occurrences.groupby(groupby)['UID'].unique())
         self.viewer.selected=occurrences.groupby(groupby)['UID'].unique()[0]
-        if display and examples>0:
-            self.viewer.display_selected(cutoff=examples,window=window)
         mylemmas=occurrences.groupby(groupby)['UID'].nunique()
         mylemmas=mylemmas.sort_values(ascending=False)
         mylist=list(mylemmas[0:10].index.values)
@@ -151,15 +144,39 @@ class CooccurrenceHelper(object):
         
 
     # remember that this will only get examples for 1 candidate!
-    def get_examples_for_one_candidate(self):
-        occurrences = self.get_occurrences()
+    def get_examples_for_one_candidate(self, candidate):
+        rel = self.rel
+        cand, score = candidate
 
-        #print(occurrences.groupby(groupby)['UID'].unique())
+        if rel==None:
+            r=cand.split(':')[0]
+            candtag=cand.split(':')[1]
+        else:
+            candtag=cand
+            r=rel
+
+        occurrences = self.get_occurrences_for_one_candidate(
+            candtag, self.key, r, self.field
+        )
+
+
+        if self.viewer.lowercase:
+            groupby='vard_lower'
+        else:
+            groupby='vard'
+
         self.viewer.selected=occurrences.groupby(groupby)['UID'].unique()[0]
-        if display and examples>0:
-            self.viewer.display_selected(cutoff=examples,window=window)
 
-        return self.viewer.selected
+
+        examples = 3 ## FIXME!!!
+
+        # unfortunately also does all the formatting, so...
+        result = None
+        result = self.viewer.display_selected(
+            cutoff=self.examples, window=self.window
+        )
+
+        return result
     
     def get_examples_for_all_candidates(self, candidate_list):
         result = []
@@ -170,3 +187,5 @@ class CooccurrenceHelper(object):
             result.append(item)
             
         return result
+
+

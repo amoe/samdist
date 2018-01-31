@@ -32,6 +32,7 @@ const actions = {
     submitFindTextBySemanticTagRequest: makeEndpointCaller("/find-text-by-semantic-tag"),
     submitCooccurrenceTopFeaturesRequest: makeEndpointCaller("/get-top-features"),
     submitGetCooccurrenceCandidateTextsRequest: makeEndpointCaller("/get-cooccurrence-candidate-texts"),
+    submitGetCooccurrenceExamplesRequest: makeEndpointCaller("/get-cooccurrence-examples"),
 
     drawGraph(store, payload) {
         console.log("I'm going to draw the graph");

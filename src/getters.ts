@@ -41,6 +41,10 @@ const getters = {
     cooccurrenceCandidateTextsData(state, getters) {
         return state.cooccurrenceCandidateTextsData;
     },
+    cooccurrenceExamplesData(state, getters) {
+        return state.cooccurrenceExamplesData;
+    },
+
 };
 
 export default getters;
