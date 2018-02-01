@@ -1,8 +1,11 @@
 <template>
   <div class="task">
-    <h2>Display Selected</h2>
+    <h2>Display Examples by Tag Search</h2>
 
-    <p>Hint: Leave <code>value</code> blank to show all selected tags.</p>
+    <p>Hint: Leave <code>value</code> blank to show all selected tags.
+    Specifying <code>field</code> as SEMTAG3 and <code>value</code> as a
+    semantic tag will allow you to narrow the list of examples by ones that
+    match the particular semantic tag that was entered.</p>
 
     <form-field name="word" mutation="updateWord" label="Word"/>
     <form-field name="field" mutation="updateField" label="Field"/>
