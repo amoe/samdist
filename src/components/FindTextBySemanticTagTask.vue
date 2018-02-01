@@ -14,7 +14,7 @@
     <form-field name="window" mutation="updateWindow" label="Window"/>
     <form-field name="cutoff" mutation="updateCutoff" label="Cutoff"/>
 
-    <button v-on:click="run">Run</button>
+    <button type="submit" v-on:click="run">Run</button>
 
     <p>Semantic tag match: <code>{{tagMatch}}</code></p>
     <p>Semantic tag field: <code>{{tagField}}</code></p>

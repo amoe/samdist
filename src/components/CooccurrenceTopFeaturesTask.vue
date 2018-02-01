@@ -14,7 +14,7 @@
     <p>{{window}}</p>
     <p>{{cutoff}}</p>
 
-    <button v-on:click="run">Run</button>
+    <button type="submit" v-on:click="run">Run</button>
 
     <div id="chartContainer2">
     </div>

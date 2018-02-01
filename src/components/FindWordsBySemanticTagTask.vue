@@ -10,7 +10,7 @@
     <form-field name="tagMatch" mutation="updateTagMatch" label="Tag match"/>
     <form-field name="tagField" mutation="updateTagField" label="Tag field"/>
     
-    <button v-on:click="run">Run</button>
+    <button type="submit" v-on:click="run">Run</button>
 
     <p>Tag match: <code>{{tagMatch}}</code></p>
     <p>Tag field: <code>{{tagField}}</code></p>

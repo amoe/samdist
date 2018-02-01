@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>Some generic task: {{instance.name}}</h3>
-    <button v-on:click="run">Run</button>
+    <button type="submit" v-on:click="run">Run</button>
   </div>
 </template>
 

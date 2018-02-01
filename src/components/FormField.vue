@@ -35,4 +35,8 @@ div.form-field {
     margin: 0rem 1rem 1rem 1rem;
     display: inline;
 }
+
+div.form-field label {
+    margin-right: 0.4rem;
+}
 </style>

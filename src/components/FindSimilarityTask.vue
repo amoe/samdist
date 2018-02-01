@@ -6,7 +6,7 @@
     <form-field name="semtagA" mutation="updateSemtagA" label="Tag A"/>
     <form-field name="semtagB" mutation="updateSemtagB" label="Tag B"/>
     
-    <button v-on:click="run">Run</button>
+    <button type="submit" v-on:click="run">Run</button>
 
     <p>Relation: <code>{{relation}}</code></p>
     <p>Tag A: <code>{{semtagA}}</code></p>

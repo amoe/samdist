@@ -10,7 +10,7 @@
     <form-field name="field" mutation="updateField" label="Field"/>
     <form-field name="cutoff" mutation="updateCutoff" label="Cutoff" type="number"/>
 
-    <button v-on:click="run">Run</button>
+    <button type="submit" v-on:click="run">Run</button>
 
     <p>{{corpusKey}}</p>
     <p>{{measure}}</p>

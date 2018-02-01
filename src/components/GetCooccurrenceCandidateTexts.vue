@@ -8,7 +8,7 @@
     <form-field name="window" mutation="updateWindow" label="Window"/>
     <form-field name="cutoff" mutation="updateCutoff" label="Cutoff"/>
 
-    <button v-on:click="run">Run</button>
+    <button type="submit" v-on:click="run">Run</button>
 
     <p>{{tagMatch}}</p>
     <p>{{tagField}}</p>

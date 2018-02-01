@@ -2,10 +2,13 @@
   <div class="task">
     <h2>Find Tags</h2>
 
+    <p>Use SEMTAG3 in the field to list common semantic tags assigned to certain
+      words.</p>
+
     <form-field name="field" mutation="updateField" label="Field"/>
     <form-field name="word" mutation="updateWord" label="Word"/>
     
-    <button v-on:click="run">Run</button>
+    <button type="submit" v-on:click="run">Run</button>
 
     <p>Word: <code>{{word}}</code></p>
     <p>Field name: <code>{{field}}</code></p>

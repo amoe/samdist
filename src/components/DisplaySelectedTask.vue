@@ -9,7 +9,7 @@
     <form-field name="value" mutation="updateValue" label="Value"/>
     <form-field name="window" mutation="updateWindow" label="Window"/>
 
-    <button v-on:click="run">Run</button>
+    <button type="submit" v-on:click="run">Run</button>
 
     <p>Word: <code>{{word}}</code></p>
     <p>Field name: <code>{{field}}</code></p>

@@ -1,6 +1,6 @@
 <template>
   <div class="task">
-    <h2>Bag of Words v2</h2>
+    <h2>Charting Bags of Words</h2>
 
     <form-field name="field" mutation="updateField" label="Field"/>
     <form-field name="cutoff" mutation="updateCutoff" label="Cutoff"/>
@@ -8,7 +8,7 @@
     <p>{{field}}</p>
     <p>{{cutoff}}</p>
 
-    <button v-on:click="run">Run</button>
+    <button type="submit" v-on:click="run">Run</button>
     <div id="chartContainer">
     </div>
   </div>

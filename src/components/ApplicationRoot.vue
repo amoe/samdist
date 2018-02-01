@@ -25,11 +25,6 @@
             fill="#001f3f" />
   </svg> 
   
-  <p>Ops in progress: {{inProgressCount}}</p>
-  <p>Hi there!</p>
-  <p>The value is: <code>{{count}}</code></p>
-  <button v-on:click="greet">Greet</button>
-  <button v-on:click="doIncrement">Inc</button>
   
   <bag-of-words-task/>
   <find-tags-task/>
@@ -42,11 +37,14 @@
   <find-similarity-task/>
   <find-nearest-neighbours-task/>
   <compare-corpora-task/>
-  
+
+  <!-- Generic tasks are hidden for the present -->
+  <!--
   <h2>Generic tasks</h2>
   <section v-for="task in tasks">
     <generic-task :instance="task"/>
   </section>
+  -->
 </div>
 </template>
 
@@ -83,13 +81,6 @@ export default Vue.extend({
          };
      },
      methods: {
-         greet() {
-             console.log("hello");
-             console.log("state val is %o", this.$store.state.count);
-         },
-         doIncrement() {
-             this.$store.dispatch('increment');
-         },
          dismiss() {
              this.$store.commit('errorDismissed');
          }
@@ -183,6 +174,7 @@ table.amoe-table {
 table.amoe-table td, th {
     padding: 0.75rem;
     border-top: 0.1rem solid #dee2e6;
+    text-align: center;
 }
 
 nav.menu ul li {
