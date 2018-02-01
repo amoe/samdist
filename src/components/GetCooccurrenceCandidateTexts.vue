@@ -1,6 +1,10 @@
 <template>
   <div class="task">
-    <h2>Get candidate texts by cooccurrence</h2>
+    <h2>Get candidate words by cooccurrence</h2>
+
+    <p>This will display words by semantic cooccurrence.  At the moment this
+    data is unstructured (string formatted), although it contains several
+    fields.</p>
 
     <form-field name="tagMatch" mutation="updateTagMatch" label="Tag match"/>
     <form-field name="tagField" mutation="updateTagField" label="Tag field"/>
@@ -21,7 +25,7 @@
         <th>Text</th>
       </tr>
       <tr v-for="datum in cooccurrenceCandidateTextsData">
-        <td>{{datum}}</td>
+        <td><code>{{datum}}</code></td>
       </tr>
     </table>
   </div>

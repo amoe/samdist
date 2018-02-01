@@ -32,6 +32,7 @@
   <find-text-by-semantic-tag-task/>
   <find-words-by-semantic-tag-task/>
   <cooccurrence-top-features-task/>
+  <get-cooccurrence-top-relations-task/>
   <get-cooccurrence-candidate-texts/>
   <get-cooccurrence-examples-task/>
   <find-similarity-task/>
@@ -58,6 +59,7 @@ import DisplaySelectedTask from './DisplaySelectedTask.vue';
 import FindWordsBySemanticTagTask from './FindWordsBySemanticTagTask.vue';
 import FindTextBySemanticTagTask from './FindTextBySemanticTagTask.vue';
 import CooccurrenceTopFeaturesTask from './CooccurrenceTopFeaturesTask.vue';
+import GetCooccurrenceTopRelationsTask from './GetCooccurrenceTopRelationsTask.vue';
 import GetCooccurrenceCandidateTexts from './GetCooccurrenceCandidateTexts.vue';
 import GetCooccurrenceExamplesTask from './GetCooccurrenceExamplesTask.vue';
 import FindSimilarityTask from './FindSimilarityTask.vue';
@@ -72,7 +74,8 @@ export default Vue.extend({
          FindTextBySemanticTagTask, FindWordsBySemanticTagTask,
          CooccurrenceTopFeaturesTask, GetCooccurrenceCandidateTexts,
          GetCooccurrenceExamplesTask, FindSimilarityTask,
-         FindNearestNeighboursTask, CompareCorporaTask, GenericTask
+         FindNearestNeighboursTask, CompareCorporaTask, GenericTask,
+         GetCooccurrenceTopRelationsTask
      },
      data: function() {
          return {

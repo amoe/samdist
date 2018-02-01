@@ -31,6 +31,7 @@ const actions = {
     submitFindWordsBySemanticTagRequest: makeEndpointCaller("/find-words-by-semantic-tag"),
     submitFindTextBySemanticTagRequest: makeEndpointCaller("/find-text-by-semantic-tag"),
     submitCooccurrenceTopFeaturesRequest: makeEndpointCaller("/get-top-features"),
+    submitCooccurrenceTopRelationsRequest: makeEndpointCaller("/get-top-relations"),
     submitGetCooccurrenceCandidateTextsRequest: makeEndpointCaller("/get-cooccurrence-candidate-texts"),
     submitGetCooccurrenceExamplesRequest: makeEndpointCaller("/get-cooccurrence-examples"),
     submitFindSimilarityRequest: makeEndpointCaller("/find-similarity"),
@@ -62,6 +63,26 @@ const actions = {
         var filteredData = data.slice(0, 20);
 
         var svg = dimple.newSvg("#chartContainer2", 590, 400);
+        const myChart = new dimple.chart(svg, filteredData);
+        myChart.setBounds(60, 30, 510, 305)
+
+        // this is a really shitty way to use the array indices as axes
+        // instead of transforming the data to objects
+        const x = myChart.addCategoryAxis("x", '0');
+        x.addOrderRule("Date");
+        myChart.addMeasureAxis("y", '1');
+        myChart.addSeries(null, dimple.plot.bar);
+        myChart.draw();
+    },// refactor all this crap
+    drawCooccurrenceTopRelationsGraph(store, payload) {
+        console.log("I'm going to draw the graph");
+        console.log("received the data as %o", payload.data);
+
+        // const data  = transformer.transformFromNetwork(payload.data);
+        const data = payload.data;
+        var filteredData = data.slice(0, 20);
+
+        var svg = dimple.newSvg("#chartContainer4", 590, 400);
         const myChart = new dimple.chart(svg, filteredData);
         myChart.setBounds(60, 30, 510, 305)
 

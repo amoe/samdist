@@ -34,6 +34,7 @@ const store = new Vuex.Store({
         findTextBySemanticTagData: [],
         cooccurrenceCandidateTextsData: [],
         cooccurrenceExamplesData: [],
+        cooccurrenceTopRelationsData: [],
         examples: 3,
         // Used for comparing semantic similarity
         semtagA: 'AD.03.a',
@@ -101,6 +102,9 @@ const store = new Vuex.Store({
         },
         setCooccurrenceCandidateTextsData(state, payload) {
             state.cooccurrenceCandidateTextsData = payload;
+        },
+        setCooccurrenceTopRelationsData(state, payload) {
+            state.cooccurrenceTopRelationsData = payload;
         },
         setCooccurrenceExamplesData(state, payload) {
             state.cooccurrenceExamplesData = payload;

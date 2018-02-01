@@ -18,38 +18,21 @@
     <p>{{cutoff}}</p>
     <p>{{examples}}</p>
 
-    <table class="amoe-table">
-      <tr>
-        <th>Thing</th>
-        <th>Another thing</th>
-      </tr>
-      <tr>
-        <td>Foo</td>
-        <td>
-          <ul>
-            <li>Fry</li>
-            <li>Bender</li>
-            <li>Leela</li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-
 
     <!-- table cell here should probably be refactored to a component, then we
          can encapsulate probability formatting within a getter -->
     <table class="amoe-table">
       <tr>
-        <th>Element 1</th>
-        <th>Element 2</th>
-        <th>Element 3</th>
+        <th>Semantic relation</th>
+        <th>PPMI score</th>
+        <th>Example occurrences</th>
       </tr>
       <tr v-for="datum in cooccurrenceExamplesData">
         <td class="candidate"><code>{{datum[0][0]}}</code></td>
         <td>{{datum[0][1]}}</td>
         <td>
           <ul>
-            <li v-for="example in datum[1]"><code>{{example}}</code></li>
+            <li class="example" v-for="example in datum[1]">{{example}}</li>
           </ul>
         </td>
       </tr>
@@ -96,6 +79,16 @@ export default Vue.extend({
 <style>
 td.candidate {
     font-size: xx-small;
-    font-family: monospace
+    font-family: monospace;
+    background-color: rgba(160, 160, 160, 0);
+                     
 }
+
+li.example {
+    list-style: none;
+    font-family: monospace;
+    background-color: #a0a0a0;
+    margin-bottom: 0.2rem;
+}                     
+
 </style>

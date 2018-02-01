@@ -61,6 +61,11 @@ class CooccurrenceHelper(object):
             semtag, withtag, rel, field
         )
 
+        if self.viewer.lowercase:
+            groupby='vard_lower'
+        else:
+            groupby='vard'
+
         #print(occurrences.groupby(groupby)['UID'].unique())
         self.viewer.selected=occurrences.groupby(groupby)['UID'].unique()[0]
         mylemmas=occurrences.groupby(groupby)['UID'].nunique()

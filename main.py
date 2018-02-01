@@ -115,6 +115,19 @@ def get_top_features():
     candidates = helper.query_top_features()
     return flask.jsonify(candidates)
 
+@app.route("/get-top-relations")
+def get_top_relations():
+    tag_match = flask.request.args.get('tag_match')
+    tag_field = flask.request.args.get('tag_field')
+    cutoff = int(flask.request.args.get('cutoff'))
+
+    result = fnonl.get_top_relations(
+        tag_match, cutoff=cutoff, field=tag_field, displaygraph=False
+    )
+
+    return flask.jsonify(result)
+
+
 
 @app.route("/get-cooccurrence-candidate-texts")
 def get_cooccurrence_candidate_texts():
