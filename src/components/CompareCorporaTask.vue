@@ -8,7 +8,7 @@
     <form-field name="corpusKey" mutation="updateCorpusKey" label="Corpus key"/>
     <form-field name="measure" mutation="updateMeasure" label="Measure"/>
     <form-field name="field" mutation="updateField" label="Field"/>
-    <form-field name="cutoff" mutation="updateCutoff" label="Cutoff"/>
+    <form-field name="cutoff" mutation="updateCutoff" label="Cutoff" type="number"/>
 
     <button v-on:click="run">Run</button>
 
@@ -29,6 +29,8 @@
         <td>{{datum[1]}}</td>
       </tr>
     </table>
+    
+    <div id="chartContainer3"> </div>
   </div>
 </template>
 
@@ -53,8 +55,10 @@ export default Vue.extend({
                     'field': this.field,
                     'cutoff': this.cutoff
                 }, r => {
-                    console.log("examples data was: %o", JSON.stringify(r.data, null, 4));
+                    console.log("data is %o", r.data);
                     this.$store.commit('setCompareCorporaData', r.data)
+                    this.$store.dispatch('drawCompareCorporaGraph', r)
+
                 }
             );
         }

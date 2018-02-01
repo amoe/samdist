@@ -40,7 +40,7 @@ const store = new Vuex.Store({
         semtagB: 'AD.03.b',
         findSimilarityData: null,
         findNearestNeighboursData: [],
-        corpusKey: null,
+        corpusKey: 'fnonl',
         measure: 'llr',
         compareCorporaData: []
     },

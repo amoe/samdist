@@ -1,7 +1,7 @@
 <template>
   <div class="form-field">
     <label :for="name">{{label}}:</label>
-    <input type="text"
+    <input :type="type"
            v-on:input="handleInput($event, mutation)"
            :id="name"
            :value="retrieve(name)"/>
@@ -10,7 +10,15 @@
 
 <script>
  export default {
-     props: ['name', 'mutation', 'label'],
+     props: {
+         'name': {type: String},
+         'mutation': {type: String},
+         'label': {type: String},
+         'type': {
+             type: String,
+             default: 'text'
+         }
+     },
      methods: {
          handleInput(event, mutation) {
              this.$store.commit(mutation, event.target.value);

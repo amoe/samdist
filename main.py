@@ -195,5 +195,4 @@ def compare_corpora():
         corpus_key, measure=measure, field=field, cutoff=cutoff
     )
 
-    pprint.pprint(result)
     return flask.jsonify(result)

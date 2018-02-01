@@ -1010,6 +1010,8 @@ class Comparator:
             for(tag,score) in distinctive_tags[:cutoff]:
                 print("({}, {}) : {}".format(tag,score,self.viewerdict[key].find_text(tag,field=field)))
 
+        print(distinctive_tags)
+
         if displaygraph and len(distinctive_tags)>0:
             cf.display_list([(-1,distinctive_tags)],cutoff=cutoff,xlabel=field+' (Characteristic)',ylabel=measure+" (Score)",fontsize=fontsize)
 
