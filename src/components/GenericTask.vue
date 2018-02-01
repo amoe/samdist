@@ -24,7 +24,7 @@ export default Vue.extend({
             console.log("task value is %o", this.instance);
         }
     },
-    computed: this.instance.getGetters()
+//    computed: this.instance.getGetters()
 });
 
 </script>
