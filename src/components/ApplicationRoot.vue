@@ -1,45 +1,53 @@
 <template>
-  <div>
-    <h1>Samuels Tagger Explorer</h1>
-
-    <div v-if="error"
-         class="alert alert-danger" role="alert">
-      {{error.message}}
-      <span class="close" v-on:click="dismiss">&#x274C;</span>
-    </div>
-
-    <svg v-if="inProgressCount > 0" height="3em" width="3em" class="spinner">
-      <circle cx="50%"
-              cy="50%"
-              r="1em"
-              stroke="black"
-              stroke-width="0.1em"
-              fill="#001f3f" />
-    </svg> 
-    
-    <p>Ops in progress: {{inProgressCount}}</p>
-    <p>Hi there!</p>
-    <p>The value is: <code>{{count}}</code></p>
-    <button v-on:click="greet">Greet</button>
-    <button v-on:click="doIncrement">Inc</button>
-    
-    <bag-of-words-task/>
-    <find-tags-task/>
-    <display-selected-task/>
-    <find-text-by-semantic-tag-task/>
-    <find-words-by-semantic-tag-task/>
-    <cooccurrence-top-features-task/>
-    <get-cooccurrence-candidate-texts/>
-    <get-cooccurrence-examples-task/>
-    <find-similarity-task/>
-    <find-nearest-neighbours-task/>
-    <compare-corpora-task/>
-
-    <h2>Generic tasks</h2>
-    <section v-for="task in tasks">
-      <generic-task :instance="task"/>
-    </section>
+<div>
+  <h1>Samuels Tagger Explorer</h1>
+  
+  <nav class="menu">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+  
+  <div v-if="error"
+       class="alert alert-danger" role="alert">
+    {{error.message}}
+    <span class="close" v-on:click="dismiss">&#x274C;</span>
   </div>
+  
+  <svg v-if="inProgressCount > 0" height="3em" width="3em" class="spinner">
+    <circle cx="50%"
+            cy="50%"
+            r="1em"
+            stroke="black"
+            stroke-width="0.1em"
+            fill="#001f3f" />
+  </svg> 
+  
+  <p>Ops in progress: {{inProgressCount}}</p>
+  <p>Hi there!</p>
+  <p>The value is: <code>{{count}}</code></p>
+  <button v-on:click="greet">Greet</button>
+  <button v-on:click="doIncrement">Inc</button>
+  
+  <bag-of-words-task/>
+  <find-tags-task/>
+  <display-selected-task/>
+  <find-text-by-semantic-tag-task/>
+  <find-words-by-semantic-tag-task/>
+  <cooccurrence-top-features-task/>
+  <get-cooccurrence-candidate-texts/>
+  <get-cooccurrence-examples-task/>
+  <find-similarity-task/>
+  <find-nearest-neighbours-task/>
+  <compare-corpora-task/>
+  
+  <h2>Generic tasks</h2>
+  <section v-for="task in tasks">
+    <generic-task :instance="task"/>
+  </section>
+</div>
 </template>
 
 <script lang="ts">
@@ -103,22 +111,27 @@ export default Vue.extend({
 </script>
 
 <style>
+@font-face {
+    font-family: 'Oxygen';
+    src: url("/static/fonts/Oxygen-Regular.ttf");
+}
+
 body {
     max-width: 64rem;
     margin-left: auto;
     margin-right: auto;
     background-color: #fdfdfd;
+    font-family: 'Oxygen', sans-serif;
 }
 
 h1,h2 { font-family: Georgia; }
 
-p, label { font-family: Arial, sans-serif; }
 
 div.alert {
     position: fixed;
     left: 0px;
     top: 0px;
-
+    
     border-radius: 0.25rem;
     border: 1px solid;
     padding: 0.75rem 1.25rem;
@@ -148,18 +161,18 @@ svg.spinner circle {
 
 @keyframes pulse {
     0% {
-         fill: #001f3f;
-     }
-
-     50% {
-         fill: #ff4136;
-     }
-
-     100% {
-         fill: #001f3f;
-     }
-
- }
+        fill: #001f3f;
+    }
+    
+    50% {
+        fill: #ff4136;
+    }
+    
+    100% {
+        fill: #001f3f;
+    }
+    
+}
 
 /* Used for the table-based components, this is as simple as it gets */
 table.amoe-table {
@@ -170,6 +183,12 @@ table.amoe-table {
 table.amoe-table td, th {
     padding: 0.75rem;
     border-top: 0.1rem solid #dee2e6;
+}
+
+nav.menu ul li {
+    list-style: none;
+    display: inline;
+    padding-right: 1rem;
 }
 
 </style>
