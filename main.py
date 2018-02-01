@@ -78,6 +78,17 @@ def find_text_by_semantic_tag():
     return flask.jsonify(result)
 
 
+@app.route("/find-words-by-semantic-tag")
+def find_words_by_semantic_tag():
+    tag_match = flask.request.args.get('tag_match')
+    tag_field = flask.request.args.get('tag_field')
+
+    # This time we return the results, which are useful stats.
+    result = fnonl.find_text(tag_match, field=tag_field)
+
+    return flask.jsonify(resthelper.massage_stats_output(result))
+
+
 @app.route("/get-top-features")
 def get_top_features():
     tag_match = flask.request.args.get('tag_match')
