@@ -1,7 +1,7 @@
 <template>
 <div>
   <h1>Samuels Tagger Explorer</h1>
-  
+
   <nav class="menu">
     <ul>
       <li><a href="#">Home</a></li>
@@ -53,6 +53,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import utility from '../utility';
+import BarChartDemo from './BarChartDemo.vue';
 import BagOfWordsTask from './BagOfWordsTask.vue';
 import FindTagsTask from './FindTagsTask.vue';
 import DisplaySelectedTask from './DisplaySelectedTask.vue';
@@ -75,7 +76,7 @@ export default Vue.extend({
          CooccurrenceTopFeaturesTask, GetCooccurrenceCandidateTexts,
          GetCooccurrenceExamplesTask, FindSimilarityTask,
          FindNearestNeighboursTask, CompareCorporaTask, GenericTask,
-         GetCooccurrenceTopRelationsTask
+         GetCooccurrenceTopRelationsTask, BarChartDemo
      },
      data: function() {
          return {
