@@ -24,6 +24,10 @@
             stroke-width="0.1em"
             fill="#001f3f" />
   </svg> 
+
+  <div v-for="task in tasks">
+    <generic-task :title="task.title"></generic-task>
+  </div>
 </div>
 </template>
 
@@ -44,6 +48,31 @@ import GetCooccurrenceExamplesTask from './GetCooccurrenceExamplesTask.vue';
 import FindSimilarityTask from './FindSimilarityTask.vue';
 import FindNearestNeighboursTask from './FindNearestNeighboursTask.vue';
 import CompareCorporaTask from './CompareCorporaTask.vue';
+import GenericTask from './GenericTask.vue';
+
+const bagOfWordsTask = {
+    title: "Bag of Words v3",
+    successHandler: function (r) {
+        console.log("it worked");
+    },
+    fields: [
+        {
+            name: 'field',
+            label: 'Field',
+            updateAction: 'updateField'
+        },
+        {
+            name: 'cutoff',
+            label: 'Cutoff',
+            updateAction: 'updateCutoff'
+        }
+    ],
+    getters: ['field', 'cutoff']
+};
+
+const taskDefinitions = [
+    bagOfWordsTask
+]   
 
 export default Vue.extend({
      components: {
@@ -52,11 +81,12 @@ export default Vue.extend({
          CooccurrenceTopFeaturesTask, GetCooccurrenceCandidateTexts,
          GetCooccurrenceExamplesTask, FindSimilarityTask,
          FindNearestNeighboursTask, CompareCorporaTask,
-         GetCooccurrenceTopRelationsTask, BarChartDemo
+         GetCooccurrenceTopRelationsTask, BarChartDemo, GenericTask
      },
      data: function() {
          return {
-             show: false
+             show: false,
+             tasks: taskDefinitions
          };
      },
      methods: {
