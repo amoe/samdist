@@ -26,7 +26,8 @@
   </svg> 
 
   <div v-for="task in tasks">
-    <generic-task :title="task.title"></generic-task>
+    <generic-task :title="task.title"
+                  :fields="task.fields"></generic-task>
   </div>
 </div>
 </template>
@@ -59,15 +60,16 @@ const bagOfWordsTask = {
         {
             name: 'field',
             label: 'Field',
-            updateAction: 'updateField'
+            mutation: 'updateField',
+            getter: 'field'
         },
         {
             name: 'cutoff',
             label: 'Cutoff',
-            updateAction: 'updateCutoff'
+            mutation: 'updateCutoff',
+            getter: 'cutoff'
         }
-    ],
-    getters: ['field', 'cutoff']
+    ]
 };
 
 const taskDefinitions = [
