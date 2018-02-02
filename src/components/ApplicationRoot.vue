@@ -2,11 +2,16 @@
 <div>
   <h1>Samuels Tagger Explorer</h1>
 
+  <dropdown-menu></dropdown-menu>
+
   <nav class="menu">
     <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Contact</a></li>
+      <li><a href="#">Tag Search</a></li>
+      <li><a href="#">Word Search</a></li>
+      <li><a href="#">Co-occurrence</a></li>
+      <li><a href="#">Concept Similarity</a></li>
+      <li><a href="#">Nearest Neighbours</a></li>
+      <li><a v-on:click="switchPane('corpora')">Corpora Comparison</a></li>
     </ul>
   </nav>
   
@@ -29,7 +34,8 @@
     <generic-task :title="task.title"
                   :fields="task.fields"
                   :run-action="task.runAction"
-                  :success-handler="task.successHandler"></generic-task>
+                  :success-handler="task.successHandler"
+                  :result-component="task.resultComponent"></generic-task>
   </div>
 </div>
 </template>
@@ -38,6 +44,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import utility from '../utility';
+import DropdownMenu from './DropdownMenu.vue';
 import BarChartDemo from './BarChartDemo.vue';
 import BagOfWordsTask from './BagOfWordsTask.vue';
 import FindTagsTask from './FindTagsTask.vue';
@@ -74,7 +81,8 @@ const bagOfWordsTask = {
         console.log("reached the success handler");
         console.log("this is %o", this);
         this.$store.dispatch('drawGraph', r)
-    }
+    },
+    resultComponent: 'chartWidget'
 };
 
 const taskDefinitions = [
@@ -88,7 +96,8 @@ export default Vue.extend({
          CooccurrenceTopFeaturesTask, GetCooccurrenceCandidateTexts,
          GetCooccurrenceExamplesTask, FindSimilarityTask,
          FindNearestNeighboursTask, CompareCorporaTask,
-         GetCooccurrenceTopRelationsTask, BarChartDemo, GenericTask
+         GetCooccurrenceTopRelationsTask, BarChartDemo, GenericTask,
+         DropdownMenu
      },
      data: function() {
          return {
@@ -97,6 +106,9 @@ export default Vue.extend({
          };
      },
      methods: {
+         switchPane(this: any, code) {
+             this.pane = code;
+         },
          dismiss() {
              this.$store.commit('errorDismissed');
          }

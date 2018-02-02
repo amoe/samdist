@@ -13,8 +13,8 @@
 
     <button type="submit" v-on:click="run">Run</button>
 
-    <div id="chartContainer">
-    </div>
+    <component :is="resultComponent">
+    </component>
   </div>
 </template>
 
@@ -22,10 +22,18 @@
     import Vue from 'vue';
 import utility from '../utility';
 import mixins from '../mixins';
+import ChartWidget from './ChartWidget.vue';
+import TableWidget from './TableWidget.vue';
 
 export default Vue.extend({
     mixins: [mixins.main],
-    props: ['title', 'fields', 'runAction', 'successHandler'],
+    props: [
+        'title', 'fields', 'runAction', 'successHandler', 'resultComponent'
+    ],
+    components: {
+        'chartWidget': ChartWidget,
+        'tableWidget': TableWidget
+    },
     methods: {
         run(this: any) {
 
