@@ -24,20 +24,6 @@
             stroke-width="0.1em"
             fill="#001f3f" />
   </svg> 
-  
-  
-  <bag-of-words-task/>
-  <find-tags-task/>
-  <display-selected-task/>
-  <find-text-by-semantic-tag-task/>
-  <find-words-by-semantic-tag-task/>
-  <cooccurrence-top-features-task/>
-  <get-cooccurrence-top-relations-task/>
-  <get-cooccurrence-candidate-texts/>
-  <get-cooccurrence-examples-task/>
-  <find-similarity-task/>
-  <find-nearest-neighbours-task/>
-  <compare-corpora-task/>
 </div>
 </template>
 
