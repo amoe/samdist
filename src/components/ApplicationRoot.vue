@@ -65,13 +65,12 @@ export default Vue.extend({
          FindTextBySemanticTagTask, FindWordsBySemanticTagTask,
          CooccurrenceTopFeaturesTask, GetCooccurrenceCandidateTexts,
          GetCooccurrenceExamplesTask, FindSimilarityTask,
-         FindNearestNeighboursTask, CompareCorporaTask
+         FindNearestNeighboursTask, CompareCorporaTask,
          GetCooccurrenceTopRelationsTask, BarChartDemo
      },
      data: function() {
          return {
-             show: false,
-             tasks: taskDefinitions
+             show: false
          };
      },
      methods: {
