@@ -38,14 +38,6 @@
   <find-similarity-task/>
   <find-nearest-neighbours-task/>
   <compare-corpora-task/>
-
-  <!-- Generic tasks are hidden for the present -->
-  <!--
-  <h2>Generic tasks</h2>
-  <section v-for="task in tasks">
-    <generic-task :instance="task"/>
-  </section>
-  -->
 </div>
 </template>
 
@@ -66,8 +58,6 @@ import GetCooccurrenceExamplesTask from './GetCooccurrenceExamplesTask.vue';
 import FindSimilarityTask from './FindSimilarityTask.vue';
 import FindNearestNeighboursTask from './FindNearestNeighboursTask.vue';
 import CompareCorporaTask from './CompareCorporaTask.vue';
-import taskDefinitions from '../task-definitions';
-import GenericTask from './GenericTask.vue';
 
 export default Vue.extend({
      components: {
@@ -75,7 +65,7 @@ export default Vue.extend({
          FindTextBySemanticTagTask, FindWordsBySemanticTagTask,
          CooccurrenceTopFeaturesTask, GetCooccurrenceCandidateTexts,
          GetCooccurrenceExamplesTask, FindSimilarityTask,
-         FindNearestNeighboursTask, CompareCorporaTask, GenericTask,
+         FindNearestNeighboursTask, CompareCorporaTask
          GetCooccurrenceTopRelationsTask, BarChartDemo
      },
      data: function() {
