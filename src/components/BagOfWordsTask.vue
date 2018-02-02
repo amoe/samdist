@@ -9,6 +9,7 @@
     <p>{{cutoff}}</p>
 
     <button type="submit" v-on:click="run">Run</button>
+
     <div id="chartContainer">
     </div>
   </div>

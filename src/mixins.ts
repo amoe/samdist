@@ -9,6 +9,10 @@ const main = {
             payload: object,
             onSuccess: Function
         ) {
+            console.log("this is %o", this);
+            console.log("actionName is %o", actionName);
+            console.log("payload is %o", payload);
+            console.log("onSuccess is %o", onSuccess);
             this.$store.dispatch(actionName, payload).then(r => {
                 this.$store.commit('operationFinished');
                 onSuccess(r);

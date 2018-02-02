@@ -27,7 +27,9 @@
 
   <div v-for="task in tasks">
     <generic-task :title="task.title"
-                  :fields="task.fields"></generic-task>
+                  :fields="task.fields"
+                  :run-action="task.runAction"
+                  :success-handler="task.successHandler"></generic-task>
   </div>
 </div>
 </template>
@@ -53,9 +55,6 @@ import GenericTask from './GenericTask.vue';
 
 const bagOfWordsTask = {
     title: "Bag of Words v3",
-    successHandler: function (r) {
-        console.log("it worked");
-    },
     fields: [
         {
             name: 'field',
@@ -69,7 +68,13 @@ const bagOfWordsTask = {
             mutation: 'updateCutoff',
             getter: 'cutoff'
         }
-    ]
+    ],
+    runAction: 'submitBagOfWordsRequest',
+    successHandler: function (this: any, r) {
+        console.log("reached the success handler");
+        console.log("this is %o", this);
+        this.$store.dispatch('drawGraph', r)
+    }
 };
 
 const taskDefinitions = [
