@@ -24,6 +24,7 @@ import utility from '../utility';
 import mixins from '../mixins';
 import ChartWidget from './ChartWidget.vue';
 import TableWidget from './TableWidget.vue';
+import {snakeCase} from 'lodash';
 
 export default Vue.extend({
     mixins: [mixins.main],
@@ -35,12 +36,22 @@ export default Vue.extend({
         'tableWidget': TableWidget
     },
     methods: {
+        createPayload() {
+            const payload = this.fields.reduce(
+                (acc, item) => {
+                    acc[snakeCase(item.name)] = this.retrieve(item.getter);
+                    return acc;
+                },
+                {}
+            );
+            
+            return payload;
+        },
         run(this: any) {
+            const payload = this.createPayload();
+            console.log("Will post payload %o", JSON.stringify(payload));
             this.performNetworkOperation(
-                this.runAction, {
-                    field: this.field,
-                    cutoff: this.cutoff
-                }, r => this.successHandler(r)    // arrow needed to bind this
+                this.runAction, payload, r => this.successHandler(r)    // arrow needed to bind this
             );
         },
         handleInput(event, mutation) {

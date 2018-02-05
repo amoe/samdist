@@ -43,9 +43,7 @@ import FormField from './FormField.vue';
 
 export default Vue.extend({
     mixins: [mixins.main],
-    components: {
-        FormField
-    },
+    components: {FormField},
     methods: {
         run(this: any) {
             this.performNetworkOperation(

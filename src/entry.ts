@@ -45,7 +45,7 @@ const store = new Vuex.Store({
         corpusKey: 'fnonl',
         measure: 'llr',
         compareCorporaData: [],
-        visibleTask: 'bagOfWords'
+        visibleTask: 'computeSurprises'
     },
     mutations: {
         increment(state) {
