@@ -11,6 +11,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import actions from './actions';
 import getters from './getters';
+import mutations from './constants';
 
 Vue.use(Vuex);
 
@@ -43,7 +44,8 @@ const store = new Vuex.Store({
         findNearestNeighboursData: [],
         corpusKey: 'fnonl',
         measure: 'llr',
-        compareCorporaData: []
+        compareCorporaData: [],
+        visibleTask: 'bagOfWords'
     },
     mutations: {
         increment(state) {
@@ -129,6 +131,9 @@ const store = new Vuex.Store({
         },
         setCompareCorporaData(state, payload) {
             state.compareCorporaData = payload;
+        },
+        [mutations.SWITCH_TASK]: (state, taskName: string) => {
+            state.visibleTask = taskName;
         }
     },
     actions

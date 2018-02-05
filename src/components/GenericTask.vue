@@ -36,7 +36,6 @@ export default Vue.extend({
     },
     methods: {
         run(this: any) {
-
             this.performNetworkOperation(
                 this.runAction, {
                     field: this.field,

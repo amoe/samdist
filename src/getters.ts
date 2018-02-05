@@ -72,6 +72,18 @@ const getters = {
     corpusKey(state, getters) {
         return state.corpusKey;
     },
+    visibleTask(state, getters) {
+        return state.visibleTask;
+    },
+    count(state, getters) {
+        return state.count;
+    },
+    error(state, getters) {
+        return state.count;
+    },
+    inProgressCount(state, getters) {
+        return state.inProgressCount;
+    }
 };
 
 export default getters;

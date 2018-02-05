@@ -1,19 +1,8 @@
 <template>
 <div>
   <h1>Samuels Tagger Explorer</h1>
-
+  
   <dropdown-menu></dropdown-menu>
-
-  <nav class="menu">
-    <ul>
-      <li><a href="#">Tag Search</a></li>
-      <li><a href="#">Word Search</a></li>
-      <li><a href="#">Co-occurrence</a></li>
-      <li><a href="#">Concept Similarity</a></li>
-      <li><a href="#">Nearest Neighbours</a></li>
-      <li><a v-on:click="switchPane('corpora')">Corpora Comparison</a></li>
-    </ul>
-  </nav>
   
   <div v-if="error"
        class="alert alert-danger" role="alert">
@@ -29,20 +18,20 @@
             stroke-width="0.1em"
             fill="#001f3f" />
   </svg> 
-
-  <div v-for="task in tasks">
-    <generic-task :title="task.title"
-                  :fields="task.fields"
-                  :run-action="task.runAction"
-                  :success-handler="task.successHandler"
-                  :result-component="task.resultComponent"></generic-task>
-  </div>
+  
+  
+  <generic-task :title="task.title"
+                :fields="task.fields"
+                :run-action="task.runAction"
+                :success-handler="task.successHandler"
+                :result-component="task.resultComponent">
+  </generic-task>
 </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import Vuex from 'vuex';
+import { mapGetters } from 'vuex';
 import utility from '../utility';
 import DropdownMenu from './DropdownMenu.vue';
 import BarChartDemo from './BarChartDemo.vue';
@@ -59,35 +48,7 @@ import FindSimilarityTask from './FindSimilarityTask.vue';
 import FindNearestNeighboursTask from './FindNearestNeighboursTask.vue';
 import CompareCorporaTask from './CompareCorporaTask.vue';
 import GenericTask from './GenericTask.vue';
-
-const bagOfWordsTask = {
-    title: "Bag of Words v3",
-    fields: [
-        {
-            name: 'field',
-            label: 'Field',
-            mutation: 'updateField',
-            getter: 'field'
-        },
-        {
-            name: 'cutoff',
-            label: 'Cutoff',
-            mutation: 'updateCutoff',
-            getter: 'cutoff'
-        }
-    ],
-    runAction: 'submitBagOfWordsRequest',
-    successHandler: function (this: any, r) {
-        console.log("reached the success handler");
-        console.log("this is %o", this);
-        this.$store.dispatch('drawGraph', r)
-    },
-    resultComponent: 'chartWidget'
-};
-
-const taskDefinitions = [
-    bagOfWordsTask
-]   
+import taskDefinitions from  '../task-definitions';   
 
 export default Vue.extend({
      components: {
@@ -99,12 +60,6 @@ export default Vue.extend({
          GetCooccurrenceTopRelationsTask, BarChartDemo, GenericTask,
          DropdownMenu
      },
-     data: function() {
-         return {
-             show: false,
-             tasks: taskDefinitions
-         };
-     },
      methods: {
          switchPane(this: any, code) {
              this.pane = code;
@@ -115,17 +70,17 @@ export default Vue.extend({
      },
      // mapState doesn't work with typescript: "Property 'mapState' does not exist on type"
      // So we manually create the relevant computed properties.
-     computed: {
-         count: function (this: any) {
-             return this.$store.state.count;
-         },
-         error: function (this: any) {
-             return this.$store.state.error;
-         },
-         inProgressCount: function (this: any) {
-             return this.$store.state.inProgressCount
-         }
-     }
+    computed: {
+        // construct the current task state from that which is requested
+        'task': function(this: any) {
+            if (!(this.visibleTask in taskDefinitions)) {
+                throw new Error("unknown task definition");
+            }
+            
+            return taskDefinitions[this.visibleTask];
+        },
+        ...mapGetters(['count', 'error', 'inProgressCount', 'visibleTask'])
+    }
  });
 </script>
 

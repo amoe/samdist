@@ -1,5 +1,8 @@
 <template>
   <div>
-    <h3>This will be a chart</h3>
+    <h3>Results</h3>
+
+    <div id="chartContainer">
+    </div>
   </div>
 </template>
