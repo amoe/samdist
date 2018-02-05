@@ -60,17 +60,22 @@ import mutations from '../constants';
 </script>
 
 <style>
-ul.menu-toplevel li {
-    display: inline;
+ul.menu-toplevel > li {
     color: #ff5f00;
-}
-
-ul.menu-toplevel ul {
+    
+    /* This is crucial otherwise the 'li' child won't be treated as a proper
+       grid-item. */
+    list-style-type: none;
+    
 }
 
 ul.menu-toplevel ul li {
     color: #5f3653;
-    display: block;
 }
 
+ul.menu-toplevel {
+    display: grid;
+    grid-column-gap: 0.1rem;
+    grid-template-columns: repeat(6, 1fr);
+}
 </style>
