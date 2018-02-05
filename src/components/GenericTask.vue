@@ -8,6 +8,7 @@
              :id="field.name"
              :name="field.name"
              :value="retrieve(field.getter)"
+             :title="field.tooltip"
              v-on:input="handleInput($event, field.mutation)"/>
     </div>
 

@@ -1,3 +1,5 @@
+const FIELD_TOOLTIP = "The field to use"
+
 const bagOfWordsTask = {
     title: "Bag of Words v3",
     fields: [
@@ -5,7 +7,8 @@ const bagOfWordsTask = {
             name: 'field',
             label: 'Field',
             mutation: 'updateField',
-            getter: 'field'
+            getter: 'field',
+            tooltip: FIELD_TOOLTIP
         },
         {
             name: 'cutoff',
