@@ -28,9 +28,15 @@ fnonl = SamuelsCorpus.Viewer(input_path, colors=['r'])
 @app.route("/bag-of-words")
 def bag_of_words():
     field = flask.request.args.get('field')
-    cutoff = flask.request.args.get('cutoff')   # typed as string
-    fnonl_tagbag = fnonl.make_bow(field='SEMTAG3', cutoff=10, displaygraph=False)
-    return flask.jsonify(fnonl_tagbag)
+    cutoff = int(flask.request.args.get('cutoff'))   # typed as string
+
+    corpus_size, candidates = fnonl.make_bow(
+        field=field, cutoff=cutoff, displaygraph=False
+    )
+
+    # SamuelsCorpus.py doesn't implement its own cutoff, so we must do it here.
+
+    return flask.jsonify(candidates[:cutoff])
 
 
 @app.route("/find-tags")

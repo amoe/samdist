@@ -1,12 +1,10 @@
 import barChart from '../src/bar-chart';
 import {assert} from 'chai';
 import transformer from '../src/transformer';
-import {DiscreteStatistic, JulieweStatisticsAggregate} from '../src/interfaces';
+import {DiscreteStatistic, JulieweStatisticsList} from '../src/interfaces';
 
 
-const dataSubset: JulieweStatisticsAggregate = [
-    3,
-    [
+const dataSubset: JulieweStatisticsList = [
         [
             "ZC [Grammatical Item]",
             52409
@@ -19,8 +17,8 @@ const dataSubset: JulieweStatisticsAggregate = [
             "ZF [Pronoun]",
             28680
         ]
-    ]
 ];
+
 
 it('can transform network data to displayable', function() {
    const result = transformer.transformFromNetwork(dataSubset)

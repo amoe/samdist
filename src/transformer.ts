@@ -1,11 +1,8 @@
-import {DiscreteStatistic, JulieweStatisticsAggregate} from './interfaces'
+import {DiscreteStatistic, JulieweStatisticsList} from './interfaces'
 
 const publicExports = {
-    transformFromNetwork: function (data: JulieweStatisticsAggregate): DiscreteStatistic[] {
-        // discard the first item and pull out the second
-        const realData = data[1];
-        
-        return realData.map(
+    transformFromNetwork: function (data: JulieweStatisticsList): DiscreteStatistic[] {
+        return data.map(
             function (x) {
                 return {
                     category: x[0] as string,

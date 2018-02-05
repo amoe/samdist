@@ -4,5 +4,5 @@ export interface DiscreteStatistic {
 };
 
 type JulieweStatisticalUnit = [string, number];
-type JulieweStatisticsList = [JulieweStatisticalUnit];
-export type JulieweStatisticsAggregate = [number, JulieweStatisticsList];
+export type JulieweStatisticsList = [JulieweStatisticalUnit];
+
