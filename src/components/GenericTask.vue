@@ -49,7 +49,6 @@ export default Vue.extend({
         },
         run(this: any) {
             const payload = this.createPayload();
-            console.log("Will post payload %o", JSON.stringify(payload));
             this.performNetworkOperation(
                 this.runAction, payload, r => this.successHandler(r)    // arrow needed to bind this
             );

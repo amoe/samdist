@@ -1,13 +1,13 @@
 <template>
-  <ul class="menu-toplevel">
-    <li v-for="(category, index) in menus">
-      <span v-on:click="toggleMenu(index)">{{category.name}} &#x25BE;</span>
-      <ul v-show="category.shown">
-        <li v-for="item in category.content"
-            v-on:click="activate(item)">{{item.name}}</li>
-      </ul>
-    </li>
-  </ul>
+<ul class="menu-toplevel">
+  <li v-for="(category, index) in menus">
+    <span v-on:click="toggleMenu(index)">{{category.name}} &#x25BE;</span>
+    <ul v-show="category.expanded">
+      <li v-for="item in category.content"
+          v-on:click="activate(item)">{{item.name}}</li>
+    </ul>
+  </li>
+</ul>
 </template>
 
 <script lang="ts">
@@ -30,8 +30,16 @@ import mutations from '../constants';
          return {
              menus: [
                  {
+                     name: "Tag Search",
+                     expanded: false,
+                     content: [
+                         {name: "Bag of words",
+                          taskName: 'bagOfWords'},
+                     ]
+                 },
+                 {
                      name: "Corpora Comparison",
-                     shown: false,
+                     expanded: false,
                      content: [
                          {name: "Compute Surprises",
                           taskName: 'computeSurprises'},
@@ -42,7 +50,7 @@ import mutations from '../constants';
      },
      methods: {
          toggleMenu(index) {
-             this.menus[index].shown = !this.menus[index].shown;
+             this.menus[index].expanded = !this.menus[index].expanded;
          },
          activate(item) {
              this.$store.commit(mutations.SWITCH_TASK, item.taskName);
