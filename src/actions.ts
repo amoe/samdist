@@ -102,7 +102,7 @@ const actions = {
         const data = payload.data;
         var filteredData = data.slice(0, 20);
 
-        var svg = dimple.newSvg("#chartContainer3", 590, 400);
+        var svg = dimple.newSvg("#chartContainer", 590, 400);
         const myChart = new dimple.chart(svg, filteredData);
         myChart.setBounds(60, 30, 510, 305)
 
