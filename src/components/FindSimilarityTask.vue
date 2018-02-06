@@ -1,6 +1,6 @@
 <template>
   <div class="task">
-    <h2>Find Tags</h2>
+    <h2>Find Similarity between Tags</h2>
 
     <form-field name="relation" mutation="updateRelation" label="Relation"/>
     <form-field name="semtagA" mutation="updateSemtagA" label="Tag A"/>

@@ -1,4 +1,5 @@
 <template>
+<div>
 <ul class="menu-toplevel">
   <li v-for="(category, index) in menus">
     <span v-on:click="toggleMenu(index)">{{category.name}} &#x25BE;</span>
@@ -8,6 +9,7 @@
     </ul>
   </li>
 </ul>
+</div>
 </template>
 
 <script lang="ts">
@@ -50,7 +52,10 @@ import mutations from '../constants';
      },
      methods: {
          toggleMenu(index) {
-             this.menus[index].expanded = !this.menus[index].expanded;
+             console.log("inside toggle handler, i = %o", index);
+             
+
+             
          },
          activate(item) {
              this.$store.commit(mutations.SWITCH_TASK, item.taskName);

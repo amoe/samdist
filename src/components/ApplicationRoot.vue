@@ -21,6 +21,7 @@
   
   
   <generic-task :title="task.title"
+                :description="task.description"
                 :fields="task.fields"
                 :run-action="task.runAction"
                 :success-handler="task.successHandler"
@@ -35,30 +36,12 @@ import { mapGetters } from 'vuex';
 import utility from '../utility';
 import DropdownMenu from './DropdownMenu.vue';
 import BarChartDemo from './BarChartDemo.vue';
-import BagOfWordsTask from './BagOfWordsTask.vue';
-import FindTagsTask from './FindTagsTask.vue';
-import DisplaySelectedTask from './DisplaySelectedTask.vue';
-import FindWordsBySemanticTagTask from './FindWordsBySemanticTagTask.vue';
-import FindTextBySemanticTagTask from './FindTextBySemanticTagTask.vue';
-import CooccurrenceTopFeaturesTask from './CooccurrenceTopFeaturesTask.vue';
-import GetCooccurrenceTopRelationsTask from './GetCooccurrenceTopRelationsTask.vue';
-import GetCooccurrenceCandidateTexts from './GetCooccurrenceCandidateTexts.vue';
-import GetCooccurrenceExamplesTask from './GetCooccurrenceExamplesTask.vue';
-import FindSimilarityTask from './FindSimilarityTask.vue';
-import FindNearestNeighboursTask from './FindNearestNeighboursTask.vue';
-import CompareCorporaTask from './CompareCorporaTask.vue';
 import GenericTask from './GenericTask.vue';
 import taskDefinitions from  '../task-definitions';   
 
 export default Vue.extend({
      components: {
-         BagOfWordsTask, FindTagsTask, DisplaySelectedTask, 
-         FindTextBySemanticTagTask, FindWordsBySemanticTagTask,
-         CooccurrenceTopFeaturesTask, GetCooccurrenceCandidateTexts,
-         GetCooccurrenceExamplesTask, FindSimilarityTask,
-         FindNearestNeighboursTask, CompareCorporaTask,
-         GetCooccurrenceTopRelationsTask, BarChartDemo, GenericTask,
-         DropdownMenu
+         GenericTask, DropdownMenu
      },
      methods: {
          switchPane(this: any, code) {

@@ -2,6 +2,9 @@
   <div>
     <h2>{{title}}</h2>
 
+    <p>{{description}}</p>
+
+
     <div v-for="field in fields">
       <label :for="field.name">{{field.label}}</label>
       <input type="text"
@@ -30,7 +33,8 @@ import {snakeCase} from 'lodash';
 export default Vue.extend({
     mixins: [mixins.main],
     props: [
-        'title', 'fields', 'runAction', 'successHandler', 'resultComponent'
+        'title', 'fields', 'runAction', 'successHandler', 'resultComponent',
+        'description'
     ],
     components: {
         'chartWidget': ChartWidget,
