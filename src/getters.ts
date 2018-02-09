@@ -79,6 +79,7 @@ const getters = {
         return state.count;
     },
     error(state, getters) {
+        console.log("inside error getter");
         return state.count;
     },
     inProgressCount(state, getters) {
