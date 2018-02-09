@@ -45,7 +45,7 @@ const store = new Vuex.Store({
         corpusKey: 'fnonl',
         measure: 'llr',
         compareCorporaData: [],
-        visibleTask: 'cooccurrenceTopRelations'
+        visibleTask: 'cooccurrenceTopFeatures'
     },
     mutations: {
         increment(state) {

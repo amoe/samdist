@@ -145,11 +145,72 @@ const cooccurrenceTopRelationsTask = {
     resultComponent: 'chartWidget'
 };
 
+const cooccurrenceTopFeaturesTask = {
+    title: "Top co-occurrence features",
+    description: `
+      This can be used to look up co-occurrences.  Any semantic category may
+      have other categories that obviously relate to them.  For instance,
+      the category representing food might be frequently used with
+      the category of eating.  
+
+      This relation might also be in a specific grammatical relation,
+      e.g. direct object: 'I eat food'.  You can use the relation field to only
+      show results within this relation.
+
+      The 'window' field isn't useful in this particular query.
+    `,
+    fields: [
+        {
+            name: 'tagMatch',
+            label: 'Match',
+            mutation: 'updateTagMatch',
+            getter: 'tagMatch'
+        },
+        {
+            name: 'tagField',
+            label: 'Match field',
+            mutation: 'updateTagField',
+            getter: 'tagField'
+        },
+        {
+            name: 'relation',
+            label: 'Relation',
+            mutation: 'updateRelation',
+            getter: 'relation'
+        },
+        {
+            name: 'cutoff',
+            label: 'Cutoff',
+            mutation: 'updateCutoff',
+            getter: 'cutoff'
+        },
+        {
+            name: 'window',
+            label: 'Window',
+            mutation: 'updateWindow',
+            getter: 'window'
+        }
+
+    ],
+    runAction: 'submitCooccurrenceTopFeaturesRequest',
+    successHandler: function (this: any, r) {
+        this.$store.dispatch(
+            'drawChart', {
+                data: r.data,
+                xTitle: "Category co-occurring with the requested value",
+                yTitle: "PPMI Score"
+            }
+        );
+    },
+    resultComponent: 'chartWidget'
+}
+
 const taskDefinitions = {
     'bagOfWords': bagOfWordsTask,
     'findTags': findTagsTask,
     'computeSurprises': computeSurprisesTask,
-    'cooccurrenceTopRelations': cooccurrenceTopRelationsTask
+    'cooccurrenceTopRelations': cooccurrenceTopRelationsTask,
+    'cooccurrenceTopFeatures': cooccurrenceTopFeaturesTask
 }
 
 export default taskDefinitions;
