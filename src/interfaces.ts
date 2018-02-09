@@ -3,6 +3,12 @@ export interface DiscreteStatistic {
     value: number;
 };
 
+export interface ChartDrawRequest {
+    data: any;
+    yTitle: string;
+    xTitle: string;
+};
+
 type JulieweStatisticalUnit = [string, number];
 export type JulieweStatisticsList = [JulieweStatisticalUnit];
 

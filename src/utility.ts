@@ -1,4 +1,15 @@
+import {ChartDrawRequest} from './interfaces';
+
 const functions = {
+    getChartDrawRequest(data: any[]): ChartDrawRequest {
+        const result = {
+            data: data,
+            xTitle: "Something",
+            yTitle: "Something else"
+        };
+
+        return result;
+    },
     // This is taken from the Axios docs.  Should be ported to loglevel
     handleAxiosError(error) {
         if (error.response) {

@@ -1,3 +1,5 @@
+import utility from './utility';
+
 const FIELD_TOOLTIP = "The field to use"
 
 const bagOfWordsTask = {
@@ -133,7 +135,12 @@ const cooccurrenceTopRelationsTask = {
     ],
     runAction: 'submitCooccurrenceTopRelationsRequest',
     successHandler: function (this: any, r) {
-        this.$store.dispatch('drawChart', r)
+        this.$store.dispatch(
+            'drawChart', {
+                data: r.data, xTitle: "Grammatical relation",
+                yTitle: "PPMI Score"
+            }
+        );
     },
     resultComponent: 'chartWidget'
 };

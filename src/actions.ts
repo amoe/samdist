@@ -3,7 +3,7 @@
 import * as log from 'loglevel';
 import axios from 'axios';
 import transformer from './transformer';
-import {DiscreteStatistic} from './interfaces';
+import {DiscreteStatistic, ChartDrawRequest} from './interfaces';
 import * as dimple from 'dimple';
 
 const API_PREFIX = "/api";
@@ -38,18 +38,22 @@ const actions = {
     submitFindNearestNeighboursRequest: makeEndpointCaller("/find-nearest-neighbours"),
     submitCompareCorporaRequest: makeEndpointCaller("/compare-corpora"),
 
-    drawChart(store, payload) {
-        console.log("I'm going to draw the chart");
-        console.log("received the data as %o", payload.data);
+    drawChart(store, payload: ChartDrawRequest) {
+        const xTitle = "Category";
+        const yTitle = "Value";
 
         const data  = transformer.transformFromNetwork(payload.data);
 
         var svg = dimple.newSvg("#chartContainer", 590, 400);
         const myChart = new dimple.chart(svg, data);
-        myChart.setBounds(60, 30, 510, 305)
+        myChart.setBounds(60, 30, 510, 305);
+
         const x = myChart.addCategoryAxis("x", 'category');
-        x.addOrderRule("Date");
-        myChart.addMeasureAxis("y", 'value');
+        x.title = payload.xTitle;
+
+        const y = myChart.addMeasureAxis("y", 'value');
+        y.title = payload.yTitle;
+
         myChart.addSeries(null, dimple.plot.bar);
         myChart.draw();
     },
