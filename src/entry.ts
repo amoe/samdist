@@ -71,11 +71,9 @@ const store = new Vuex.Store({
             state.relation = payload;
         },
         errorOccurred(state, payload) {
-            console.log("setting error value");
             state.error = payload;
         },
         errorDismissed(state) {
-            console.log("clearing error value");
             state.error = null;
         },
         operationStarted(state) {
