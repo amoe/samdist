@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <h2>{{title}}</h2>
-
-    <p>{{description}}</p>
-
-
+<div class="task">
+  <h2>{{title}}</h2>
+  
+  <p>{{description}}</p>
+  
+  <div class="input-set">
     <div v-for="field in fields">
       <label :for="field.name">{{field.label}}</label>
       <input type="text"
@@ -14,16 +14,19 @@
              :title="field.tooltip"
              v-on:input="handleInput($event, field.mutation)"/>
     </div>
-
-    <button type="submit" v-on:click="run">Run</button>
-
-    <component :is="resultComponent">
-    </component>
   </div>
+  
+  <div class="control">
+    <button type="submit" v-on:click="run">Run</button>
+  </div>
+
+  <component :is="resultComponent">
+  </component>
+</div>
 </template>
 
 <script lang="ts">
-    import Vue from 'vue';
+import Vue from 'vue';
 import utility from '../utility';
 import mixins from '../mixins';
 import ChartWidget from './ChartWidget.vue';
@@ -72,3 +75,15 @@ export default Vue.extend({
     }
 })
 </script>
+
+<style>
+div.input-set {
+    display: grid;
+    grid-column-gap: 0.1rem;
+    grid-template-columns: repeat(6, 1fr);
+}
+
+div.control {
+    margin: 1rem 0 1rem 0;
+}
+</style>
