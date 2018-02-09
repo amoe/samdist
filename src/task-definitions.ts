@@ -3,7 +3,11 @@ import utility from './utility';
 const FIELD_TOOLTIP = "The field to use"
 
 const bagOfWordsTask = {
-    title: "Bag of Words v3",
+    title: "Bag of Words",
+    description: `
+      This allows you to view the most frequent semantic tags used within the
+      corpus.
+`,
     fields: [
         {
             name: 'field',
