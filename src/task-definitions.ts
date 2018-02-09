@@ -281,6 +281,62 @@ const findNearestNeighboursTask = {
     resultComponent: 'tableWidget'
 };
 
+const findTextBySemanticTagTask = {
+    title: "Find text by semantic tag",
+    description: `
+      This view will filter on semantic tag values and then filter again by
+      a given field/value combination.  For instance, try AD.03.b in the
+      'match' field.  This will filter in examples of AD.03.b containing
+      the word 'piece', allowing you to 'focus' in on surprising words.
+    `,
+    fields: [
+        {
+            name: 'tagMatch',
+            label: 'Match',
+            mutation: 'updateTagMatch',
+            getter: 'tagMatch'
+        },
+        {
+            name: 'tagField',
+            label: 'Match field',
+            mutation: 'updateTagField',
+            getter: 'tagField'
+        },
+        {
+            name: 'field',
+            label: 'Field',
+            mutation: 'updateField',
+            getter: 'field'
+        },
+        {
+            name: 'value',
+            label: 'Value',
+            mutation: 'updateValue',
+            getter: 'value'
+        },
+        {
+            name: 'window',
+            label: 'Window',
+            mutation: 'updateWindow',
+            getter: 'window'
+        },
+        {
+            name: 'cutoff',
+            label: 'Cutoff',
+            mutation: 'updateCutoff',
+            getter: 'cutoff'
+        }
+    ],
+    runAction: 'submitFindTextBySemanticTagRequest',
+    successHandler: function (this: any, r) {
+        this.$store.commit('setTableData', r.data);
+    },
+    resultComponent: 'tableWidget'
+};
+
+
+
+
 const taskDefinitions = {
     'bagOfWords': bagOfWordsTask,
     'findTags': findTagsTask,
@@ -288,7 +344,8 @@ const taskDefinitions = {
     'cooccurrenceTopRelations': cooccurrenceTopRelationsTask,
     'cooccurrenceTopFeatures': cooccurrenceTopFeaturesTask,
     'displayExamplesByWord': displayExamplesByWordTask,
-    'findNearestNeighbours': findNearestNeighboursTask
+    'findNearestNeighbours': findNearestNeighboursTask,
+    'findTextBySemanticTag': findTextBySemanticTagTask
 }
 
 export default taskDefinitions;

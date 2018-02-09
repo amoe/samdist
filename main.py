@@ -81,7 +81,10 @@ def find_text_by_semantic_tag():
         field=field, value=value, window=window, cutoff=cutoff
     )
 
-    return flask.jsonify(result)
+    # munge it into the 2d array format expected by the TableWidget
+    formatted_result = list(map(lambda x: [x], result))
+
+    return flask.jsonify(formatted_result)
 
 
 @app.route("/find-words-by-semantic-tag")
