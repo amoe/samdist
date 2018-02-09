@@ -86,4 +86,13 @@ div.input-set {
 div.control {
     margin: 1rem 0 1rem 0;
 }
+
+
+div.input-set label {
+    font-weight: bold;
+}
+
+div.input-set input {
+    margin-top: 0.2rem;
+}
 </style>

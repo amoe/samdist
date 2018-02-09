@@ -114,9 +114,11 @@ const computeSurprisesTask = {
     ],
     runAction: 'submitCompareCorporaRequest',
     successHandler: function (this: any, r) {
-        console.log("data is %o", r.data);
-//        this.$store.commit('setCompareCorporaData', r.data)
-        this.$store.dispatch('drawChart', r)
+        this.$store.dispatch('drawChart', {
+            data: r.data,
+            xTitle: "Characteristic field value",
+            yTitle: "llr (Score)"
+        });
     },
     // XXX, this should also be a table widget!
     resultComponent: 'chartWidget'
