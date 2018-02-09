@@ -252,7 +252,34 @@ const cooccurrenceTopFeaturesTask = {
         );
     },
     resultComponent: 'chartWidget'
-}
+};
+
+const findNearestNeighboursTask = {
+    title: "Find nearest neighbours",
+    description: `
+      Find the nearest neighbours for the concept, listed by distance, 
+      (optionally) within a given relation.
+    `,
+    fields: [
+        {
+            name: 'tagMatch',
+            label: 'Match',
+            mutation: 'updateTagMatch',
+            getter: 'tagMatch'
+        },
+        {
+            name: 'relation',
+            label: 'Relation',
+            mutation: 'updateRelation',
+            getter: 'relation'
+        },
+    ],
+    runAction: 'submitFindNearestNeighboursRequest',
+    successHandler: function (this: any, r) {
+        this.$store.commit('setTableData', r.data);
+    },
+    resultComponent: 'tableWidget'
+};
 
 const taskDefinitions = {
     'bagOfWords': bagOfWordsTask,
@@ -260,7 +287,8 @@ const taskDefinitions = {
     'computeSurprises': computeSurprisesTask,
     'cooccurrenceTopRelations': cooccurrenceTopRelationsTask,
     'cooccurrenceTopFeatures': cooccurrenceTopFeaturesTask,
-    'displayExamplesByWord': displayExamplesByWordTask
+    'displayExamplesByWord': displayExamplesByWordTask,
+    'findNearestNeighbours': findNearestNeighboursTask
 }
 
 export default taskDefinitions;

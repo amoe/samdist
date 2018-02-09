@@ -46,7 +46,7 @@ const store = new Vuex.Store({
         measure: 'llr',
         compareCorporaData: [],
         tableData: [],
-        visibleTask: 'displayExamplesByWord'
+        visibleTask: 'findNearestNeighbours'
     },
     mutations: {
         setTableData(state, payload: any) {

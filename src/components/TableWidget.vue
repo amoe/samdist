@@ -7,7 +7,7 @@
         <th>Text</th>
       </tr>
       <tr v-for="datum in tableData">
-        <td>{{datum}}</td>
+        <td v-for="column in datum">{{column}}</td>
       </tr>
     </table>
 
