@@ -1,5 +1,25 @@
 <template>
   <div>
-    <h3>A TABLE!!!</h3>
+    <h3>Results</h3>
+
+    <table class="amoe-table">
+      <tr>
+        <th>Text</th>
+      </tr>
+      <tr v-for="datum in tableData">
+        <td>{{datum}}</td>
+      </tr>
+    </table>
+
   </div>
 </template>
+
+
+<script lang="ts">
+import Vue from 'vue';
+import {mapGetters} from 'vuex';
+
+export default Vue.extend({
+    computed: mapGetters(['tableData'])
+});
+</script>

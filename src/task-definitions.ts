@@ -32,6 +32,51 @@ const bagOfWordsTask = {
     resultComponent: 'chartWidget'
 };
 
+const displayExamplesByWordTask = {
+    title: "Display Examples by Word",
+    description: `
+      Displays portions of example text found by searching for a particular word.      
+
+      The 'field' and 'value' controls allow you to filter the list of examples
+      to match the particular criteria entered.  For instance, you can filter
+      by a specific value for SEMTAG3.
+
+      Window will do FIXME.
+    `,
+    fields: [
+        {
+            name: 'word',
+            label: 'Word',
+            mutation: 'updateWord',
+            getter: 'word'
+        },
+        {
+            name: 'field',
+            label: 'Field',
+            mutation: 'updateField',
+            getter: 'field'
+        },
+        {
+            name: 'value',
+            label: 'Value',
+            mutation: 'updateValue',
+            getter: 'value'
+        },
+        {
+            name: 'window',
+            label: 'Window',
+            mutation: 'updateWindow',
+            getter: 'window'
+        }
+    ],
+    // XXX: Rename this stuff
+    runAction: 'submitDisplayExamplesByWordRequest',
+    successHandler: function (this: any, r) {
+        this.$store.commit('setTableData', r.data);
+    },
+    resultComponent: 'tableWidget'
+};
+
 const computeSurprisesTask = {
     title: "Find Surprises -- Graphical",
     description: `
@@ -214,7 +259,8 @@ const taskDefinitions = {
     'findTags': findTagsTask,
     'computeSurprises': computeSurprisesTask,
     'cooccurrenceTopRelations': cooccurrenceTopRelationsTask,
-    'cooccurrenceTopFeatures': cooccurrenceTopFeaturesTask
+    'cooccurrenceTopFeatures': cooccurrenceTopFeaturesTask,
+    'displayExamplesByWord': displayExamplesByWordTask
 }
 
 export default taskDefinitions;

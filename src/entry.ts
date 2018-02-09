@@ -45,9 +45,13 @@ const store = new Vuex.Store({
         corpusKey: 'fnonl',
         measure: 'llr',
         compareCorporaData: [],
-        visibleTask: 'cooccurrenceTopFeatures'
+        tableData: [],
+        visibleTask: 'displayExamplesByWord'
     },
     mutations: {
+        setTableData(state, payload: any) {
+            state.tableData = payload;
+        },
         increment(state) {
             state.count++;
         },

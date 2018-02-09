@@ -84,6 +84,9 @@ const getters = {
     },
     inProgressCount(state, getters) {
         return state.inProgressCount;
+    },
+    tableData(state, getters) {
+        return state.tableData;
     }
 };
 

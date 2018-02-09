@@ -51,8 +51,8 @@ def find_tags():
     return flask.jsonify(resthelper.massage_stats_output(result))
     
 
-@app.route("/display-selected")
-def display_selected():
+@app.route("/display-examples-by-word")
+def display_examples_by_word():
     field = flask.request.args.get('field')
     value = flask.request.args.get('value')
     window = int(flask.request.args.get('window'))

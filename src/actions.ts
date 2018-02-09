@@ -27,7 +27,7 @@ const actions = {
 
     submitBagOfWordsRequest: makeEndpointCaller("/bag-of-words"),
     submitFindTagsRequest: makeEndpointCaller("/find-tags"),
-    submitDisplaySelectedRequest: makeEndpointCaller("/display-selected"),
+    submitDisplayExamplesByWordRequest: makeEndpointCaller("/display-examples-by-word"),
     submitFindWordsBySemanticTagRequest: makeEndpointCaller("/find-words-by-semantic-tag"),
     submitFindTextBySemanticTagRequest: makeEndpointCaller("/find-text-by-semantic-tag"),
     submitCooccurrenceTopFeaturesRequest: makeEndpointCaller("/get-top-features"),
