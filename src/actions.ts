@@ -5,6 +5,7 @@ import axios from 'axios';
 import transformer from './transformer';
 import {DiscreteStatistic, ChartDrawRequest} from './interfaces';
 import * as dimple from 'dimple';
+import * as d3 from 'd3';
 
 const API_PREFIX = "/api";
 
@@ -44,8 +45,18 @@ const actions = {
 
         const data  = transformer.transformFromNetwork(payload.data);
 
-        var svg = dimple.newSvg("#chartContainer", 590, 400);
-        const myChart = new dimple.chart(svg, data);
+        const svgSelection = d3.select('#chartTarget');
+
+        // Clear out any chart that was already drawn
+        svgSelection.selectAll('*').remove();
+
+        if (svgSelection.empty()) {
+            throw new Error("somehow failed to find the chart target");
+        }
+
+        console.log("svg selection is %o", svgSelection);
+        
+        const myChart = new dimple.chart(svgSelection, data);
         myChart.setBounds(60, 30, 510, 305);
 
         const x = myChart.addCategoryAxis("x", 'category');

@@ -4,5 +4,8 @@
 
     <div id="chartContainer">
     </div>
+
+    <svg width="590" height="400" id="chartTarget">
+    </svg>
   </div>
 </template>
