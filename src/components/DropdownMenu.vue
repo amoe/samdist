@@ -37,6 +37,38 @@ import mutations from '../constants';
                      content: [
                          {name: "Bag of words",
                           taskName: 'bagOfWords'},
+                         {name: "Find text by semantic tag",
+                          taskName: 'findTextBySemanticTag'},
+                         {name: "Find words by semantic tag",
+                          taskName: 'findWordsBySemanticTag'},
+                     ],
+                 },
+                 {
+                     name: "Word Search",
+                     expanded: false,
+                     content: [
+                         {name: "Display Examples by Word",
+                          taskName: "displayExamplesByWord"},
+                         {name: "Find tags by word",
+                          taskName: 'findTags'},
+                     ]
+                 },
+                 {
+                     name: "Similarity",
+                     expanded: false,
+                     content: [
+                         {name: "Nearest Neighbours",
+                          taskName: "findNearestNeighbours"}
+                     ]
+                 },
+                 {
+                     name: "Co-occurrence",
+                     expanded: false,
+                     content: [
+                         {name: "Top features",
+                          taskName: 'cooccurrenceTopFeatures'},
+                         {name: "Top relations",
+                          taskName: 'cooccurrenceTopRelations'},
                      ]
                  },
                  {
@@ -45,6 +77,7 @@ import mutations from '../constants';
                      content: [
                          {name: "Compute Surprises",
                           taskName: 'computeSurprises'},
+
                      ]
                  },
              ]
@@ -53,9 +86,7 @@ import mutations from '../constants';
      methods: {
          toggleMenu(index) {
              console.log("inside toggle handler, i = %o", index);
-             
-
-             
+             this.menus[index].expanded = !(this.menus[index].expanded);
          },
          activate(item) {
              this.$store.commit(mutations.SWITCH_TASK, item.taskName);
@@ -65,17 +96,23 @@ import mutations from '../constants';
 </script>
 
 <style>
+
+/* all list items on both levels */
+ul.menu-toplevel li {
+    cursor: pointer;
+}
+
 ul.menu-toplevel > li {
     color: #ff5f00;
     
     /* This is crucial otherwise the 'li' child won't be treated as a proper
        grid-item. */
     list-style-type: none;
-    
 }
 
 ul.menu-toplevel ul li {
     color: #5f3653;
+    
 }
 
 ul.menu-toplevel {

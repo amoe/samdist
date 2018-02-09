@@ -4,8 +4,6 @@
   
   <dropdown-menu></dropdown-menu>
 
-  <textarea>{{error}}</textarea>
-  
   <div v-if="error"
        class="alert alert-danger" role="alert">
     {{error.message}}
