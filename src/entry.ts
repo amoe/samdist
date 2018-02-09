@@ -46,7 +46,7 @@ const store = new Vuex.Store({
         measure: 'llr',
         compareCorporaData: [],
         tableData: [],
-        visibleTask: 'findTextBySemanticTag'
+        visibleTask: 'findWordsBySemanticTag'
     },
     mutations: {
         setTableData(state, payload: any) {

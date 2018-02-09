@@ -334,6 +334,32 @@ const findTextBySemanticTagTask = {
     resultComponent: 'tableWidget'
 };
 
+const findWordsBySemanticTagTask = {
+    title: "Find words by semantic tag",
+    description: `
+      This will turn up individual words related to a particular semantic tag,
+      and present the occurrence / prevalence stats.
+    `,
+    fields: [
+        {
+            name: 'tagMatch',
+            label: 'Match',
+            mutation: 'updateTagMatch',
+            getter: 'tagMatch'
+        },
+        {
+            name: 'tagField',
+            label: 'Match field',
+            mutation: 'updateTagField',
+            getter: 'tagField'
+        },
+    ],
+    runAction: 'submitFindWordsBySemanticTagRequest',
+    successHandler: function (this: any, r) {
+        this.$store.commit('setTableData', r.data);
+    },
+    resultComponent: 'tableWidget'
+};
 
 
 
@@ -345,7 +371,8 @@ const taskDefinitions = {
     'cooccurrenceTopFeatures': cooccurrenceTopFeaturesTask,
     'displayExamplesByWord': displayExamplesByWordTask,
     'findNearestNeighbours': findNearestNeighboursTask,
-    'findTextBySemanticTag': findTextBySemanticTagTask
+    'findTextBySemanticTag': findTextBySemanticTagTask,
+    'findWordsBySemanticTag': findWordsBySemanticTagTask
 }
 
 export default taskDefinitions;
