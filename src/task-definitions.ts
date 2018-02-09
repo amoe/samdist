@@ -99,10 +99,50 @@ const findTagsTask = {
     resultComponent: 'tableWidget'
 };
 
+const cooccurrenceTopRelationsTask = {
+    title: "Top co-occurrence relations",
+    description: `
+       This will show the usage distribution of grammatical relations (determiner,
+       direct object, subject, and our other friends), when they are used in
+       conjunction with a specific semantic category.
+
+       You can also use 'vard' as the match field to narrow the search to a
+       specific value.
+
+       Cutoff allows you to limit the results to only the top 10 rows, etc.
+    `,
+    fields: [
+        {
+            name: 'tagMatch',
+            label: 'Match',
+            mutation: 'updateTagMatch',
+            getter: 'tagMatch'
+        },
+        {
+            name: 'tagField',
+            label: 'Match field',
+            mutation: 'updateTagField',
+            getter: 'tagField'
+        },
+        {
+            name: 'cutoff',
+            label: 'Cutoff',
+            mutation: 'updateCutoff',
+            getter: 'cutoff'
+        }
+    ],
+    runAction: 'submitCooccurrenceTopRelationsRequest',
+    successHandler: function (this: any, r) {
+        this.$store.dispatch('drawChart', r)
+    },
+    resultComponent: 'chartWidget'
+};
+
 const taskDefinitions = {
     'bagOfWords': bagOfWordsTask,
     'findTags': findTagsTask,
     'computeSurprises': computeSurprisesTask,
+    'cooccurrenceTopRelations': cooccurrenceTopRelationsTask
 }
 
 export default taskDefinitions;
