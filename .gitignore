@@ -3,3 +3,4 @@ intermediate_data/
 node_modules/
 __pycache__/
 bundle.js
+dist/

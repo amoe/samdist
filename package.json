@@ -34,6 +34,6 @@
     "test": "karma start --single-run",
     "dev": "webpack-dev-server",
     "repl": "ts-node",
-    "build": "make dist"
+    "build": "make -f samdist.mk dist"
   }
 }

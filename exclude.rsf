@@ -1,2 +1,3 @@
 exclude.rsf
 __pycache__/
+.git/
