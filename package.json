@@ -33,6 +33,7 @@
   "scripts": {
     "test": "karma start --single-run",
     "dev": "webpack-dev-server",
-    "repl": "ts-node"
+    "repl": "ts-node",
+    "build": "make dist"
   }
 }
