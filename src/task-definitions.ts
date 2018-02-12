@@ -5,8 +5,8 @@ const FIELD_TOOLTIP = "The field to use"
 const bagOfWordsTask = {
     title: "Bag of Words",
     description: `
-      This allows you to view the most frequent semantic tags used within the
-      corpus.
+      This allows you to view overall statistics on the most frequent words or
+      semantic tags used within the corpus.
 `,
     fields: [
         {
