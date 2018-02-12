@@ -89,6 +89,7 @@ import mutations from '../constants';
              this.menus[index].expanded = !(this.menus[index].expanded);
          },
          activate(item) {
+             this.$store.dispatch('clearChart');
              this.$store.commit(mutations.SWITCH_TASK, item.taskName);
          }
      }

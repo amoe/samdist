@@ -41,6 +41,8 @@ const displayExamplesByWordTask = {
       to match the particular criteria entered.  For instance, you can filter
       by a specific value for SEMTAG3.
 
+      Try filtering by the word 'woman' with a SEMTAG3 value of AY.06.b.
+
       Window will do FIXME.
     `,
     fields: [
@@ -147,7 +149,7 @@ const findTagsTask = {
     ],
     runAction: 'submitFindTagsRequest',
     successHandler: function (this: any, r) {
-        this.$store.commit('setFindTagsData', r.data)
+        this.$store.commit('setTableData', r.data)
     },
     resultComponent: 'tableWidget'
 };

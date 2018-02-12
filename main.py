@@ -48,6 +48,8 @@ def find_tags():
 
     result = fnonl.find_tags(word, field=field)
 
+    pprint.pprint(result)
+
     return flask.jsonify(resthelper.massage_stats_output(result))
     
 
@@ -62,7 +64,9 @@ def display_examples_by_word():
     # previously computed find list.
     fnonl.find_tags(word, field=field)
     result = fnonl.display_selected(field=field, value=value, window=window)
-    return flask.jsonify(result)
+
+    formatted_result = list(map(lambda x: [x], result))
+    return flask.jsonify(formatted_result)
 
 # This is a novelty, basically wrap the operation.
 @app.route("/find-text-by-semantic-tag")

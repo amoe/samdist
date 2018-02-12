@@ -39,6 +39,12 @@ const actions = {
     submitFindNearestNeighboursRequest: makeEndpointCaller("/find-nearest-neighbours"),
     submitCompareCorporaRequest: makeEndpointCaller("/compare-corpora"),
 
+    // Clear out any chart that was already drawn
+    clearChart(store) {
+        const svgSelection = d3.select('#chartTarget');
+        svgSelection.selectAll('*').remove();
+    },
+
     drawChart(store, payload: ChartDrawRequest) {
         const xTitle = "Category";
         const yTitle = "Value";
@@ -46,8 +52,6 @@ const actions = {
         const data  = transformer.transformFromNetwork(payload.data);
 
         const svgSelection = d3.select('#chartTarget');
-
-        // Clear out any chart that was already drawn
         svgSelection.selectAll('*').remove();
 
         if (svgSelection.empty()) {

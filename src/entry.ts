@@ -138,6 +138,7 @@ const store = new Vuex.Store({
         },
         [mutations.SWITCH_TASK]: (state, taskName: string) => {
             state.visibleTask = taskName;
+            state.tableData = [];
         }
     },
     actions

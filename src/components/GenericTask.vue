@@ -80,7 +80,8 @@ export default Vue.extend({
 div.input-set {
     display: grid;
     grid-column-gap: 0.1rem;
-    grid-template-columns: repeat(6, 1fr);
+    grid-row-gap: 1rem;
+    grid-template-columns: repeat(4, 1fr);
 }
 
 div.control {
