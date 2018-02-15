@@ -10,15 +10,7 @@
     <span class="close" v-on:click="dismiss">&#x274C;</span>
   </div>
   
-  <svg v-if="inProgressCount > 0" height="3em" width="3em" class="spinner">
-    <circle cx="50%"
-            cy="50%"
-            r="1em"
-            stroke="black"
-            stroke-width="0.1em"
-            fill="#001f3f" />
-  </svg> 
-  
+  <spinner/>
   
   <generic-task :title="task.title"
                 :description="task.description"
@@ -37,11 +29,12 @@ import utility from '../utility';
 import DropdownMenu from './DropdownMenu.vue';
 import BarChartDemo from './BarChartDemo.vue';
 import GenericTask from './GenericTask.vue';
+import Spinner from './Spinner.vue';
 import taskDefinitions from  '../task-definitions';   
 
 export default Vue.extend({
      components: {
-         GenericTask, DropdownMenu
+         GenericTask, DropdownMenu, Spinner
      },
      methods: {
          switchPane(this: any, code) {
@@ -62,7 +55,7 @@ export default Vue.extend({
             
             return taskDefinitions[this.visibleTask];
         },
-        ...mapGetters(['count', 'error', 'inProgressCount', 'visibleTask'])
+        ...mapGetters(['count', 'error', 'visibleTask'])
     }
  });
 </script>
@@ -104,31 +97,6 @@ div.alert-danger {
 
 span.close {
     cursor: pointer;
-}
-
-svg.spinner {
-    position: fixed;
-    left: 0px;
-    top: 0px;
-}
-
-svg.spinner circle {
-    animation: pulse 1s infinite;
-}
-
-@keyframes pulse {
-    0% {
-        fill: #001f3f;
-    }
-    
-    50% {
-        fill: #ff4136;
-    }
-    
-    100% {
-        fill: #001f3f;
-    }
-    
 }
 
 /* Used for the table-based components, this is as simple as it gets */
