@@ -91,6 +91,10 @@ div.control {
 
 div.input-set label {
     font-weight: bold;
+
+    /* Force a line-break between the label and the associated field */
+    /* Difference only be visible under some browser/OS combinations */
+    display: block;
 }
 
 div.input-set input {
