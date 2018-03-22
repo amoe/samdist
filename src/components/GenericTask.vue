@@ -22,6 +22,8 @@
 
   <component :is="resultComponent">
   </component>
+
+  <bar-chart outer-width="500" outer-height="500"></bar-chart>
 </div>
 </template>
 
@@ -32,6 +34,7 @@ import mixins from '../mixins';
 import ChartWidget from './ChartWidget.vue';
 import TableWidget from './TableWidget.vue';
 import {snakeCase} from 'lodash';
+import thing from 'vue-barchart';
 
 export default Vue.extend({
     mixins: [mixins.main],
@@ -41,9 +44,14 @@ export default Vue.extend({
     ],
     components: {
         'chartWidget': ChartWidget,
-        'tableWidget': TableWidget
+        'tableWidget': TableWidget,
+        'bar-chart': thing.BChart
+    },
+    created: function () {
+        console.log("inside component generic task: %o");
     },
     methods: {
+
         createPayload() {
             const payload = this.fields.reduce(
                 (acc, item) => {
