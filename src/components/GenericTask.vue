@@ -23,7 +23,7 @@
   <component :is="resultComponent">
   </component>
 
-  <bar-chart outer-width="500" outer-height="500"></bar-chart>
+  <bar-chart :outer-width="outerWidth" :outer-height="outerHeight"></bar-chart>
 </div>
 </template>
 
@@ -49,6 +49,12 @@ export default Vue.extend({
     },
     created: function () {
         console.log("inside component generic task: %o");
+    },
+    data: function() {
+        return {
+            outerWidth: 500,
+            outerHeight: 500
+        };
     },
     methods: {
 
