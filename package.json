@@ -24,7 +24,7 @@
     "ts-node": "4.1.0",
     "typescript": "2.6.2",
     "vue": "2.5.13",
-    "vue-barchart": "git+ssh://git@github.com:amoe/vue-barchart.git",
+    "vue-barchart": "git+https://github.com:amoe/vue-barchart.git",
     "vue-loader": "13.7.0",
     "vue-template-compiler": "2.5.13",
     "vuex": "3.0.1",
