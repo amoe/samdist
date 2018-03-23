@@ -2,7 +2,6 @@
 
 import * as log from 'loglevel';
 import axios from 'axios';
-import barChart from './bar-chart';
 import mymodule from './mymodule';
 import transformer from './transformer';
 import ApplicationRoot from './components/ApplicationRoot.vue';
@@ -173,24 +172,6 @@ document.addEventListener("DOMContentLoaded", e => {
     console.log("Rendering mode: %o", getRenderingMode());
     console.log("The answer is: %o", mymodule.meaningOfLife());
 
-});
-
-document.addEventListener("DOMContentLoaded", e => {
-    // axios.get("/bow_query_data.json").then(function(response) {
-    //     const data = transformer.transformFromNetwork(response.data);
-    //     var filteredData = data.slice(0, 20);
-
-    //     var svg = dimple.newSvg("#chartContainer", 590, 400);
-    //     const myChart = new dimple.chart(svg, filteredData);
-    //     myChart.setBounds(60, 30, 510, 305)
-    //     const x = myChart.addCategoryAxis("x", 'category');
-    //     x.addOrderRule("Date");
-    //     myChart.addMeasureAxis("y", 'value');
-    //     myChart.addSeries(null, dimple.plot.bar);
-    //     myChart.draw();
-    // }).catch(function(error) {
-    //     console.log("error: %o", error);
-    // });
 });
 
 document.addEventListener("DOMContentLoaded", e => {

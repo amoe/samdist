@@ -1,6 +1,6 @@
 export interface DiscreteStatistic {
-    category: string;
-    value: number;
+    x: string;
+    y: number;
 };
 
 export interface ChartDrawRequest {

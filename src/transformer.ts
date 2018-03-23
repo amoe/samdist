@@ -5,8 +5,8 @@ const publicExports = {
         return data.map(
             function (x) {
                 return {
-                    category: x[0] as string,
-                    value: x[1] as number
+                    x: x[0] as string,
+                    y: x[1] as number
                 };
             }
         );
