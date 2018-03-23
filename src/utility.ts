@@ -1,13 +1,6 @@
 import {ChartDrawRequest} from './interfaces';
 import _ from 'lodash';
 
-function ceilingN(x: number, n: number) {
-    return Math.ceil(x / n) * n;
-}
-
-function floorN(x: number, n: number) {
-    return Math.floor(x / n) * n;
-}
 
 const functions = {
     getChartDrawRequest(data: any[]): ChartDrawRequest {
