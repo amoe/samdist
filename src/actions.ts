@@ -51,26 +51,8 @@ const actions = {
 
         const data  = transformer.transformFromNetwork(payload.data);
 
-        const svgSelection = d3.select('#chartTarget');
-        svgSelection.selectAll('*').remove();
+        console.log("received data as %o", JSON.stringify(data));
 
-        if (svgSelection.empty()) {
-            throw new Error("somehow failed to find the chart target");
-        }
-
-        console.log("svg selection is %o", svgSelection);
-        
-        const myChart = new dimple.chart(svgSelection, data);
-        myChart.setBounds(60, 30, 510, 305);
-
-        const x = myChart.addCategoryAxis("x", 'category');
-        x.title = payload.xTitle;
-
-        const y = myChart.addMeasureAxis("y", 'value');
-        y.title = payload.yTitle;
-
-        myChart.addSeries(null, dimple.plot.bar);
-        myChart.draw();
     },
 
     handleError(store, payload) {

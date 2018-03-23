@@ -20,7 +20,9 @@
     <button type="submit" v-on:click="run">Run</button>
   </div>
 
-  <component :is="resultComponent">
+  <!-- This is a creepy pattern taken from SO #43658481 that allows passing
+       dynamic prop-set to a component. -->
+  <component :is="resultComponent" v-bind="dynamicResultProps">
   </component>
 
   <bar-chart :outer-width="outerWidth" :outer-height="outerHeight"></bar-chart>
@@ -85,6 +87,18 @@ export default Vue.extend({
         // This method defeats caching, though.
         retrieve(paramName) {
             return this.$store.getters[paramName];
+        }
+    },
+    computed: {
+        dynamicResultProps() {
+            if (this.resultComponent == 'chartWidget') {
+                return {
+                    outerWidth: 500,
+                    outerHeight: 500
+                };
+            } else {
+                return {};
+            }
         }
     }
 })
