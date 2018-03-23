@@ -45,7 +45,6 @@ export default Vue.extend({
     components: {
         'chartWidget': thing.BChart,
         'tableWidget': TableWidget,
-        'bar-chart': thing.BChart
     },
     created: function () {
         console.log("inside component generic task: %o");
