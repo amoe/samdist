@@ -24,8 +24,6 @@
        dynamic prop-set to a component. -->
   <component :is="resultComponent" v-bind="dynamicResultProps">
   </component>
-
-  <bar-chart :outer-width="outerWidth" :outer-height="outerHeight"></bar-chart>
 </div>
 </template>
 
