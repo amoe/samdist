@@ -4,3 +4,4 @@ node_modules/
 __pycache__/
 bundle.js
 dist/
+yarn-error.log
