@@ -46,13 +46,11 @@ const actions = {
     },
 
     drawChart(store, payload: ChartDrawRequest) {
-        const xTitle = "Category";
-        const yTitle = "Value";
-
-        const data  = transformer.transformFromNetwork(payload.data);
-
+        const data = transformer.transformFromNetwork(payload.data);
         console.log("received data as %o", JSON.stringify(data));
+        store.commit('setChartData', data);
 
+        // The graph should now re-render automatically, because it's reactive.
     },
 
     handleError(store, payload) {

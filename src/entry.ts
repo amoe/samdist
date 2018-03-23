@@ -46,11 +46,15 @@ const store = new Vuex.Store({
         measure: 'llr',
         compareCorporaData: [],
         tableData: [],
-        visibleTask: 'bagOfWords'
+        visibleTask: 'bagOfWords',
+        chartData: []
     },
     mutations: {
         setTableData(state, payload: any) {
             state.tableData = payload;
+        },
+        setChartData(state, payload: any) {
+            state.chartData = payload;
         },
         increment(state) {
             state.count++;

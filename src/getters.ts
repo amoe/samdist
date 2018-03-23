@@ -86,6 +86,9 @@ const getters = {
     },
     tableData(state, getters) {
         return state.tableData;
+    },
+    chartData(state, getters) {
+        return state.chartData;
     }
 };
 

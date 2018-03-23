@@ -29,6 +29,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import {mapGetters} from 'vuex';
 import utility from '../utility';
 import mixins from '../mixins';
 import ChartWidget from './ChartWidget.vue';
@@ -56,7 +57,6 @@ export default Vue.extend({
         };
     },
     methods: {
-
         createPayload() {
             const payload = this.fields.reduce(
                 (acc, item) => {
@@ -87,16 +87,18 @@ export default Vue.extend({
         }
     },
     computed: {
-        dynamicResultProps() {
+        dynamicResultProps(this: any) {
             if (this.resultComponent == 'chartWidget') {
                 return {
                     outerWidth: 500,
-                    outerHeight: 500
+                    outerHeight: 500,
+                    points: this.chartData
                 };
             } else {
                 return {};
             }
-        }
+        },
+        ...mapGetters(['chartData'])
     }
 })
 </script>
