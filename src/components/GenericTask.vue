@@ -43,7 +43,7 @@ export default Vue.extend({
         'description'
     ],
     components: {
-        'chartWidget': ChartWidget,
+        'chartWidget': thing.BChart,
         'tableWidget': TableWidget,
         'bar-chart': thing.BChart
     },

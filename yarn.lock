@@ -6610,9 +6610,9 @@ void-elements@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-2.0.1.tgz#c066afb582bb1cb4128d60ea92392e94d5e9dbec"
 
-"vue-barchart@git+ssh://git@github.com:amoe/vue-barchart.git":
+"vue-barchart@git+https://github.com/amoe/vue-barchart.git":
   version "0.0.1"
-  resolved "git+ssh://git@github.com:amoe/vue-barchart.git#63df9117e6f9a2a28ff3a3bb5871a65ec42530c9"
+  resolved "git+https://github.com/amoe/vue-barchart.git#63df9117e6f9a2a28ff3a3bb5871a65ec42530c9"
 
 vue-hot-reload-api@^2.2.0:
   version "2.3.0"
