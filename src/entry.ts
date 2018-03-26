@@ -46,7 +46,7 @@ const store = new Vuex.Store({
         compareCorporaData: [],
         tableData: [],
         visibleTask: 'bagOfWords',
-        chartData: []
+        chartData: null
     },
     mutations: {
         setTableData(state, payload: any) {

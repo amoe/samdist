@@ -22,7 +22,9 @@
 
   <!-- This is a creepy pattern taken from SO #43658481 that allows passing
        dynamic prop-set to a component. -->
-  <component :is="resultComponent" v-bind="dynamicResultProps">
+  <component v-if="haveData"
+             :is="resultComponent"
+             v-bind="dynamicResultProps">
   </component>
 </div>
 </template>
@@ -97,6 +99,9 @@ export default Vue.extend({
             } else {
                 return {};
             }
+        },
+        haveData(this: any) {
+            return this.chartData !== null;
         },
         ...mapGetters(['chartData'])
     }
