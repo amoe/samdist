@@ -6612,7 +6612,7 @@ void-elements@^2.0.0:
 
 "vue-barchart@git+https://github.com/amoe/vue-barchart.git":
   version "0.0.1"
-  resolved "git+https://github.com/amoe/vue-barchart.git#92ee99c8f99ce2d081d93f4f6e08930e52e537d8"
+  resolved "git+https://github.com/amoe/vue-barchart.git#af202aa88380e1dc78173dd0a9ac186c092c2f7e"
 
 vue-hot-reload-api@^2.2.0:
   version "2.3.0"
