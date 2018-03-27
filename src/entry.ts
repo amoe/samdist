@@ -18,7 +18,7 @@ const store = new Vuex.Store({
     getters,
     state: {
         count: 0,
-        cutoff: 20,
+        cutoff: 10,   // 10 is the reasonable number of bars for a bar chart
         error: null,
         inProgressCount: 0,
         field: 'vard',
@@ -142,6 +142,9 @@ const store = new Vuex.Store({
         [mutations.SWITCH_TASK]: (state, taskName: string) => {
             state.visibleTask = taskName;
             state.tableData = [];
+        },
+        [mutations.CLEAR_CHART_DATA]: (state) => {
+            state.chartData = [];
         }
     },
     actions

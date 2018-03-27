@@ -41,8 +41,7 @@ const actions = {
 
     // Clear out any chart that was already drawn
     clearChart(store) {
-        const svgSelection = d3.select('#chartTarget');
-        svgSelection.selectAll('*').remove();
+        store.commit('clearChartData');
     },
 
     drawChart(store, payload: ChartDrawRequest) {
