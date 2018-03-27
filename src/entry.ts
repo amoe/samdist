@@ -144,7 +144,7 @@ const store = new Vuex.Store({
             state.tableData = [];
         },
         [mutations.CLEAR_CHART_DATA]: (state) => {
-            state.chartData = [];
+            state.chartData = null;
         }
     },
     actions
