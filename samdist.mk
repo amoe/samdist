@@ -9,5 +9,5 @@ dist: bundle.js
 
 .PHONY: dist
 
-bundle.js: src
+bundle.js: src package.json
 	$(WEBPACK)
