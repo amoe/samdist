@@ -43,7 +43,8 @@ const displayExamplesByWordTask = {
 
       Try filtering by the word 'woman' with a SEMTAG3 value of AY.06.b.
 
-      Window will do FIXME.
+      You don't have to fill in a filter value: just leave it blank to show
+      ALL matches.
     `,
     fields: [
         {

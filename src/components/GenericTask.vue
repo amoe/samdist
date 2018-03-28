@@ -48,6 +48,7 @@ import ChartWidget from './ChartWidget.vue';
 import TableWidget from './TableWidget.vue';
 import {snakeCase} from 'lodash';
 import thing from 'vue-barchart';
+import mutations from '../mutations';
 
 export default Vue.extend({
     mixins: [mixins.main],
@@ -99,6 +100,11 @@ export default Vue.extend({
         },
         onXLabelClicked(category) {
             console.log("foo in parent: %o", category);
+            // Now we need to issue some sort of mutation that will step through
+            // the value.
+            // We just assume that the field is vard.
+            // So we just NULL out 'value', or make it blank; then write the category
+            // to WORD.
         }
     },
     computed: {
