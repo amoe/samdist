@@ -7,7 +7,9 @@
         <th>Text</th>
       </tr>
       <tr v-for="datum in tableData">
-        <td v-for="column in datum">{{column}}</td>
+        <td v-for="column in datum"
+            v-on:click="greet"
+            class="active-column-value">{{column}}</td>
       </tr>
     </table>
 
@@ -20,6 +22,17 @@ import Vue from 'vue';
 import {mapGetters} from 'vuex';
 
 export default Vue.extend({
-    computed: mapGetters(['tableData'])
+    computed: mapGetters(['tableData']),
+    methods: {
+        greet() {
+            console.log("I was clicked");
+        }
+    }
 });
 </script>
+
+<style>
+text.active-column-value:hover {
+    fill: #a0a0a0;
+}
+</style>

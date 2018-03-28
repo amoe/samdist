@@ -44,8 +44,12 @@ const store = new Vuex.Store({
         corpusKey: 'fnonl',
         measure: 'llr',
         compareCorporaData: [],
-        tableData: [],
         visibleTask: 'bagOfWords',
+        // Important that these are actually null and that they are not empty
+        // arrays, otherwise GenericTask will attempt to instantiate the chart
+        // component with an empty array which can't be logically drawn and will
+        // cause errors.
+        tableData: null,
         chartData: null
     },
     mutations: {
@@ -142,6 +146,7 @@ const store = new Vuex.Store({
         [mutations.SWITCH_TASK]: (state, taskName: string) => {
             state.visibleTask = taskName;
             state.tableData = [];
+            state.chartData = [];
         },
         [mutations.CLEAR_CHART_DATA]: (state) => {
             state.chartData = null;

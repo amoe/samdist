@@ -103,7 +103,7 @@ export default Vue.extend({
         haveData(this: any) {
             return this.chartData !== null || this.tableData !== null;
         },
-        ...mapGetters(['chartData'])
+        ...mapGetters(['chartData', 'tableData'])
     }
 })
 </script>
