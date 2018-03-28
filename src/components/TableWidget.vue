@@ -32,7 +32,7 @@ export default Vue.extend({
 </script>
 
 <style>
-text.active-column-value:hover {
-    fill: #a0a0a0;
+td.active-column-value:hover {
+    color: #a0a0a0;
 }
 </style>
