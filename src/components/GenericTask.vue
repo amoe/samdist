@@ -20,12 +20,22 @@
     <button type="submit" v-on:click="run">Run</button>
   </div>
 
-  <!-- This is a creepy pattern taken from SO #43658481 that allows passing
-       dynamic prop-set to a component. -->
-  <component v-if="haveData"
-             :is="resultComponent"
-             v-bind="dynamicResultProps">
-  </component>
+  <div v-if="resultComponent === 'chartWidget'">
+    <chart-widget v-if="haveChartData"
+                  :points="chartData"
+                  :outer-width="outerWidth"
+                  :outer-height="outerHeight"
+                  v-on:x-label-clicked="onXLabelClicked">
+    </chart-widget>
+  </div>
+  <div v-else-if="resultComponent === 'tableWidget'">
+    <table-widget v-if="haveTableData">
+    </table-widget>
+  </div>
+  <div v-else>
+    <p>Somehow found an unexpected thing</p>
+  </div>
+
 </div>
 </template>
 
@@ -86,6 +96,9 @@ export default Vue.extend({
         // This method defeats caching, though.
         retrieve(paramName) {
             return this.$store.getters[paramName];
+        },
+        onXLabelClicked(category) {
+            console.log("foo in parent: %o", category);
         }
     },
     computed: {
@@ -100,8 +113,11 @@ export default Vue.extend({
                 return {};
             }
         },
-        haveData(this: any) {
-            return this.chartData !== null || this.tableData !== null;
+        haveChartData(this: any) {
+            return this.chartData !== null;
+        },
+        haveTableData(this: any) {
+            return this.tableData !== null;
         },
         ...mapGetters(['chartData', 'tableData'])
     }
