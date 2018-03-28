@@ -8,7 +8,7 @@
       </tr>
       <tr v-for="datum in tableData">
         <td v-for="column in datum"
-            v-on:click="greet"
+            v-on:click="stepThrough(column)"
             class="active-column-value">{{column}}</td>
       </tr>
     </table>
@@ -20,12 +20,16 @@
 <script lang="ts">
 import Vue from 'vue';
 import {mapGetters} from 'vuex';
+import mutations from '../mutations';
 
 export default Vue.extend({
     computed: mapGetters(['tableData']),
     methods: {
-        greet() {
-            console.log("I was clicked");
+        stepThrough(column) {
+            // Copy MATCH field to VALUE field.
+            // Copy column to WORD field.
+
+            this.$store.commit(mutations.STEP_WORD_THROUGH, column);
         }
     }
 });

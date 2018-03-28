@@ -10,7 +10,8 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import actions from './actions';
 import getters from './getters';
-import mutations from './constants';
+import mutations0 from './constants';
+import mutations1 from './mutations';
 
 Vue.use(Vuex);
 
@@ -143,13 +144,21 @@ const store = new Vuex.Store({
         setCompareCorporaData(state, payload) {
             state.compareCorporaData = payload;
         },
-        [mutations.SWITCH_TASK]: (state, taskName: string) => {
+        [mutations0.SWITCH_TASK]: (state, taskName: string) => {
             state.visibleTask = taskName;
             state.tableData = [];
             state.chartData = [];
         },
-        [mutations.CLEAR_CHART_DATA]: (state) => {
+        [mutations0.CLEAR_CHART_DATA]: (state) => {
             state.chartData = null;
+        },
+        [mutations1.STEP_WORD_THROUGH]: (state, columnValue) => {
+            state.visibleTask = 'displayExamplesByWord';
+            state.tableData = [];
+            state.chartData = [];
+            state.word = columnValue;
+            state.field = 'SEMTAG3';  // yuck
+            state.value = state.tagMatch;
         }
     },
     actions
