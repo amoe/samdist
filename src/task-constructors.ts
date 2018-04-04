@@ -1,9 +1,9 @@
-import {DisplayableTable} from './interfaces'
+import { DisplayableTable } from './interfaces'
 
 function makeSuccessHandler(steppableColumns) {
     return function(this: any, r) {
         const newData: DisplayableTable = {
-            steppableColumns: [0],
+            steppableColumns,
             data: r.data
         };
 

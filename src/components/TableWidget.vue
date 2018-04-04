@@ -42,7 +42,9 @@ export default Vue.extend({
             this.$store.commit(mc.STEP_WORD_THROUGH, column);
         },
         isActive(tableData: DisplayableTable, index) {
+            console.log("steppable columns are %o", tableData.steppableColumns);
             const isSteppable = _.some(tableData.steppableColumns, i => i === index);
+            console.log("steppable check returned %o", isSteppable);
             return isSteppable;
         }
     }
