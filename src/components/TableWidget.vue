@@ -26,7 +26,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import {mapGetters} from 'vuex';
-import mutations from '../mutations';
+import mc from '../mutation-constants';
 import {DisplayableTable} from '../interfaces';
 import * as _ from 'lodash';
 
@@ -39,7 +39,7 @@ export default Vue.extend({
             // Copy MATCH field to VALUE field.
             // Copy column to WORD field.
 
-            this.$store.commit(mutations.STEP_WORD_THROUGH, column);
+            this.$store.commit(mc.STEP_WORD_THROUGH, column);
         },
         isActive(tableData: DisplayableTable, index) {
             const isSteppable = _.some(tableData.steppableColumns, i => i === index);

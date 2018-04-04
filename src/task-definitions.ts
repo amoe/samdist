@@ -1,5 +1,5 @@
 import utility from './utility';
-import {DisplayableTable} from './interfaces';
+import { DisplayableTable } from './interfaces';
 import taskConstructors from './task-constructors';
 
 const FIELD_TOOLTIP = "The field to use"
@@ -26,7 +26,7 @@ const bagOfWordsTask = {
         }
     ],
     runAction: 'submitBagOfWordsRequest',
-    successHandler: function (this: any, r) {
+    successHandler: function(this: any, r) {
         console.log("reached the success handler");
         console.log("this is %o", this);
         this.$store.dispatch('drawChart', r)
@@ -114,7 +114,7 @@ const computeSurprisesTask = {
         }
     ],
     runAction: 'submitCompareCorporaRequest',
-    successHandler: function (this: any, r) {
+    successHandler: function(this: any, r) {
         this.$store.dispatch('drawChart', {
             data: r.data,
             xTitle: "Characteristic field value",
@@ -182,7 +182,7 @@ const cooccurrenceTopRelationsTask = {
         }
     ],
     runAction: 'submitCooccurrenceTopRelationsRequest',
-    successHandler: function (this: any, r) {
+    successHandler: function(this: any, r) {
         this.$store.dispatch(
             'drawChart', {
                 data: r.data, xTitle: "Grammatical relation",
@@ -241,7 +241,7 @@ const cooccurrenceTopFeaturesTask = {
 
     ],
     runAction: 'submitCooccurrenceTopFeaturesRequest',
-    successHandler: function (this: any, r) {
+    successHandler: function(this: any, r) {
         this.$store.dispatch(
             'drawChart', {
                 data: r.data,

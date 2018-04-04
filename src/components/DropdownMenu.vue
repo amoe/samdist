@@ -18,7 +18,7 @@ import utility from '../utility';
 import FormField from './FormField.vue';
 import { mapGetters } from 'vuex';
 import mixins from '../mixins';
-import mutations from '../constants';
+import mc from '../mutation-constants';
 
 // This component will modify the global state visibleTask.
 // taskName refers to the key of the task, as defined in task-definitions.ts.
@@ -90,7 +90,7 @@ import mutations from '../constants';
          },
          activate(item) {
              this.$store.dispatch('clearChart');
-             this.$store.commit(mutations.SWITCH_TASK, item.taskName);
+             this.$store.commit(mc.SWITCH_TASK, item.taskName);
          }
      }
 });

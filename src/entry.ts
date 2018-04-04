@@ -10,9 +10,8 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import actions from './actions';
 import getters from './getters';
-import mutations0 from './constants';
-import mutations1 from './mutations';
-import {DisplayableTable} from './interfaces';
+import mutations from './mutations';
+import { DisplayableTable } from './interfaces';
 
 Vue.use(Vuex);
 
@@ -54,114 +53,7 @@ const store = new Vuex.Store({
         tableData: null,
         chartData: null
     },
-    mutations: {
-        setTableData(state, payload: DisplayableTable) {
-            state.tableData = payload;
-        },
-        setChartData(state, payload: any) {
-            state.chartData = payload;
-        },
-        increment(state) {
-            state.count++;
-        },
-        updateField(state, payload: string) {
-            state.field = payload;
-        },
-        updateCutoff(state, payload: number) {
-            state.cutoff = payload;
-        },
-        updateValue(state, payload: string) {
-            state.value = payload;
-        },
-        updateWindow(state, payload: number) {
-            state.window = payload;
-        },
-        updateRelation(state, payload: number) {
-            state.relation = payload;
-        },
-        errorOccurred(state, payload) {
-            state.error = payload;
-        },
-        errorDismissed(state) {
-            state.error = null;
-        },
-        operationStarted(state) {
-            state.inProgressCount++;
-        },
-        operationFinished(state) {
-            state.inProgressCount--;
-        },
-        updateWord(state, payload: string) {
-            state.word = payload;
-        },
-        updateExamples(state, payload: string) {
-            state.examples = payload;
-        },
-        updateTagMatch(state, payload: string) {
-            state.tagMatch = payload;
-        },
-        updateTagField(state, payload: string) {
-            state.tagField = payload;
-        },
-        setFindTagsData(state, payload) {
-            state.findTagsData = payload;
-        },
-        setDisplaySelectedData(state, payload) {
-            state.displaySelectedData = payload;
-        },
-        setFindWordsBySemanticTagData(state, payload) {
-            state.findWordsBySemanticTagData = payload;
-        },
-        setFindTextBySemanticTagData(state, payload) {
-            state.findTextBySemanticTagData = payload;
-        },
-        setCooccurrenceCandidateTextsData(state, payload) {
-            state.cooccurrenceCandidateTextsData = payload;
-        },
-        setCooccurrenceTopRelationsData(state, payload) {
-            state.cooccurrenceTopRelationsData = payload;
-        },
-        setCooccurrenceExamplesData(state, payload) {
-            state.cooccurrenceExamplesData = payload;
-        },
-        setFindSimilarityData(state, payload: number) {
-            state.findSimilarityData = payload;
-        },
-        updateSemtagA(state, payload: string) {
-            state.semtagA = payload;
-        },
-        updateSemtagB(state, payload: string) {
-            state.semtagB = payload;
-        },
-        setFindNearestNeighboursData(state, payload) {
-            state.findNearestNeighboursData = payload;
-        },
-        updateCorpusKey(state, payload) {
-            state.corpusKey = payload;
-        },
-        updateMeasure(state, payload) {
-            state.measure = payload;
-        },
-        setCompareCorporaData(state, payload) {
-            state.compareCorporaData = payload;
-        },
-        [mutations0.SWITCH_TASK]: (state, taskName: string) => {
-            state.visibleTask = taskName;
-            state.tableData = [];
-            state.chartData = [];
-        },
-        [mutations0.CLEAR_CHART_DATA]: (state) => {
-            state.chartData = null;
-        },
-        [mutations1.STEP_WORD_THROUGH]: (state, columnValue) => {
-            state.visibleTask = 'displayExamplesByWord';
-            state.tableData = [];
-            state.chartData = [];
-            state.word = columnValue;
-            state.field = 'SEMTAG3';  // yuck
-            state.value = state.tagMatch;
-        }        
-    },
+    mutations,
     actions
 });
 
