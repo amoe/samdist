@@ -1,4 +1,5 @@
 import utility from './utility';
+import {DisplayableTable} from './interfaces';
 
 const FIELD_TOOLTIP = "The field to use"
 
@@ -361,7 +362,13 @@ const findWordsBySemanticTagTask = {
     ],
     runAction: 'submitFindWordsBySemanticTagRequest',
     successHandler: function (this: any, r) {
-        this.$store.commit('setTableData', r.data);
+        const newData: DisplayableTable = {
+            steppableColumns: [0],
+            data: r.data
+        };
+
+
+        this.$store.commit('setTableData', newData);
     },
     resultComponent: 'tableWidget'
 };

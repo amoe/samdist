@@ -12,6 +12,7 @@ import actions from './actions';
 import getters from './getters';
 import mutations0 from './constants';
 import mutations1 from './mutations';
+import {DisplayableTable} from './interfaces';
 
 Vue.use(Vuex);
 
@@ -54,7 +55,7 @@ const store = new Vuex.Store({
         chartData: null
     },
     mutations: {
-        setTableData(state, payload: any) {
+        setTableData(state, payload: DisplayableTable) {
             state.tableData = payload;
         },
         setChartData(state, payload: any) {
@@ -159,7 +160,7 @@ const store = new Vuex.Store({
             state.word = columnValue;
             state.field = 'SEMTAG3';  // yuck
             state.value = state.tagMatch;
-        }
+        }        
     },
     actions
 });

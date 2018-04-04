@@ -1,3 +1,5 @@
+import {DisplayableTable} from './interfaces';
+
 const getters = {
     age(state, getters) {
         return state.age;
@@ -84,7 +86,7 @@ const getters = {
     inProgressCount(state, getters) {
         return state.inProgressCount;
     },
-    tableData(state, getters) {
+    tableData(state, getters): DisplayableTable {
         return state.tableData;
     },
     chartData(state, getters) {
