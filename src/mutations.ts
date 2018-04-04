@@ -95,7 +95,7 @@ export default {
     [mc.SWITCH_TASK]: (state, taskName: string) => {
         state.visibleTask = taskName;
         state.tableData = [];
-        state.chartData = [];
+        state.chartData = null;
     },
     [mc.CLEAR_CHART_DATA]: (state) => {
         state.chartData = null;
@@ -103,9 +103,17 @@ export default {
     [mc.STEP_WORD_THROUGH]: (state, columnValue) => {
         state.visibleTask = 'displayExamplesByWord';
         state.tableData = [];
-        state.chartData = [];
+        state.chartData = null;
         state.word = columnValue;
         state.field = 'SEMTAG3';  // yuck
         state.value = state.tagMatch;
+    },
+    [mc.STEP_CATEGORY_THROUGH]: (state, category) => {
+        state.visibleTask = 'displayExamplesByWord';
+        state.tableData = [];
+        state.chartData = null;
+        state.word = category;
+        state.field = 'vard';
+        state.value = '';
     }
 };
