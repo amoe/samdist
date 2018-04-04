@@ -1,7 +1,7 @@
 import {DisplayableTable} from './interfaces'
 
-const tableBase = {
-    successHandler: function (this: any, r) {
+function makeSuccessHandler(steppableColumns) {
+    return function(this: any, r) {
         const newData: DisplayableTable = {
             steppableColumns: [0],
             data: r.data
@@ -9,12 +9,18 @@ const tableBase = {
 
 
         this.$store.commit('setTableData', newData);
-    },
-    resultComponent: 'tableWidget'
-};
+    };
+}
 
-function makeTableTask(extension) {
-    return Object.assign({}, tableBase, extension);
+function makeTableTask(extension, steppableColumns) {
+    return Object.assign(
+        {},
+        {
+            successHandler: makeSuccessHandler(steppableColumns),
+            resultComponent: 'tableWidget'
+        },
+        extension
+    );
 }
 
 export default {

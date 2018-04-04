@@ -76,7 +76,7 @@ const displayExamplesByWordTask = taskConstructors.makeTableTask({
     ],
     // XXX: Rename this stuff
     runAction: 'submitDisplayExamplesByWordRequest'
-});
+}, [0]);
 
 const computeSurprisesTask = {
     title: "Find Surprises -- Graphical",
@@ -147,7 +147,7 @@ const findTagsTask = taskConstructors.makeTableTask({
         }
     ],
     runAction: 'submitFindTagsRequest',
-});
+}, [0]);
 
 const cooccurrenceTopRelationsTask = {
     title: "Top co-occurrence relations",
@@ -274,7 +274,7 @@ const findNearestNeighboursTask = taskConstructors.makeTableTask({
         },
     ],
     runAction: 'submitFindNearestNeighboursRequest'
-});
+}, [0]);
 
 const findTextBySemanticTagTask = taskConstructors.makeTableTask({
     title: "Find text by semantic tag",
@@ -323,7 +323,7 @@ const findTextBySemanticTagTask = taskConstructors.makeTableTask({
         }
     ],
     runAction: 'submitFindTextBySemanticTagRequest',
-});
+}, [0]);
 
 const findWordsBySemanticTagTask = taskConstructors.makeTableTask(
     {
@@ -347,7 +347,8 @@ const findWordsBySemanticTagTask = taskConstructors.makeTableTask(
             },
         ],
         runAction: 'submitFindWordsBySemanticTagRequest'
-    }
+    },
+    [0]
 );
 
 const taskDefinitions = {
