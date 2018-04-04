@@ -7,9 +7,14 @@
         <th>Text</th>
       </tr>
       <tr v-for="datum in tableData.data">
-        <td v-for="(column, index) in datum"
-            v-on:click="stepThrough(column)"
-            v-bind:class="isActive(tableData, index)">{{column}}</td>
+        <span v-for="(column, index) in datum">
+          <td v-if="isActive(tableData, index)"
+              v-on:click="stepThrough(column)"
+              class="active-column-value">{{column}}</td>
+
+          <td v-else>{{column}}</td>
+        </span>
+
       </tr>
     </table>
   </div>
@@ -36,10 +41,7 @@ export default Vue.extend({
         },
         isActive(tableData: DisplayableTable, index) {
             const isSteppable = _.some(tableData.steppableColumns, i => i === index);
-
-            return {
-                'active-column-value': isSteppable
-            }
+            return isSteppable;
         }
     }
 });
@@ -52,6 +54,10 @@ td.active-column-value:hover {
 
 td.active-column-value {
     text-decoration: underline;
+}
+
+span {
+    display: inline;
 }
 
 </style>
