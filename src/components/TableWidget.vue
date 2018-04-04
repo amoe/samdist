@@ -7,14 +7,16 @@
         <th>Text</th>
       </tr>
       <tr v-for="datum in tableData.data">
-        <span v-for="(column, index) in datum">
-          <td v-if="isActive(tableData, index)"
+        <!--
+            Creepy stuff going on here:
+            The 'for' runs first, and the `v-if` runs as if scoped inside the for.
+        -->
+          <td v-for="(column, index) in datum"
+              v-if="isActive(tableData, index)"
               v-on:click="stepThrough(column)"
               class="active-column-value">{{column}}</td>
-
+          
           <td v-else>{{column}}</td>
-        </span>
-
       </tr>
     </table>
   </div>
