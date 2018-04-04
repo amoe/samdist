@@ -1,5 +1,6 @@
 import utility from './utility';
 import {DisplayableTable} from './interfaces';
+import taskConstructors from './task-constructors';
 
 const FIELD_TOOLTIP = "The field to use"
 
@@ -340,40 +341,7 @@ const findTextBySemanticTagTask = {
     resultComponent: 'tableWidget'
 };
 
-const findWordsBySemanticTagTask = {
-    title: "Find words by semantic tag",
-    description: `
-      This will turn up individual words related to a particular semantic tag,
-      and present the occurrence / prevalence stats.
-    `,
-    fields: [
-        {
-            name: 'tagMatch',
-            label: 'Match',
-            mutation: 'updateTagMatch',
-            getter: 'tagMatch'
-        },
-        {
-            name: 'tagField',
-            label: 'Match field',
-            mutation: 'updateTagField',
-            getter: 'tagField'
-        },
-    ],
-    runAction: 'submitFindWordsBySemanticTagRequest',
-    successHandler: function (this: any, r) {
-        const newData: DisplayableTable = {
-            steppableColumns: [0],
-            data: r.data
-        };
-
-
-        this.$store.commit('setTableData', newData);
-    },
-    resultComponent: 'tableWidget'
-};
-
-
+const findWordsBySemanticTagTask = taskConstructors.makeTableTask();
 
 const taskDefinitions = {
     'bagOfWords': bagOfWordsTask,
