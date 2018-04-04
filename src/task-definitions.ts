@@ -341,7 +341,30 @@ const findTextBySemanticTagTask = {
     resultComponent: 'tableWidget'
 };
 
-const findWordsBySemanticTagTask = taskConstructors.makeTableTask();
+const findWordsBySemanticTagTask = taskConstructors.makeTableTask(
+    {
+        title: "Find words by semantic tag",
+        description: `
+          This will turn up individual words related to a particular semantic tag,
+          and present the occurrence / prevalence stats.
+        `,
+        fields: [
+            {
+                name: 'tagMatch',
+                label: 'Match',
+                mutation: 'updateTagMatch',
+                getter: 'tagMatch'
+            },
+            {
+                name: 'tagField',
+                label: 'Match field',
+                mutation: 'updateTagField',
+                getter: 'tagField'
+            },
+        ],
+        runAction: 'submitFindWordsBySemanticTagRequest'
+    }
+);
 
 const taskDefinitions = {
     'bagOfWords': bagOfWordsTask,
