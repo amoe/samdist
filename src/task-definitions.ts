@@ -34,7 +34,7 @@ const bagOfWordsTask = {
     resultComponent: 'chartWidget'
 };
 
-const displayExamplesByWordTask = {
+const displayExamplesByWordTask = taskConstructors.makeTableTask({
     title: "Display Examples by Word",
     description: `
       Displays portions of example text found by searching for a particular word.      
@@ -75,12 +75,8 @@ const displayExamplesByWordTask = {
         }
     ],
     // XXX: Rename this stuff
-    runAction: 'submitDisplayExamplesByWordRequest',
-    successHandler: function (this: any, r) {
-        this.$store.commit('setTableData', r.data);
-    },
-    resultComponent: 'tableWidget'
-};
+    runAction: 'submitDisplayExamplesByWordRequest'
+});
 
 const computeSurprisesTask = {
     title: "Find Surprises -- Graphical",
@@ -129,7 +125,7 @@ const computeSurprisesTask = {
     resultComponent: 'chartWidget'
 };
 
-const findTagsTask = {
+const findTagsTask = taskConstructors.makeTableTask({
     title: 'Find tags by word',
     description: `
         Technically this does a corpus search for the given word, matching 
@@ -151,11 +147,7 @@ const findTagsTask = {
         }
     ],
     runAction: 'submitFindTagsRequest',
-    successHandler: function (this: any, r) {
-        this.$store.commit('setTableData', r.data)
-    },
-    resultComponent: 'tableWidget'
-};
+});
 
 const cooccurrenceTopRelationsTask = {
     title: "Top co-occurrence relations",
@@ -261,7 +253,7 @@ const cooccurrenceTopFeaturesTask = {
     resultComponent: 'chartWidget'
 };
 
-const findNearestNeighboursTask = {
+const findNearestNeighboursTask = taskConstructors.makeTableTask({
     title: "Find nearest neighbours",
     description: `
       Find the nearest neighbours for the concept, listed by distance, 
@@ -281,14 +273,10 @@ const findNearestNeighboursTask = {
             getter: 'relation'
         },
     ],
-    runAction: 'submitFindNearestNeighboursRequest',
-    successHandler: function (this: any, r) {
-        this.$store.commit('setTableData', r.data);
-    },
-    resultComponent: 'tableWidget'
-};
+    runAction: 'submitFindNearestNeighboursRequest'
+});
 
-const findTextBySemanticTagTask = {
+const findTextBySemanticTagTask = taskConstructors.makeTableTask({
     title: "Find text by semantic tag",
     description: `
       This view will filter on semantic tag values and then filter again by
@@ -335,11 +323,7 @@ const findTextBySemanticTagTask = {
         }
     ],
     runAction: 'submitFindTextBySemanticTagRequest',
-    successHandler: function (this: any, r) {
-        this.$store.commit('setTableData', r.data);
-    },
-    resultComponent: 'tableWidget'
-};
+});
 
 const findWordsBySemanticTagTask = taskConstructors.makeTableTask(
     {
