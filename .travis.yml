@@ -16,4 +16,4 @@ matrix:
       python:
         - "3.5"
       script:
-        - pytest
+        - pytest test.py
