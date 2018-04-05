@@ -1,4 +1,4 @@
-import {DisplayableTable} from './interfaces';
+import { DisplayableTable } from './interfaces';
 
 const getters = {
     age(state, getters) {
@@ -91,6 +91,9 @@ const getters = {
     },
     chartData(state, getters) {
         return state.chartData;
+    },
+    currentCorpus(state, getters) {
+        return state.currentCorpus;
     }
 };
 

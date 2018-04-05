@@ -115,5 +115,8 @@ export default {
         state.word = category;
         state.field = 'vard';
         state.value = '';
+    },
+    [mc.SET_CURRENT_CORPUS]: (state, currentCorpus) => {
+        state.currentCorpus = currentCorpus;
     }
 };
