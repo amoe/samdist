@@ -5,7 +5,7 @@ import resthelper
 
 prefix = 'intermediate_data/'
 
-input_path = prefix + '/f_nonl'
+input_path = prefix + 'f_nonl'
 
 # This is actually going to load a bunch of files with defined suffixes:
 # _combined, _rel, _coocurrence, _coocurrence_byrel
@@ -18,17 +18,22 @@ available_corpora = {
 # used by `compare_corpora`
 comparator = SamuelsCorpus.Comparator(available_corpora)
 
-# bow = bag-of-words
+def get_input_path(corpora_name):
+    return available_corpora[corpora_name]
 
 def create_app():
     app = flask.Flask(__name__)
-    app.viewer = SamuelsCorpus.Viewer(input_path, colors=['r'])
+    app.viewer = SamuelsCorpus.Viewer(get_input_path('fnonl'), colors=['r'])
     return app
 
 app = create_app()
 
 @app.route('/configuration/corpus', methods=['PUT'])
 def change_corpus():
+    print("Reinitializing corpus")
+    flask.current_app.viewer = SamuelsCorpus.Viewer(
+        get_input_path('mnonl'), colors=['r']
+    )
     return ('', 204)
 
 @app.route("/bag-of-words")
