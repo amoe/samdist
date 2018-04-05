@@ -3,20 +3,21 @@
 import * as log from 'loglevel';
 import axios from 'axios';
 import transformer from './transformer';
-import {DiscreteStatistic, ChartDrawRequest} from './interfaces';
+import { DiscreteStatistic, ChartDrawRequest } from './interfaces';
 import * as dimple from 'dimple';
 import * as d3 from 'd3';
+import mc from './mutation-constants';
 
 const API_PREFIX = "/api";
 
 function makeEndpointCaller(endpoint: string) {
-    return function (store, payload: object) {
+    return function(store, payload: object) {
         log.debug("submitting request: %o", endpoint);
         log.debug("query string is %o", payload);
 
         store.commit('operationStarted');
         return axios.get(
-            API_PREFIX + endpoint, {params: payload}
+            API_PREFIX + endpoint, { params: payload }
         );
     };
 }
@@ -54,7 +55,39 @@ const actions = {
 
     handleError(store, payload) {
         console.log("I'm going to pop an error dialogue");
-        store.commit('errorOccurred', {message: "Something bad happened."});
+        store.commit('errorOccurred', { message: "Something bad happened." });
+    },
+
+    getCurrentCorpus(store, payload) {
+        store.commit('operationStarted');
+        axios.get(API_PREFIX + "/configuration/corpus").then(r => {
+            store.commit('operationFinished');
+            store.commit(mc.SET_CURRENT_CORPUS, r.data);
+        });
+    },
+
+    getAvailableCorpora(store, payload) {
+        store.commit('operationStarted');
+        axios.get(API_PREFIX + "/available-corpora").then(r => {
+            store.commit('operationFinished');
+            store.commit(mc.SET_AVAILABLE_CORPORA, r.data);
+        });
+    },
+
+    changeCurrentCorpus(store, newCorpus: string) {
+        store.commit('operationStarted');
+        axios.put(
+            API_PREFIX + "/configuration/corpus",
+            JSON.stringify(newCorpus),
+            {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+        ).then(r => {
+            store.commit('operationFinished');
+            store.commit(mc.SET_CURRENT_CORPUS, newCorpus);
+        });
     }
 };
 

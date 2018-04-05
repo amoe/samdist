@@ -3,11 +3,8 @@ import SamuelsCorpus
 import pprint
 import resthelper
 
-app = flask.Flask(__name__)
-
 prefix = 'intermediate_data/'
-
-input_path = prefix + '/f_nonl'
+default_corpus = 'mnonl'
 
 # This is actually going to load a bunch of files with defined suffixes:
 # _combined, _rel, _coocurrence, _coocurrence_byrel
@@ -20,16 +17,43 @@ available_corpora = {
 # used by `compare_corpora`
 comparator = SamuelsCorpus.Comparator(available_corpora)
 
-fnonl = SamuelsCorpus.Viewer(input_path, colors=['r'])
+def get_input_path(corpora_name):
+    return available_corpora[corpora_name]
 
-# bow = bag-of-words
+def create_app():
+    app = flask.Flask(__name__)
+    app.viewer = SamuelsCorpus.Viewer(get_input_path(default_corpus), colors=['r'])
+    app.current_corpus = default_corpus
+    return app
+
+app = create_app()
+
+@app.route('/configuration/corpus', methods=['PUT'])
+def change_corpus():
+    print("Reinitializing corpus")
+    content = flask.request.get_json()
+    print("Found content as '%s'" % content)
+    flask.current_app.viewer = SamuelsCorpus.Viewer(
+        get_input_path(content), colors=['r']
+    )
+    flask.current_app.current_corpus = content
+    return ('', 204)
+
+@app.route('/configuration/corpus', methods=['GET'])
+def get_corpus():
+    return flask.jsonify(flask.current_app.current_corpus)
+
+
+@app.route("/available-corpora")
+def get_available_corpora():
+    return flask.jsonify(list(available_corpora.keys()))
 
 @app.route("/bag-of-words")
 def bag_of_words():
     field = flask.request.args.get('field')
     cutoff = int(flask.request.args.get('cutoff'))   # typed as string
 
-    corpus_size, candidates = fnonl.make_bow(
+    corpus_size, candidates = flask.current_app.viewer.make_bow(
         field=field, cutoff=cutoff, displaygraph=False
     )
 
@@ -45,7 +69,7 @@ def find_tags():
 
     # validation etc
 
-    result = fnonl.find_tags(word, field=field)
+    result = flask.current_app.viewer.find_tags(word, field=field)
 
     pprint.pprint(result)
 
@@ -61,8 +85,8 @@ def display_examples_by_word():
 
     # Execute this for its side effects, because display_selected() uses the
     # previously computed find list.
-    fnonl.find_tags(word, field=field)
-    result = fnonl.display_selected(field=field, value=value, window=window)
+    flask.current_app.viewer.find_tags(word, field=field)
+    result = flask.current_app.viewer.display_selected(field=field, value=value, window=window)
 
     formatted_result = list(map(lambda x: [x], result))
     return flask.jsonify(formatted_result)
@@ -79,8 +103,8 @@ def find_text_by_semantic_tag():
 
 
     # We throw away the word stats result of find_text.
-    fnonl.find_text(tag_match, field=tag_field)
-    result = fnonl.display_selected(
+    flask.current_app.viewer.find_text(tag_match, field=tag_field)
+    result = flask.current_app.viewer.display_selected(
         field=field, value=value, window=window, cutoff=cutoff
     )
 
@@ -96,7 +120,7 @@ def find_words_by_semantic_tag():
     tag_field = flask.request.args.get('tag_field')
 
     # This time we return the results, which are useful stats.
-    result = fnonl.find_text(tag_match, field=tag_field)
+    result = flask.current_app.viewer.find_text(tag_match, field=tag_field)
 
     return flask.jsonify(resthelper.massage_stats_output(result))
 
@@ -133,7 +157,7 @@ def get_top_relations():
     tag_field = flask.request.args.get('tag_field')
     cutoff = int(flask.request.args.get('cutoff'))
 
-    result = fnonl.get_top_relations(
+    result = flask.current_app.viewer.get_top_relations(
         tag_match, cutoff=cutoff, field=tag_field, displaygraph=False
     )
 
@@ -206,7 +230,7 @@ def find_similarity():
 
     print("relation is '%s'" % relation)
 
-    result = fnonl.find_similarity(semtag_a, semtag_b, relation)
+    result = flask.current_app.viewer.find_similarity(semtag_a, semtag_b, relation)
     pprint.pprint(result)
     return flask.jsonify(result)
 
@@ -216,7 +240,7 @@ def find_nearest_neighbour():
     tag_match = flask.request.args.get('tag_match')
     relation = flask.request.args.get('relation')
 
-    result = fnonl.find_knn(tag_match, relation)
+    result = flask.current_app.viewer.find_knn(tag_match, relation)
     pprint.pprint(result)
     return flask.jsonify(result)
 

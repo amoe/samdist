@@ -51,7 +51,9 @@ const store = new Vuex.Store({
         // component with an empty array which can't be logically drawn and will
         // cause errors.
         tableData: null,
-        chartData: null
+        chartData: null,
+        currentCorpus: null,
+        availableCorpora: null
     },
     mutations,
     actions

@@ -1,7 +1,8 @@
 <template>
 <div>
   <h1>Samuels Tagger Explorer</h1>
-  
+
+  <corpus-control></corpus-control>
   <dropdown-menu></dropdown-menu>
 
   <div v-if="error"
@@ -27,6 +28,7 @@ import Vue from 'vue';
 import { mapGetters } from 'vuex';
 import utility from '../utility';
 import DropdownMenu from './DropdownMenu.vue';
+import CorpusControl from './CorpusControl.vue';
 import BarChartDemo from './BarChartDemo.vue';
 import GenericTask from './GenericTask.vue';
 import Spinner from './Spinner.vue';
@@ -34,7 +36,7 @@ import taskDefinitions from  '../task-definitions';
 
 export default Vue.extend({
      components: {
-         GenericTask, DropdownMenu, Spinner
+         GenericTask, DropdownMenu, Spinner, CorpusControl
      },
      methods: {
          switchPane(this: any, code) {
