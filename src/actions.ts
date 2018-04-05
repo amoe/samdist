@@ -59,17 +59,36 @@ const actions = {
     },
 
     getCurrentCorpus(store, payload) {
+        store.commit('operationStarted');
         axios.get(API_PREFIX + "/configuration/corpus").then(r => {
+            store.commit('operationFinished');
             store.commit(mc.SET_CURRENT_CORPUS, r.data);
         });
     },
 
     getAvailableCorpora(store, payload) {
+        store.commit('operationStarted');
         axios.get(API_PREFIX + "/available-corpora").then(r => {
+            store.commit('operationFinished');
             store.commit(mc.SET_AVAILABLE_CORPORA, r.data);
         });
-    }
+    },
 
+    changeCurrentCorpus(store, newCorpus: string) {
+        store.commit('operationStarted');
+        axios.put(
+            API_PREFIX + "/configuration/corpus",
+            JSON.stringify(newCorpus),
+            {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+        ).then(r => {
+            store.commit('operationFinished');
+            store.commit(mc.SET_CURRENT_CORPUS, newCorpus);
+        });
+    }
 };
 
 

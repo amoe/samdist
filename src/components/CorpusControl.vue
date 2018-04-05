@@ -1,6 +1,7 @@
 <template>
   <div class="corpus-control">
-    <select>
+    Corpus:
+    <select v-on:change="changeCorpus($event)">
       <option v-for="item in availableCorpora"
               :value="item"
               :selected="isSelected(item)">{{item}}</option>
@@ -21,6 +22,9 @@ export default Vue.extend({
     methods: {
         isSelected(item) {
             return item === this.currentCorpus;
+        },
+        changeCorpus(event) {
+            this.$store.dispatch('changeCurrentCorpus', event.target.value);
         }
     },
     computed: {
