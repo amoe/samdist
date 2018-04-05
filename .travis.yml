@@ -13,7 +13,6 @@ matrix:
       # <https://github.com/travis-ci/travis-ci/issues/9024>
       sudo: required
     - language: python
-      python:
-        - 3.5
+      python: 3.5
       script:
         - pytest test.py
