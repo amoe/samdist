@@ -14,5 +14,6 @@ matrix:
       sudo: required
     - language: python
       python: 3.5
+      install: true
       script:
         - pytest test.py
