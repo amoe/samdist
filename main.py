@@ -24,7 +24,6 @@ fnonl = SamuelsCorpus.Viewer(input_path, colors=['r'])
 
 # bow = bag-of-words
 
-
 @app.route("/bag-of-words")
 def bag_of_words():
     field = flask.request.args.get('field')
