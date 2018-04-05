@@ -29,7 +29,7 @@ app = create_app()
 
 @app.route('/configuration/corpus', methods=['PUT'])
 def change_corpus():
-    return flask.jsonify({});
+    return ('', 204)
 
 @app.route("/bag-of-words")
 def bag_of_words():
