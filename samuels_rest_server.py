@@ -3,8 +3,6 @@ import SamuelsCorpus
 import pprint
 import resthelper
 
-app = flask.Flask(__name__)
-
 prefix = 'intermediate_data/'
 
 input_path = prefix + '/f_nonl'
@@ -20,9 +18,14 @@ available_corpora = {
 # used by `compare_corpora`
 comparator = SamuelsCorpus.Comparator(available_corpora)
 
-fnonl = SamuelsCorpus.Viewer(input_path, colors=['r'])
-
 # bow = bag-of-words
+
+def create_app():
+    app = flask.Flask(__name__)
+    app.viewer = SamuelsCorpus.Viewer(input_path, colors=['r'])
+    return app
+
+app = create_app()
 
 @app.route('/configuration/corpus', methods=['PUT'])
 def change_corpus():
@@ -33,7 +36,7 @@ def bag_of_words():
     field = flask.request.args.get('field')
     cutoff = int(flask.request.args.get('cutoff'))   # typed as string
 
-    corpus_size, candidates = fnonl.make_bow(
+    corpus_size, candidates = flask.current_app.viewer.make_bow(
         field=field, cutoff=cutoff, displaygraph=False
     )
 
@@ -49,7 +52,7 @@ def find_tags():
 
     # validation etc
 
-    result = fnonl.find_tags(word, field=field)
+    result = flask.current_app.viewer.find_tags(word, field=field)
 
     pprint.pprint(result)
 
@@ -65,8 +68,8 @@ def display_examples_by_word():
 
     # Execute this for its side effects, because display_selected() uses the
     # previously computed find list.
-    fnonl.find_tags(word, field=field)
-    result = fnonl.display_selected(field=field, value=value, window=window)
+    flask.current_app.viewer.find_tags(word, field=field)
+    result = flask.current_app.viewer.display_selected(field=field, value=value, window=window)
 
     formatted_result = list(map(lambda x: [x], result))
     return flask.jsonify(formatted_result)
@@ -83,8 +86,8 @@ def find_text_by_semantic_tag():
 
 
     # We throw away the word stats result of find_text.
-    fnonl.find_text(tag_match, field=tag_field)
-    result = fnonl.display_selected(
+    flask.current_app.viewer.find_text(tag_match, field=tag_field)
+    result = flask.current_app.viewer.display_selected(
         field=field, value=value, window=window, cutoff=cutoff
     )
 
@@ -100,7 +103,7 @@ def find_words_by_semantic_tag():
     tag_field = flask.request.args.get('tag_field')
 
     # This time we return the results, which are useful stats.
-    result = fnonl.find_text(tag_match, field=tag_field)
+    result = flask.current_app.viewer.find_text(tag_match, field=tag_field)
 
     return flask.jsonify(resthelper.massage_stats_output(result))
 
@@ -137,7 +140,7 @@ def get_top_relations():
     tag_field = flask.request.args.get('tag_field')
     cutoff = int(flask.request.args.get('cutoff'))
 
-    result = fnonl.get_top_relations(
+    result = flask.current_app.viewer.get_top_relations(
         tag_match, cutoff=cutoff, field=tag_field, displaygraph=False
     )
 
@@ -210,7 +213,7 @@ def find_similarity():
 
     print("relation is '%s'" % relation)
 
-    result = fnonl.find_similarity(semtag_a, semtag_b, relation)
+    result = flask.current_app.viewer.find_similarity(semtag_a, semtag_b, relation)
     pprint.pprint(result)
     return flask.jsonify(result)
 
@@ -220,7 +223,7 @@ def find_nearest_neighbour():
     tag_match = flask.request.args.get('tag_match')
     relation = flask.request.args.get('relation')
 
-    result = fnonl.find_knn(tag_match, relation)
+    result = flask.current_app.viewer.find_knn(tag_match, relation)
     pprint.pprint(result)
     return flask.jsonify(result)
 
