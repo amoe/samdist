@@ -1,14 +1,10 @@
 import samuels_rest_server
 import pytest
+import json
 
-# You must declare a scope in order to use fixtures.
-@pytest.fixture(scope='function')
-def my_fixture():
-    yield "foo"
-    print("now inside teardown")
-    
-
-def test_can_change_corpus(my_fixture):
-    result = my_fixture + "bar"
-    assert result == "foobar"
+def test_can_change_corpus():
+    client = samuels_rest_server.app.test_client()
+    result = client.put(path="/configuration/corpus", data={})
+    data = json.loads(result.get_data(as_text=True))
+    assert data == {}
 
