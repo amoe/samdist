@@ -4,7 +4,6 @@ import pprint
 import resthelper
 
 prefix = 'intermediate_data/'
-
 default_corpus = 'mnonl'
 
 # This is actually going to load a bunch of files with defined suffixes:

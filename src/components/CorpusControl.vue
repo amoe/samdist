@@ -1,13 +1,10 @@
 <template>
   <div class="corpus-control">
-    <p>Corpus: {{currentCorpus}}</p>
-
-    {{availableCorpora}}
-    
-    <!-- <select> -->
-    <!--   <option value="fnonl">fnonl</option> -->
-    <!--   <option value="mnonl">mnonl</option> -->
-    <!-- </select> -->
+    <select>
+      <option v-for="item in availableCorpora"
+              :value="item"
+              :selected="isSelected(item)">{{item}}</option>
+    </select>
   </div>
 </template>
 
@@ -20,6 +17,11 @@ export default Vue.extend({
     created() {
         this.$store.dispatch('getCurrentCorpus');
         this.$store.dispatch('getAvailableCorpora');
+    },
+    methods: {
+        isSelected(item) {
+            return item === this.currentCorpus;
+        }
     },
     computed: {
         ...mapGetters(['currentCorpus', 'availableCorpora'])

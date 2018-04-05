@@ -59,7 +59,9 @@ const actions = {
     },
 
     getCurrentCorpus(store, payload) {
-        store.commit(mc.SET_CURRENT_CORPUS, 'SOMETHING');
+        axios.get(API_PREFIX + "/configuration/corpus").then(r => {
+            store.commit(mc.SET_CURRENT_CORPUS, r.data);
+        });
     },
 
     getAvailableCorpora(store, payload) {
