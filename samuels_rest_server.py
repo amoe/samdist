@@ -5,7 +5,7 @@ import resthelper
 
 prefix = 'intermediate_data/'
 
-default_corpus = 'fnonl'
+default_corpus = 'mnonl'
 
 # This is actually going to load a bunch of files with defined suffixes:
 # _combined, _rel, _coocurrence, _coocurrence_byrel
@@ -31,8 +31,10 @@ app = create_app()
 @app.route('/configuration/corpus', methods=['PUT'])
 def change_corpus():
     print("Reinitializing corpus")
+    content = flask.request.get_json()
+    print("Found content as '%s'" % content)
     flask.current_app.viewer = SamuelsCorpus.Viewer(
-        get_input_path('mnonl'), colors=['r']
+        get_input_path(content), colors=['r']
     )
     return ('', 204)
 
