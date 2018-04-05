@@ -10,3 +10,12 @@ def test_can_change_corpus():
         content_type="application/json"   # Required to pass this
     )
     assert result.status_code == 204
+
+def test_can_list_corpora():
+    client = samuels_rest_server.app.test_client()
+    result = client.get(
+        path="/available-corpora",
+    )
+    
+    data = json.loads(result.get_data(as_text=True))
+    assert data == ['fnonl', 'mnonl']

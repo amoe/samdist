@@ -38,6 +38,10 @@ def change_corpus():
     )
     return ('', 204)
 
+@app.route("/available-corpora")
+def get_available_corpora():
+    return flask.jsonify(list(available_corpora.keys()))
+
 @app.route("/bag-of-words")
 def bag_of_words():
     field = flask.request.args.get('field')
