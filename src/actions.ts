@@ -63,7 +63,9 @@ const actions = {
     },
 
     getAvailableCorpora(store, payload) {
-        store.commit(mc.SET_AVAILABLE_CORPORA, ['argh', 'blah']);
+        axios.get(API_PREFIX + "/available-corpora").then(r => {
+            store.commit(mc.SET_AVAILABLE_CORPORA, r.data);
+        });
     }
 
 };
