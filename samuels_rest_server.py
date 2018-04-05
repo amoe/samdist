@@ -24,6 +24,7 @@ def get_input_path(corpora_name):
 def create_app():
     app = flask.Flask(__name__)
     app.viewer = SamuelsCorpus.Viewer(get_input_path(default_corpus), colors=['r'])
+    app.current_corpus = default_corpus
     return app
 
 app = create_app()
@@ -36,7 +37,13 @@ def change_corpus():
     flask.current_app.viewer = SamuelsCorpus.Viewer(
         get_input_path(content), colors=['r']
     )
+    flask.current_app.current_corpus = content
     return ('', 204)
+
+@app.route('/configuration/corpus', methods=['GET'])
+def get_corpus():
+    return flask.jsonify(flask.current_app.current_corpus)
+
 
 @app.route("/available-corpora")
 def get_available_corpora():
