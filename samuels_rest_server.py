@@ -5,7 +5,7 @@ import resthelper
 
 prefix = 'intermediate_data/'
 
-input_path = prefix + 'f_nonl'
+default_corpus = 'fnonl'
 
 # This is actually going to load a bunch of files with defined suffixes:
 # _combined, _rel, _coocurrence, _coocurrence_byrel
@@ -23,7 +23,7 @@ def get_input_path(corpora_name):
 
 def create_app():
     app = flask.Flask(__name__)
-    app.viewer = SamuelsCorpus.Viewer(get_input_path('fnonl'), colors=['r'])
+    app.viewer = SamuelsCorpus.Viewer(get_input_path(default_corpus), colors=['r'])
     return app
 
 app = create_app()
