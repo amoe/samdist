@@ -94,6 +94,9 @@ const getters = {
     },
     currentCorpus(state, getters) {
         return state.currentCorpus;
+    },
+    availableCorpora(state, getters) {
+        return state.availableCorpora;
     }
 };
 

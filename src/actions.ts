@@ -6,6 +6,7 @@ import transformer from './transformer';
 import { DiscreteStatistic, ChartDrawRequest } from './interfaces';
 import * as dimple from 'dimple';
 import * as d3 from 'd3';
+import mc from './mutation-constants';
 
 const API_PREFIX = "/api";
 
@@ -58,8 +59,13 @@ const actions = {
     },
 
     getCurrentCorpus(store, payload) {
-        store.commit('setCurrentCorpus', 'SOMETHING');
+        store.commit(mc.SET_CURRENT_CORPUS, 'SOMETHING');
+    },
+
+    getAvailableCorpora(store, payload) {
+        store.commit(mc.SET_AVAILABLE_CORPORA, ['argh', 'blah']);
     }
+
 };
 
 

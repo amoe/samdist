@@ -1,6 +1,8 @@
 <template>
   <div class="corpus-control">
     <p>Corpus: {{currentCorpus}}</p>
+
+    {{availableCorpora}}
     
     <!-- <select> -->
     <!--   <option value="fnonl">fnonl</option> -->
@@ -17,9 +19,10 @@ import axios from 'axios';
 export default Vue.extend({
     created() {
         this.$store.dispatch('getCurrentCorpus');
+        this.$store.dispatch('getAvailableCorpora');
     },
     computed: {
-        ...mapGetters(['currentCorpus'])
+        ...mapGetters(['currentCorpus', 'availableCorpora'])
     }
 });  
 </script>

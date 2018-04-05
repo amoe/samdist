@@ -52,7 +52,8 @@ const store = new Vuex.Store({
         // cause errors.
         tableData: null,
         chartData: null,
-        currentCorpus: null
+        currentCorpus: null,
+        availableCorpora: null
     },
     mutations,
     actions

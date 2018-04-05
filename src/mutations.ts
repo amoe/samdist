@@ -118,5 +118,8 @@ export default {
     },
     [mc.SET_CURRENT_CORPUS]: (state, currentCorpus) => {
         state.currentCorpus = currentCorpus;
+    },
+    [mc.SET_AVAILABLE_CORPORA]: (state, availableCorpora) => {
+        state.availableCorpora = availableCorpora;
     }
 };
