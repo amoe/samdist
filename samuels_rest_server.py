@@ -138,7 +138,7 @@ def get_top_features():
 
     # Constructor encapsulates the entire query
     helper = resthelper.CooccurrenceHelper(
-        fnonl,
+        flask.current_app.viewer,
         tag_match,
         relation,
         cutoff,
@@ -178,7 +178,7 @@ def get_cooccurrence_candidate_texts():
 
     # Constructor encapsulates the entire query
     helper = resthelper.CooccurrenceHelper(
-        fnonl,
+        flask.current_app.viewer,
         tag_match,
         relation,
         cutoff,
@@ -208,7 +208,7 @@ def get_cooccurrence_examples():
 
     # Constructor encapsulates the entire query
     helper = resthelper.CooccurrenceHelper(
-        fnonl,
+        flask.current_app.viewer,
         tag_match,
         relation,
         cutoff,
