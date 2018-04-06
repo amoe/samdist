@@ -2,7 +2,9 @@
 <div>
 <ul class="menu-toplevel">
   <li v-for="(category, index) in menus">
-    <span v-on:click="toggleMenu(index)">{{category.name}} &#x25BE;</span>
+    <!-- Rarely have the opportunity to use a non-breaking space for good, but
+         here's a case where the arrow should never break on its own. -->
+    <span v-on:click="toggleMenu(index)">{{category.name}}&nbsp;&#x25BE;</span>
     <ul v-show="category.expanded">
       <li v-for="item in category.content"
           v-on:click="activate(item)">{{item.name}}</li>

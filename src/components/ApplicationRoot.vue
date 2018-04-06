@@ -1,8 +1,10 @@
 <template>
 <div>
-  <h1>Samuels Tagger Explorer</h1>
+  <header>
+    <h1>Samuels Tagger Explorer</h1>
+    <corpus-control></corpus-control>
+  </header>
 
-  <corpus-control></corpus-control>
   <dropdown-menu></dropdown-menu>
 
   <div v-if="error"
@@ -118,5 +120,4 @@ nav.menu ul li {
     display: inline;
     padding-right: 1rem;
 }
-
 </style>

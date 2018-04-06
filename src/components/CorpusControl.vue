@@ -1,7 +1,7 @@
 <template>
   <div class="corpus-control">
-    Corpus:
-    <select v-on:change="changeCorpus($event)">
+    <label for="corpus-select">Corpus:</label>
+    <select v-on:change="changeCorpus($event)" id="corpus-select">
       <option v-for="item in availableCorpora"
               :value="item"
               :selected="isSelected(item)">{{item}}</option>
@@ -34,4 +34,11 @@ export default Vue.extend({
 </script>
 
 <style>
+select {
+    padding: 0.2rem 0.8rem 0rem 0rem;
+    color: #1a1110;               /* off black */
+    background-color: #fdfdfd;    /* off white, transparent same as background */
+    border: 1px solid #a0a0a0;    /* SHL grey */
+    border-radius: 0.2rem;
+}
 </style>

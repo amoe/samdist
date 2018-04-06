@@ -5,7 +5,7 @@
             r="1em"
             stroke="black"
             stroke-width="0.1em"
-            fill="#001f3f" />
+            fill="#32cd00" />
   </svg> 
 </template>
 
@@ -31,15 +31,15 @@ svg.spinner circle {
 
 @keyframes pulse {
     0% {
-        fill: #001f3f;
+        fill: #32cd00;
     }
     
     50% {
-        fill: #ff4136;
+        fill: #004b00;
     }
     
     100% {
-        fill: #001f3f;
+        fill: #32cd00;
     }
 }
 </style>
