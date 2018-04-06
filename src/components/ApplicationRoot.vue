@@ -80,6 +80,22 @@ body {
 
 h1,h2 { font-family: Georgia; }
 
+header {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);     /* two column grid */
+}
+
+
+/* Centre these two grid items in their boxes */
+h1 {
+    align-self: center;
+    justify-self: center;
+}
+
+.corpus-control {
+    align-self: center;
+    justify-self: center;
+}
 
 div.alert {
     position: fixed;
