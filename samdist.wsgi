@@ -1,1 +1,1 @@
-from main import app as application
+from samuels_rest_server import app as application
