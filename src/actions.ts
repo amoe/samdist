@@ -22,6 +22,23 @@ function makeEndpointCaller(endpoint: string) {
     };
 }
 
+// requestAction must return a promise
+function runWithSpinner(store, requestAction, onComplete) {
+    store.commit('operationStarted');
+
+    try {
+        requestAction().then(r => {
+            store.commit('operationFinished');
+            onComplete(r)
+        }).catch(err => {
+            store.commit('operationFinished');
+        });
+    } catch (err) {
+        store.commit('operationFinished');
+    }
+}
+
+
 const actions = {
     increment(context) {
         context.commit('increment')
@@ -59,37 +76,51 @@ const actions = {
     },
 
     getCurrentCorpus(store, payload) {
-        store.commit('operationStarted');
-        axios.get(API_PREFIX + "/configuration/corpus").then(r => {
-            store.commit('operationFinished');
-            store.commit(mc.SET_CURRENT_CORPUS, r.data);
-        });
+        runWithSpinner(
+            store,
+            function() {
+                return axios.get(API_PREFIX + "/configuration/corpus");
+            },
+            r => {
+                store.commit(mc.SET_CURRENT_CORPUS, r.data);
+            }
+        );
     },
 
     getAvailableCorpora(store, payload) {
-        store.commit('operationStarted');
-        axios.get(API_PREFIX + "/available-corpora").then(r => {
-            store.commit('operationFinished');
-            store.commit(mc.SET_AVAILABLE_CORPORA, r.data);
-        });
+        runWithSpinner(
+            store,
+            function() {
+                return axios.get(API_PREFIX + "/available-corpora");
+            },
+            r => {
+                store.commit(mc.SET_AVAILABLE_CORPORA, r.data);
+            }
+        );
     },
 
     changeCurrentCorpus(store, newCorpus: string) {
-        store.commit('operationStarted');
-        axios.put(
-            API_PREFIX + "/configuration/corpus",
-            JSON.stringify(newCorpus),
-            {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
+        runWithSpinner(
+            store,
+            function() {
+                return axios.put(
+                    API_PREFIX + "/configuration/corpus",
+                    JSON.stringify(newCorpus),
+                    {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }
+                );
+            }, r => {
+                store.commit(mc.SET_CURRENT_CORPUS, newCorpus);
             }
-        ).then(r => {
-            store.commit('operationFinished');
-            store.commit(mc.SET_CURRENT_CORPUS, newCorpus);
-        });
+        );
     }
 };
+
+
+
 
 
 export default actions;
