@@ -107,7 +107,7 @@ export default Vue.extend({
             // So we just NULL out 'value', or make it blank; then write the category
             // to WORD.
 
-            this.$store.commit(mc.STEP_CATEGORY_THROUGH, category);
+            this.$store.commit(mc.STEP_WORD_THROUGH, category);
         }
     },
     computed: {

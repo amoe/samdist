@@ -108,7 +108,8 @@ export default {
         state.field = 'SEMTAG3';  // yuck
         state.value = state.tagMatch;
     },
-    [mc.STEP_CATEGORY_THROUGH]: (state, category) => {
+    // 'Step through' mutation for bag of words
+    [mc.STEP_WORD_THROUGH]: (state, category) => {
         state.visibleTask = 'displayExamplesByWord';
         state.tableData = [];
         state.chartData = null;
