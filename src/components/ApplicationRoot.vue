@@ -20,7 +20,8 @@
                 :fields="task.fields"
                 :run-action="task.runAction"
                 :success-handler="task.successHandler"
-                :result-component="task.resultComponent">
+                :result-component="task.resultComponent"
+                :category-step-mutation="task.categoryStepMutation">
   </generic-task>
 </div>
 </template>

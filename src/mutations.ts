@@ -108,13 +108,20 @@ export default {
         state.field = 'SEMTAG3';  // yuck
         state.value = state.tagMatch;
     },
-    [mc.STEP_CATEGORY_THROUGH]: (state, category) => {
+    // 'Step through' mutation for bag of words
+    [mc.STEP_WORD_ON_X_AXIS]: (state, category) => {
         state.visibleTask = 'displayExamplesByWord';
         state.tableData = [];
         state.chartData = null;
         state.word = category;
         state.field = 'vard';
         state.value = '';
+    },
+    [mc.STEP_RELATION_ON_X_AXIS]: (state, category) => {
+        state.visibleTask = 'cooccurrenceTopFeatures';
+        state.tableData = [];
+        state.chartData = null;
+        state.relation = category;
     },
     [mc.SET_CURRENT_CORPUS]: (state, currentCorpus) => {
         state.currentCorpus = currentCorpus;
