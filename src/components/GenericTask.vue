@@ -54,7 +54,7 @@ export default Vue.extend({
     mixins: [mixins.main],
     props: [
         'title', 'fields', 'runAction', 'successHandler', 'resultComponent',
-        'description'
+        'description', 'categoryStepMutation'
     ],
     components: {
         'chartWidget': thing.BChart,
@@ -99,15 +99,7 @@ export default Vue.extend({
             return this.$store.getters[paramName];
         },
         onXLabelClicked(category) {
-            console.log("foo in parent: %o", category);
-
-            // Now we need to issue some sort of mutation that will step through
-            // the value.
-            // We just assume that the field is vard.
-            // So we just NULL out 'value', or make it blank; then write the category
-            // to WORD.
-
-            this.$store.commit(mc.STEP_WORD_THROUGH, category);
+            this.$store.commit(this.categoryStepMutation, category);
         }
     },
     computed: {

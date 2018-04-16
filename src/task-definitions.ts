@@ -1,6 +1,7 @@
 import utility from './utility';
 import { DisplayableTable } from './interfaces';
 import taskConstructors from './task-constructors';
+import mc from './mutation-constants';
 
 const FIELD_TOOLTIP = "The field to use"
 
@@ -31,7 +32,8 @@ const bagOfWordsTask = {
         console.log("this is %o", this);
         this.$store.dispatch('drawChart', r)
     },
-    resultComponent: 'chartWidget'
+    resultComponent: 'chartWidget',
+    categoryStepMutation: mc.STEP_WORD_ON_X_AXIS
 };
 
 const displayExamplesByWordTask = taskConstructors.makeTableTask({
@@ -190,7 +192,8 @@ const cooccurrenceTopRelationsTask = {
             }
         );
     },
-    resultComponent: 'chartWidget'
+    resultComponent: 'chartWidget',
+    categoryStepMutation: mc.STEP_RELATION_ON_X_AXIS
 };
 
 const cooccurrenceTopFeaturesTask = {

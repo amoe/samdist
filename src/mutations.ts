@@ -109,13 +109,19 @@ export default {
         state.value = state.tagMatch;
     },
     // 'Step through' mutation for bag of words
-    [mc.STEP_WORD_THROUGH]: (state, category) => {
+    [mc.STEP_WORD_ON_X_AXIS]: (state, category) => {
         state.visibleTask = 'displayExamplesByWord';
         state.tableData = [];
         state.chartData = null;
         state.word = category;
         state.field = 'vard';
         state.value = '';
+    },
+    [mc.STEP_RELATION_ON_X_AXIS]: (state, category) => {
+        state.visibleTask = 'cooccurrenceTopFeatures';
+        state.tableData = [];
+        state.chartData = null;
+        state.relation = category;
     },
     [mc.SET_CURRENT_CORPUS]: (state, currentCorpus) => {
         state.currentCorpus = currentCorpus;
