@@ -18,7 +18,7 @@ def test_can_list_corpora():
     )
     
     data = json.loads(result.get_data(as_text=True))
-    assert data == ['fnonl', 'mnonl']
+    assert set(data) == {'fnonl', 'mnonl'}
 
 
 def test_can_get_current_corpus():
