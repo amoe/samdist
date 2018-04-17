@@ -67,10 +67,10 @@ import mc from '../mutation-constants';
                      name: "Co-occurrence",
                      expanded: false,
                      content: [
-                         {name: "Top features",
-                          taskName: 'cooccurrenceTopFeatures'},
                          {name: "Top relations",
                           taskName: 'cooccurrenceTopRelations'},
+                         {name: "Top features",
+                          taskName: 'cooccurrenceTopFeatures'}
                      ]
                  },
                  {
