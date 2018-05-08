@@ -231,8 +231,7 @@ def find_similarity():
     print("relation is '%s'" % relation)
 
     result = flask.current_app.viewer.find_similarity(semtag_a, semtag_b, relation)
-    pprint.pprint(result)
-    return flask.jsonify(result)
+    return flask.jsonify([[result]])
 
 
 @app.route("/find-nearest-neighbours")

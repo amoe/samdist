@@ -5,6 +5,31 @@ import mc from './mutation-constants';
 
 const FIELD_TOOLTIP = "The field to use"
 
+const findSimilarityTask = taskConstructors.makeTableTask({
+    title: "Find Similarity",
+    runAction: 'submitFindSimilarityRequest',
+    fields: [
+        {
+            name: 'relation',
+            mutation: 'updateRelation',
+            label: 'Relation',
+            getter: 'relation'
+        },
+        {
+            name: 'semtagA',
+            mutation: 'updateSemtagA',
+            label: 'Tag A',
+            getter: 'semtagB'
+        },
+        {
+            name: 'semtagB',
+            mutation: 'updateSemtagB',
+            label: 'Tag B',
+            getter: 'semtagB'
+        }
+    ]
+}, []);
+
 const bagOfWordsTask = {
     title: "Bag of Words",
     description: `
@@ -363,7 +388,8 @@ const taskDefinitions = {
     'displayExamplesByWord': displayExamplesByWordTask,
     'findNearestNeighbours': findNearestNeighboursTask,
     'findTextBySemanticTag': findTextBySemanticTagTask,
-    'findWordsBySemanticTag': findWordsBySemanticTagTask
+    'findWordsBySemanticTag': findWordsBySemanticTagTask,
+    'findSimilarity': findSimilarityTask,
 }
 
 export default taskDefinitions;

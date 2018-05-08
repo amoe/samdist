@@ -60,7 +60,9 @@ import mc from '../mutation-constants';
                      expanded: false,
                      content: [
                          {name: "Nearest Neighbours",
-                          taskName: "findNearestNeighbours"}
+                          taskName: "findNearestNeighbours"},
+                         {name: "Find Similarity between Tags",
+                          taskName: 'findSimilarity'}
                      ]
                  },
                  {
