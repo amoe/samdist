@@ -5,6 +5,90 @@ import mc from './mutation-constants';
 
 const FIELD_TOOLTIP = "The field to use"
 
+const getCooccurrenceExampleTextsTask = taskConstructors.makeTableTask(
+    {
+        title: "Get examples texts by cooccurrence",
+        runAction: 'submitGetCooccurrenceExamplesRequest',
+        fields: [
+            {
+                name: 'tagMatch',
+                mutation: 'updateTagMatch',
+                label: 'Tag match',
+                getter: 'tagMatch'
+            },
+            {
+                name: 'tagField',
+                mutation: 'updateTagField',
+                label: 'Tag field',
+                getter: 'tagField'
+            },
+            {
+                name: 'relation',
+                mutation: 'updateRelation',
+                label: 'Relation',
+                getter: 'relation'
+            },
+            {
+                name: 'window',
+                mutation: 'updateWindow',
+                label: 'Window',
+                getter: 'window'
+            },
+            {
+                name: 'cutoff',
+                mutation: 'updateCutoff',
+                label: 'Cutoff',
+                getter: 'cutoff'
+            },
+            {
+                name: 'examples',
+                mutation: 'updateExamples',
+                label: 'Examples',
+                getter: 'examples'
+            }
+        ]
+    }, []
+)
+
+const getCooccurrenceCandidateTextsTask = taskConstructors.makeTableTask(
+    {
+        title: "Get candidate words by cooccurrence",
+        runAction: 'submitGetCooccurrenceCandidateTextsRequest',
+        fields: [
+            {
+                name: 'tagMatch',
+                mutation: 'updateTagMatch',
+                label: 'Tag match',
+                getter: 'tagMatch'
+            },
+            {
+                name: 'tagField',
+                mutation: 'updateTagField',
+                label: 'Tag field',
+                getter: 'tagField'
+            },
+            {
+                name: 'relation',
+                mutation: 'updateRelation',
+                label: 'Relation',
+                getter: 'relation'
+            },
+            {
+                name: 'window',
+                mutation: 'updateWindow',
+                label: 'Window',
+                getter: 'window'
+            },
+            {
+                name: 'cutoff',
+                mutation: 'updateCutoff',
+                label: 'Cutoff',
+                getter: 'cutoff'
+            }
+        ]
+    }, []
+);
+
 const findSimilarityTask = taskConstructors.makeTableTask({
     title: "Find Similarity",
     runAction: 'submitFindSimilarityRequest',
@@ -390,6 +474,8 @@ const taskDefinitions = {
     'findTextBySemanticTag': findTextBySemanticTagTask,
     'findWordsBySemanticTag': findWordsBySemanticTagTask,
     'findSimilarity': findSimilarityTask,
+    'getCooccurrenceCandidateTexts': getCooccurrenceCandidateTextsTask,
+    'getCooccurrenceExampleTexts': getCooccurrenceExampleTextsTask
 }
 
 export default taskDefinitions;

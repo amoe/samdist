@@ -190,7 +190,7 @@ def get_cooccurrence_candidate_texts():
     candidates = helper.query_top_features()
 
     feature_lines = [
-        helper.format_line(candidate)
+        [helper.format_line(candidate)]
         for candidate in candidates
     ]
 

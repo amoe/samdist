@@ -72,7 +72,12 @@ import mc from '../mutation-constants';
                          {name: "Top relations",
                           taskName: 'cooccurrenceTopRelations'},
                          {name: "Top features",
-                          taskName: 'cooccurrenceTopFeatures'}
+                          taskName: 'cooccurrenceTopFeatures'},
+                         {name: "Get candidate words by cooccurrence",
+                          taskName: 'getCooccurrenceCandidateTexts'},
+{name: "Get example texts by cooccurrence",
+taskName: 'getCooccurrenceExampleTexts'}
+
                      ]
                  },
                  {
