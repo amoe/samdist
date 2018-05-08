@@ -190,7 +190,7 @@ def get_cooccurrence_candidate_texts():
     candidates = helper.query_top_features()
 
     feature_lines = [
-        helper.format_line(candidate)
+        [helper.format_line(candidate)]
         for candidate in candidates
     ]
 
@@ -231,8 +231,7 @@ def find_similarity():
     print("relation is '%s'" % relation)
 
     result = flask.current_app.viewer.find_similarity(semtag_a, semtag_b, relation)
-    pprint.pprint(result)
-    return flask.jsonify(result)
+    return flask.jsonify([[result]])
 
 
 @app.route("/find-nearest-neighbours")
