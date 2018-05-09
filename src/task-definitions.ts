@@ -103,7 +103,7 @@ const findSimilarityTask = taskConstructors.makeTableTask({
             name: 'semtagA',
             mutation: 'updateSemtagA',
             label: 'Tag A',
-            getter: 'semtagB'
+            getter: 'semtagA'
         },
         {
             name: 'semtagB',

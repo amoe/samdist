@@ -50,47 +50,17 @@ export default {
     updateTagField(state, payload: string) {
         state.tagField = payload;
     },
-    setFindTagsData(state, payload) {
-        state.findTagsData = payload;
-    },
-    setDisplaySelectedData(state, payload) {
-        state.displaySelectedData = payload;
-    },
-    setFindWordsBySemanticTagData(state, payload) {
-        state.findWordsBySemanticTagData = payload;
-    },
-    setFindTextBySemanticTagData(state, payload) {
-        state.findTextBySemanticTagData = payload;
-    },
-    setCooccurrenceCandidateTextsData(state, payload) {
-        state.cooccurrenceCandidateTextsData = payload;
-    },
-    setCooccurrenceTopRelationsData(state, payload) {
-        state.cooccurrenceTopRelationsData = payload;
-    },
-    setCooccurrenceExamplesData(state, payload) {
-        state.cooccurrenceExamplesData = payload;
-    },
-    setFindSimilarityData(state, payload: number) {
-        state.findSimilarityData = payload;
-    },
     updateSemtagA(state, payload: string) {
         state.semtagA = payload;
     },
     updateSemtagB(state, payload: string) {
         state.semtagB = payload;
     },
-    setFindNearestNeighboursData(state, payload) {
-        state.findNearestNeighboursData = payload;
-    },
     updateCorpusKey(state, payload) {
         state.corpusKey = payload;
     },
     updateMeasure(state, payload) {
         state.measure = payload;
-    },
-    setCompareCorporaData(state, payload) {
-        state.compareCorporaData = payload;
     },
     [mc.SWITCH_TASK]: (state, taskName: string) => {
         state.visibleTask = taskName;

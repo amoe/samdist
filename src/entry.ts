@@ -29,13 +29,6 @@ const store = new Vuex.Store({
         tagMatch: 'AY.01.g.01',
         tagField: 'SEMTAG3',
         relation: null,
-        findTagsData: [],
-        displaySelectedData: [],
-        findWordsBySemanticTagData: [],
-        findTextBySemanticTagData: [],
-        cooccurrenceCandidateTextsData: [],
-        cooccurrenceExamplesData: [],
-        cooccurrenceTopRelationsData: [],
         examples: 3,
         // Used for comparing semantic similarity
         semtagA: 'AD.03.a',
