@@ -25,4 +25,4 @@ Pinned at Flask 0.12.1-1
 * Spacy (from pip - not in Debian)
 * Node v8+ (used to provide `const` without babel)
 
-Yow! x3
+Yow! x4
